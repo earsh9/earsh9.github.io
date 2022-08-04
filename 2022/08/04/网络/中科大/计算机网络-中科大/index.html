@@ -1,0 +1,1065 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/earsh9.github.io/img/fluid.png">
+  <link rel="icon" href="/earsh9.github.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="earsh9">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="应用层如何对地址进行寻址引入端口号(port, 16 bit) 层间接口要携带的信息 要传输的报文 (对于本层来说是SDU) 谁传输的:应用进程标识:IP+TCP(UDP)端口 传输给谁:对方的应用进程标识:对方的IP+TCP(UDP)端口号  TCP socketTCP每次发送信息都要传输上述三个信息太麻烦，所以socket使用一个代号(整数)来标识通信的双方或者单方. 它是一个四元组(sour">
+<meta property="og:type" content="article">
+<meta property="og:title" content="中科大-计算机网络">
+<meta property="og:url" content="https://earsh9.github.io/earsh9.github.io/2022/08/04/%E7%BD%91%E7%BB%9C/%E4%B8%AD%E7%A7%91%E5%A4%A7/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E4%B8%AD%E7%A7%91%E5%A4%A7/index.html">
+<meta property="og:site_name" content="earsh9&#39;s blog">
+<meta property="og:description" content="应用层如何对地址进行寻址引入端口号(port, 16 bit) 层间接口要携带的信息 要传输的报文 (对于本层来说是SDU) 谁传输的:应用进程标识:IP+TCP(UDP)端口 传输给谁:对方的应用进程标识:对方的IP+TCP(UDP)端口号  TCP socketTCP每次发送信息都要传输上述三个信息太麻烦，所以socket使用一个代号(整数)来标识通信的双方或者单方. 它是一个四元组(sour">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://earsh9.github.io/earsh9.github.io/2022/08/04/%E7%BD%91%E7%BB%9C/%E4%B8%AD%E7%A7%91%E5%A4%A7/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E4%B8%AD%E7%A7%91%E5%A4%A7/距离矢量路由选择.png">
+<meta property="article:published_time" content="2022-08-04T10:12:29.455Z">
+<meta property="article:modified_time" content="2022-08-04T10:14:13.540Z">
+<meta property="article:author" content="earsh9">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://earsh9.github.io/earsh9.github.io/2022/08/04/%E7%BD%91%E7%BB%9C/%E4%B8%AD%E7%A7%91%E5%A4%A7/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-%E4%B8%AD%E7%A7%91%E5%A4%A7/距离矢量路由选择.png">
+  
+  
+  
+  <title>中科大-计算机网络 - earsh9&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/earsh9.github.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/earsh9.github.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/earsh9.github.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"earsh9.github.io","root":"/earsh9.github.io/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/earsh9.github.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/earsh9.github.io/js/utils.js" ></script>
+  <script  src="/earsh9.github.io/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/earsh9.github.io/">
+      <strong>earsh9&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/earsh9.github.io/img/bg/background.jpeg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="中科大-计算机网络"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-04 18:12" pubdate>
+          2022年8月4日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          71 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">中科大-计算机网络</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h1><h2 id="如何对地址进行寻址"><a href="#如何对地址进行寻址" class="headerlink" title="如何对地址进行寻址"></a>如何对地址进行寻址</h2><p>引入端口号(port, 16 bit)</p>
+<h2 id="层间接口要携带的信息"><a href="#层间接口要携带的信息" class="headerlink" title="层间接口要携带的信息"></a>层间接口要携带的信息</h2><ol>
+<li>要传输的报文 (对于本层来说是SDU)</li>
+<li>谁传输的:应用进程标识:IP+TCP(UDP)端口</li>
+<li>传输给谁:对方的应用进程标识:对方的IP+TCP(UDP)端口号</li>
+</ol>
+<h3 id="TCP-socket"><a href="#TCP-socket" class="headerlink" title="TCP socket"></a>TCP socket</h3><p>TCP每次发送信息都要传输上述三个信息太麻烦，所以socket使用一个代号(整数)来标识通信的双方或者单方.</p>
+<p>它是一个四元组(source ip, source port, dis ip, dis port)</p>
+<p>socket维护的表中有以下表项:</p>
+<p>socket, source ip, source port, dis ip, dis port, status</p>
+<h3 id="UDP-socket"><a href="#UDP-socket" class="headerlink" title="UDP socket"></a>UDP socket</h3><p>二元组, (本IP, 本端口)</p>
+<p>socket维护的表中有以下表项:</p>
+<p>socket, source ip, source port</p>
+<h2 id="应用层协议"><a href="#应用层协议" class="headerlink" title="应用层协议"></a>应用层协议</h2><p>定义了运行在不同端系统上的应用进程如何相互交换报文</p>
+<ul>
+<li>交换的报文类型:请求和应答报文</li>
+<li>各种报文类型的语义:报文中的各个字段及其描述</li>
+<li>字段的语义:字段取值的含义</li>
+<li>进程何时、如何传输数据</li>
+</ul>
+<h2 id="应用层的指标"><a href="#应用层的指标" class="headerlink" title="应用层的指标"></a>应用层的指标</h2><ul>
+<li>丢失率</li>
+<li>是否可靠(决定是使用TCP还是UDP协议)</li>
+<li>延时</li>
+<li>吞吐量</li>
+<li>安全性</li>
+</ul>
+<p>TCP和UDP不负责数据加密, 因此有SSL(security sockets layer, 在应用层)在TCP上实现了安全的通信服务.</p>
+<h2 id="web与http"><a href="#web与http" class="headerlink" title="web与http"></a>web与http</h2><p>http建立在tcp之上</p>
+<p>http是无状态的,发送完数据就断开TCP连接,不记录客户端的状态</p>
+<p>http1.1和http1.0的不同是,在发送完数据之后不断开数据.</p>
+<h3 id="响应时间模型"><a href="#响应时间模型" class="headerlink" title="响应时间模型"></a>响应时间模型</h3><p>往返时间(RTT):一个小的分组从客户端到服务器, 再回到客户端的时间.</p>
+<p>响应时间: 两个往返时间+发送时间</p>
+<h3 id="http请求报文"><a href="#http请求报文" class="headerlink" title="http请求报文"></a>http请求报文</h3><p>两种http请求报文: 请求、响应</p>
+<p>请求报文的格式:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs txt">GET /dir/page.html HTTP/1.1<br>Host: www.xxx.com<br>User-agent: Mozilla/4.0<br>Connection: close<br>Accept-language:fr<br>//这里一个额外的换行符表示结束<br>body<br></code></pre></td></tr></table></figure>
+
+<p>HTTP响应报文</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs txt">HTTP/1.1 200/404/503(这个是状态) OK(状态码的解释也在包头)\r\n<br>Connection close<br>Data: The, 06  Aug 1998, 22 GMT<br>Server: Apache/1.3.0<br>Last-Modified: Mon, 22, Jun 1998(请求的数据上次被修改的时间,用于检查更新)<br>Content-Length: 9877 <br>Content-Type: Text/html<br>\n\r<br>\n\r<br>body<br></code></pre></td></tr></table></figure>
+
+<h3 id="客户端-服务器的状态维护-cookie"><a href="#客户端-服务器的状态维护-cookie" class="headerlink" title="客户端-服务器的状态维护: cookie"></a>客户端-服务器的状态维护: cookie</h3><h3 id="web缓存"><a href="#web缓存" class="headerlink" title="web缓存"></a>web缓存</h3><p>不访问原始服务器就满足客户的请求</p>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>提供从域名到ip地址的转换</p>
+<p>基于UDP, 运行在53号端口</p>
+<p>DNS域名结构: 树状结构</p>
+<p>共有13个根服务器</p>
+<p>为了方便管理, 整个树被多个权威域名服务器维护,每个权威域名服务器负责树的一部分分支.</p>
+<ul>
+<li><p>TLD服务器(顶级域名服务器)负责顶级域名和所有国家的域名</p>
+</li>
+<li><p>Name Server(区域名字服务器)维护资源记录(resource records)</p>
+</li>
+</ul>
+<p>资源记录包括的字段:</p>
+<ul>
+<li>class 表示维护的域名的类别(IN) 表示是互联网类</li>
+<li>TTL(Time To Live) 要缓存该行数据多久, 可以是长期的, 也可以是短期的</li>
+<li>域名</li>
+<li>对应的IP地址</li>
+<li>Type, 表示该行数据的类型, A表示是域名与IP地址的对应, NS表示域名与该域名的权威服务器的域名, CNAME表示该域名的别名</li>
+</ul>
+<h3 id="Socket编程"><a href="#Socket编程" class="headerlink" title="Socket编程"></a>Socket编程</h3><p>socket in 的数据结构</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">sockaddr_in</span> &#123;<br>    <span class="hljs-type">short</span> sin_family; <span class="hljs-comment">// AF_INET</span><br>    u_short sin_port; <span class="hljs-comment">//port</span><br>    <span class="hljs-keyword">struct</span> <span class="hljs-title class_">in_addr</span> sin_addr; <span class="hljs-comment">// IP address, unsigned long</span><br>    <span class="hljs-type">char</span> sin_zero[<span class="hljs-number">8</span>]; <span class="hljs-comment">//align</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>hostent数据结构 (这个应该是和dns有关的数据结构)</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-keyword">struct</span> <span class="hljs-title class_">hostent</span> &#123;<br>    <span class="hljs-type">char</span> *h_name;<br>    <span class="hljs-type">char</span> **h_aliases;<br>    <span class="hljs-type">int</span> h_addrtype;<br>    <span class="hljs-type">int</span> h_length; <span class="hljs-comment">// address length</span><br>    <span class="hljs-type">char</span> **h_addr_list;<br>    <span class="hljs-meta">#<span class="hljs-keyword">define</span> h_addr h_addr_list[0];</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>服务端步骤:</p>
+<ol>
+<li>创建一个socket</li>
+<li>绑定本机ip和一个端口号</li>
+<li>等待客户端连接请求</li>
+</ol>
+<p>客户端步骤:</p>
+<ol start="4">
+<li>创建一个client socket</li>
+<li>绑定本地ip和一个端口号</li>
+<li>填入服务端的ip和端口号</li>
+</ol>
+<p>客户端在步骤3之后会进入阻塞状态并向服务端发送请求, 服务端收到并返回响应, 之后客服端接触阻塞.</p>
+<p>在建立连接之后服务端会在socket表中加入新的一项<br>7. 一个新的socket id, 本机IP和端口、客户端IP和端口</p>
+<ol start="8">
+<li>之后客户端可以通过socket向服务端写(write)数据</li>
+<li>服务端read数据</li>
+<li>服务端处理并write数据到客户端</li>
+<li>服务端关闭步骤7中建立的socket(步骤1中的socket仍然有效,它是一个守护进程, 接受客户端的connect请求并建立新的socket)</li>
+</ol>
+<h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><h2 id="多路复用-x2F-多路解复用"><a href="#多路复用-x2F-多路解复用" class="headerlink" title="多路复用&#x2F;多路解复用"></a>多路复用&#x2F;多路解复用</h2><p>TCP&#x2F;UDP支持多个应用层的应用使用传输层协议</p>
+<p>如何区分不同的应用?</p>
+<p>socket字段不同(由source ip, source port, dist ip, dist port构成)</p>
+<h2 id="UDP-用户数据包协议"><a href="#UDP-用户数据包协议" class="headerlink" title="UDP 用户数据包协议"></a>UDP 用户数据包协议</h2><p>UDP报文段格式</p>
+<table>
+<thead>
+<tr>
+<th>source port</th>
+<th>dist port</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>length</td>
+<td>校验和</td>
+</tr>
+<tr>
+<td>payload</td>
+<td></td>
+</tr>
+<tr>
+<td>前两行, 每一行的长度为32bit</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id="校验和"><a href="#校验和" class="headerlink" title="校验和"></a>校验和</h3><p>为了检测传输的数据是否有差错</p>
+<p>发送方:</p>
+<ol>
+<li>将报文段视为16bit的整数</li>
+<li>校验和: 报文段的加法和, 16个bit的整数与16个bit的整数相加, 进位回滚, 得到的答案按位取反</li>
+<li>发送方将校验和放在UDP的校验和字段</li>
+</ol>
+<p>接收方:</p>
+<ol>
+<li>报文段视为16bit的整数</li>
+<li>计算校验和, 进位回</li>
+<li>与头中的校验和相异或,看是否是全1</li>
+</ol>
+<h2 id="可靠数据传输的原理-RDT"><a href="#可靠数据传输的原理-RDT" class="headerlink" title="可靠数据传输的原理 (RDT)"></a>可靠数据传输的原理 (RDT)</h2><p><strong>通过有限状态机的方式进行描述</strong></p>
+<h3 id="RDT1-0-假设不出错、不丢失"><a href="#RDT1-0-假设不出错、不丢失" class="headerlink" title="RDT1.0 假设不出错、不丢失"></a>RDT1.0 假设不出错、不丢失</h3><p>此时RDT无需做额外事情, 只需要封装解封装</p>
+<h3 id="RDT2-0-假设数据会出错"><a href="#RDT2-0-假设数据会出错" class="headerlink" title="RDT2.0 假设数据会出错"></a>RDT2.0 假设数据会出错</h3><ul>
+<li><p>发送方:</p>
+<ul>
+<li><p>发送方在发送之后进入等待状态, 等待接收方的回复(data ACK&#x2F;NAK)</p>
+<ul>
+<li>此处会将发送的 snkpkt &#x3D; make_pkt(data, checksum) 备份，以防出错重传</li>
+</ul>
+</li>
+<li><p>在等待状态下, 如果发送方回复NAK(出错), 则重新发送, 在进入等待状态</p>
+</li>
+</ul>
+</li>
+<li><p>接收方:</p>
+<ul>
+<li>接收方在等待状态收到包之后, 计算校验和, 若有效则发送AK, 否则发送NAK</li>
+</ul>
+</li>
+</ul>
+<h3 id="RDT2-1-stop-and-wait（停止等待协议）"><a href="#RDT2-1-stop-and-wait（停止等待协议）" class="headerlink" title="RDT2.1 stop and wait（停止等待协议）"></a>RDT2.1 stop and wait（停止等待协议）</h3><p>RDT2.0协议有一个问题, 接收方给发送方返回的ACK&#x2F;NAK信息在网络中可能会出错，导致发送方无法辨别不知响应什么动作</p>
+<p>方法: 引入序号 (0或1)</p>
+<ul>
+<li>当发送方接收到的确认信息莫名其妙时, 直接再次重传刚才发送的package. 这样接收方就收到了两次该package, 第二次收到的时候再返回ACK&#x2F;NAK信息.</li>
+</ul>
+<p>(就算上次没收到的是ACK，接收方通过序号能检测到是重复发送，丢弃报文再发一次ACK以便接收下一次的信息就好。目的是为了让发送方和接收方重新回到同步的状态)</p>
+<p>序号只需要0和1就够了, 接收方收到0之后转化到等待1状态, 接收到1之后转换到等待0状态</p>
+<h3 id="RDT2-2-无NAK"><a href="#RDT2-2-无NAK" class="headerlink" title="RDT2.2 无NAK"></a>RDT2.2 无NAK</h3><p>对ACK做编号.（为后续的流水式传输：一次发送多个数据单元作铺垫）</p>
+<p>假设发送方发送package0, 接收方发现package0是错的, 这时返回ACK0</p>
+<p>然后发送方发送package1, 接收方再次返回ACK0, 发送方就知道package0有问题了 （接收方对最后正确接收的分组发ACK，以替代NAK）</p>
+<p>当收到重复的ACK（如：再次收到ack0）时，发送方与收到NAK采取相同的动作：重传当前分组；收到的ack0出错时也是重传，接收方有能力根据序号判断是否重复</p>
+<h3 id="RDT3-0-数据不仅会出错-还有可能丢失"><a href="#RDT3-0-数据不仅会出错-还有可能丢失" class="headerlink" title="RDT3.0 数据不仅会出错, 还有可能丢失"></a>RDT3.0 数据不仅会出错, 还有可能丢失</h3><p>在RDT2.x版本中, 接收方在收到一个package之后才会给发送方返回ACK, 而发送方收到接收方的ACK之后才会给接收方发送下一个package. 这样如果一条数据在传输过程中流失了, 这样接收方在等数据包, 而发送方在等回应, 形成了死锁, 没法继续下去了</p>
+<p>因此引入 <strong>超时重传机制</strong>, 超过时限之后重新发送.</p>
+<h3 id="RDT3-1-pipe-line-流水线协议"><a href="#RDT3-1-pipe-line-流水线协议" class="headerlink" title="RDT3.1 pipe line 流水线协议"></a>RDT3.1 pipe line 流水线协议</h3><p>RDT3.0及之前的版本, 只有接收方返回信号时才发送下一个package, 这样的话效率比较低, 没有充分利用信道容量&#x2F;带宽.</p>
+<table>
+<thead>
+<tr>
+<th>sending window</th>
+<th>receiving window</th>
+<th>协议</th>
+<th>类别</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>RDT3.0</td>
+<td>stop and wait</td>
+</tr>
+<tr>
+<td>&gt;1</td>
+<td>1</td>
+<td>go back n协议</td>
+<td>流水线</td>
+</tr>
+<tr>
+<td>&gt;1</td>
+<td>&gt;1</td>
+<td>selective repeat</td>
+<td>流水线</td>
+</tr>
+</tbody></table>
+<p><strong>滑动窗口(slide window)协议:</strong></p>
+<p>发送缓冲区: 内存中的一个区域, 落入缓冲区的分组可以发送.</p>
+<p>发送缓冲区的大小:</p>
+<ul>
+<li>在停止等待协议(SW)中&#x3D;1,</li>
+<li>在流水线协议中&gt;1</li>
+</ul>
+<p>发送窗口: 发送缓冲区的子集, 指发送缓冲区中已发送但是未确认的分组</p>
+<p>接收窗口</p>
+<p>如果等于1的话, 只确认接收窗口当前所在的序号, 故发送窗口最多接收到窗口上一个的序号</p>
+<p>如果大于1的话, 会确认在窗口内收到的序号</p>
+<table>
+<thead>
+<tr>
+<th>GBN</th>
+<th>SR</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>协议简单</td>
+<td>协议较复杂</td>
+</tr>
+<tr>
+<td>重传代价大</td>
+<td>重传代价小</td>
+</tr>
+</tbody></table>
+<h2 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h2><p>TCP报文段结构</p>
+<table>
+<thead>
+<tr>
+<th>源端口 16 bit</th>
+<th>目标端口 16bit</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>序号 32bit：指载荷中的第一个字节在数据中的偏移量</td>
+<td></td>
+</tr>
+<tr>
+<td>确认号32bit：若ACK为555表明554及554之前的分组均已收到（期望从对方收到的下一个字节的序号）</td>
+<td></td>
+</tr>
+<tr>
+<td>标志位16bit</td>
+<td>接收窗口(表示愿意接收的字节数量)</td>
+</tr>
+<tr>
+<td>校验和</td>
+<td>紧急数据指针</td>
+</tr>
+<tr>
+<td>可选项</td>
+<td></td>
+</tr>
+<tr>
+<td>data</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>标志位有UAPRSF</p>
+<h3 id="往返延时-RTT-和超时"><a href="#往返延时-RTT-和超时" class="headerlink" title="往返延时(RTT)和超时"></a>往返延时(RTT)和超时</h3><p>EstimatedRTT &#x3D; (1 - $\alpha$) * EstimatedRTT + $\alpha$ * SampleRTT(过去的采样值)</p>
+<p>过去的采样值的重要程度随指数衰减</p>
+<p>$\alpha$建议为0.125</p>
+<p>设置超时为 EstimatedRTT + 安全边界</p>
+<p>SampleRTT会偏离EstimatedRTT多远</p>
+<p>DevRTT &#x3D; (1 - $\beta$) * DevRTT + $\beta$ * |SampleRTT - EstimatedRTT|</p>
+<p>$\beta$建议为0.25</p>
+<h3 id="快速重传"><a href="#快速重传" class="headerlink" title="快速重传"></a>快速重传</h3><p>发送方连续3次收到某个ACK时, 发送ACK起始的segment</p>
+<h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><p>协议头中receive windows表述接收方最多能接收多少数据</p>
+<h3 id="建立连接-三次握手"><a href="#建立连接-三次握手" class="headerlink" title="建立连接(三次握手)"></a>建立连接(三次握手)</h3><ul>
+<li><p>两次连接为什么不行?</p>
+</li>
+<li><p>问题1.浪费连接资源</p>
+</li>
+</ul>
+<p>假设发送方发起一个连接请求, 接收方接收并确认了. 如果确认消息在网络中延迟了(没有丢失), 那么发送方就会进行超时重发, 重发之后接收到了接收方第一次发送的确认, 然后发送了数据.</p>
+<p>此时接收方接收到了两次发送方建立连接的请求, 进行了一次多余的连接, 浪费了接收方的资源.</p>
+<ul>
+<li>问题2.老的数据被当成新的数据处理</li>
+</ul>
+<p>还有一种问题, 就是发送方可能发送了两次数据(原因是第一次发送数据的时候接收方的确认信号延时了), 第二次发送数据之后接收到了接收方对于第一次数据的确认, 这时发送方中断了连接. 然而服务器接收到了第二次发送的数据, 并误以为是发送方第二次建立连接发送的数据. 这就导致了数据重复处理.</p>
+<ul>
+<li>为什么发送方和接收方的SYN号不从0开始?</li>
+</ul>
+<p>防止老的数据对新的连接产生影响.（前一个连接发送的数据在断开连接前发生延迟未到达接收方，过一段时间相同发送和接收方又建立新连接，此前延迟的数据到达接收方后造成旧数据被当成新数据处理）</p>
+<ul>
+<li>三次握手的建立过程</li>
+</ul>
+<ol>
+<li>发送方—&gt;接收方, SYN &#x3D; X</li>
+<li>接收方—&gt;发送方, ACK &#x3D; x + 1</li>
+<li>接收方—&gt;发送方, SYN &#x3D; y</li>
+<li>发送方—&gt;接收方, ACK &#x3D; y + 1</li>
+</ol>
+<p>其中2和3合并在一起, 接送方在给发送方发送数据的时候同时发了SYN和ACK. 所以总共是三次握手</p>
+<h3 id="关闭连接-四次握手"><a href="#关闭连接-四次握手" class="headerlink" title="关闭连接(四次握手)"></a>关闭连接(四次握手)</h3><p>发送方给接收方发送释放连接FIN &#x3D; 1, SYN &#x3D; x, 接收方确认 ACK &#x3D; x + 1</p>
+<p>接收方给发送方发送释放连接FIN &#x3D; 1, SYN &#x3D; y, 接收方确认 ACK &#x3D; y + 1</p>
+<h3 id="TCP拥塞控制机制"><a href="#TCP拥塞控制机制" class="headerlink" title="TCP拥塞控制机制"></a>TCP拥塞控制机制</h3><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs txt">拥塞控制CongWin 是网络的问题（上下班高峰期）<br>流量控制RecvWin 是接收方给发送方捎带的反馈信息（发端太快收端要反馈）<br></code></pre></td></tr></table></figure>
+
+<p>发送方如何察觉将要发生拥塞:</p>
+<ul>
+<li>超时</li>
+<li>三个冗余ACK包（一个正常+三个冗余ACK）</li>
+</ul>
+<p>如何控制发送速率:</p>
+<p>超时时: CongWin(拥塞窗口)降为 1MSS, 进入慢启动(ss)阶段, 以每个RTT为间隔倍增到CongWin&#x2F;2，而后进入CA阶段</p>
+<p>三个冗余ack: CongWin降为CongWin &#x2F; 2, 进入CA(拥塞控制)阶段。（少了一个慢启动）</p>
+<p>否则(正常收到ACK, 没有发生以上情况), ConWin跃跃欲试:</p>
+<ul>
+<li>ss（slow-start）阶段 加倍增加(每个RTT)</li>
+<li>CA（congestion-avoidance）阶段 线性增加</li>
+</ul>
+<p> 同时拥塞控制也可以和流量控制联合, 即也可以联合确定每次向接收方发送多少个字节</p>
+<p> sendWin &#x3D; min(CongWin, RecvWin), RecvWin是接收方对发送方说的接收窗口大小.</p>
+<p> TCP建立连接时首先慢启动, 第一次发送1个MSS, 然后每接收到一个ACK就增加一个MSS的发送(即, 第二次会发送2个MSS, 第三次因为收到了2次ACK, 每次增加一个MSS, 所以发送4个MSS), 故是一个指数增加的趋势.</p>
+<p> 比如说在发送16个MSS时发生了超时, 那么就把16 &#x2F; 2 &#x3D; 8个MSS当做警戒值, 进入慢启动阶段, 从1个MSS开始, 每次加倍, 加到8个MSS时, 开始线性增加.</p>
+<h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><p>两个功能： 路由和转发</p>
+<ul>
+<li><p>路由是控制层面，根据网络情况生成路由表。是对全网络的一个勘测</p>
+</li>
+<li><p>转发是数据层面，根据路由表将数据包进行转发，是一个局部的。</p>
+</li>
+</ul>
+<h2 id="IP中的协议"><a href="#IP中的协议" class="headerlink" title="IP中的协议"></a>IP中的协议</h2><h3 id="从输入端口-数据链路层提供的数据-转到输出窗口的过程"><a href="#从输入端口-数据链路层提供的数据-转到输出窗口的过程" class="headerlink" title="从输入端口(数据链路层提供的数据)转到输出窗口的过程"></a>从输入端口(数据链路层提供的数据)转到输出窗口的过程</h3><p>调度机制</p>
+<ul>
+<li>FIFO</li>
+<li>优先权</li>
+<li>Round Robin（RR：轮着来）</li>
+<li>Weighted Fair Queuing, Round Robin基础上加上权重</li>
+</ul>
+<h3 id="IP-分片-和-重组"><a href="#IP-分片-和-重组" class="headerlink" title="IP 分片 和 重组"></a>IP 分片 和 重组</h3><ul>
+<li>分片的原因：</li>
+</ul>
+<p>IP层的路由器通过网卡连接不同网线。不同类型网络链路的 MTU（最大传输单元）不同。由大容量传至小容量需要切片才能传输</p>
+<ul>
+<li>怎么分？携带哪些信息</li>
+</ul>
+<p>分片时：同一数据报的head在切分成若干份时都需要复制带上–&gt;标识是同一数据报发出</p>
+<p>设置offset—&gt;确定分片的先后顺序（每8B一切）；</p>
+<p><code>以八个字节为单位进行分片，故offset中要对分片的大小 / 8</code></p>
+<p>分片标记–&gt;标识是最后一个分片</p>
+<p><code>如果该segment是最后一个，则标志位为1</code></p>
+<ul>
+<li>重组：</li>
+</ul>
+<p>由于路由表会发生变化，切割的不同片会通过不同网络传到目标主机。重组只能在目标主机完成。目标主机收到其中一片后设置定时器，若超时时未收齐—&gt;全部丢弃</p>
+<h3 id="子网"><a href="#子网" class="headerlink" title="子网"></a>子网</h3><p>是什么是子网：</p>
+<ol>
+<li>ip前缀相同</li>
+<li>设备之间一跳可达，无需借助路由器</li>
+</ol>
+<h3 id="IP地址分类"><a href="#IP地址分类" class="headerlink" title="IP地址分类"></a>IP地址分类</h3><ul>
+<li>A类，最高位为0</li>
+<li>B类，10</li>
+<li>C类：110</li>
+<li>D类：1110, multicast，组播</li>
+<li>E类：预留</li>
+</ul>
+<h3 id="IP地址编码-CIDER"><a href="#IP地址编码-CIDER" class="headerlink" title="IP地址编码 (CIDER)"></a>IP地址编码 (CIDER)</h3><p>分为网络号和主机号</p>
+<p>转发表和转发算法</p>
+<table>
+<thead>
+<tr>
+<th>dest subnet num</th>
+<th>Mast</th>
+<th>next hop下一跳</th>
+<th>interface</th>
+</tr>
+</thead>
+</table>
+<h3 id="DHCP-dynamic-host-configuration-protocol"><a href="#DHCP-dynamic-host-configuration-protocol" class="headerlink" title="DHCP dynamic host configuration protocol"></a>DHCP dynamic host configuration protocol</h3><p>自动获得IP地址、子网掩码</p>
+<ol>
+<li>client给dhcp server发送消息(souce ip是全0，dist地址是全1 用于广播)</li>
+<li>server给client发送回应，内容包括ip地址是多少，子网掩码是多少</li>
+<li>client给server回应(为什么要给回应？因为可能有多个dhcp server给client分配，需要在其中挑选一个)</li>
+</ol>
+<p>基于udp</p>
+<h3 id="NAT-Network-Address-Translation"><a href="#NAT-Network-Address-Translation" class="headerlink" title="NAT (Network Address Translation)"></a>NAT (Network Address Translation)</h3><p>实现ip地址的转换</p>
+<p>当数据包出去的时候，将source ip和端口号替换为NAT ip地址和新的端口号，目标IP和端口不变。</p>
+<p>记住每个转换替换对(在NAT转换表中)<br>source ip, source port, NAT ip, NAT port</p>
+<p>当数据包进入的时候，替换目标IP地址和端口号</p>
+<p>NAT的争议：</p>
+<ol>
+<li>网络层本来只应该管网络层的事情，但是NAT更改了port(传输层的内容)</li>
+<li>违反了end-to-end的原则(该原则为复杂性放到网络边缘)</li>
+</ol>
+<h2 id="路由转发（网络层的控制平面）"><a href="#路由转发（网络层的控制平面）" class="headerlink" title="路由转发（网络层的控制平面）"></a>路由转发（网络层的控制平面）</h2><p>路由有静态的和动态的，对应的选择算法就是非自适应的和自适应的</p>
+<h3 id="1、链路状态算法-Linked-Status"><a href="#1、链路状态算法-Linked-Status" class="headerlink" title="1、链路状态算法(Linked Status)"></a>1、链路状态算法(Linked Status)</h3><p><code>上帝视角：提前知道所有网络拓扑图，利用dijkstra算出汇集树（此节点到所有其它节点的最优路径形成的树）</code></p>
+<ol>
+<li>发现相邻节点，获知对方网络地址</li>
+<li>测量到相邻节点的代价（延迟、开销）</li>
+<li>组装一个LS分组，描述它到相邻节点的代价情况</li>
+<li>将分组通过 <strong>扩散（泛洪）</strong> 的方法发到所有其它路由器（前4步可以使得每个路由器获得网络拓扑和边代价）</li>
+<li>利用 dijkstra 算法计算到各地址的最短路径</li>
+</ol>
+<p>为了防止步骤4导致的网络风暴（出现环）问题，在扩散的时候会增加一个TTL或者增加一个版本号。</p>
+<p>OSPF协议就是一种LS协议，被用于Internet上</p>
+<p><strong>可能的震荡：</strong></p>
+<p>若边的代价代表：路径的拥塞程度；都走轻载路径-&gt;拥塞-&gt;换路径-&gt;拥塞，频繁换路径可能导致链路震荡。</p>
+<h3 id="2、距离矢量路由选择-distance-vector-routing"><a href="#2、距离矢量路由选择-distance-vector-routing" class="headerlink" title="2、距离矢量路由选择(distance vector routing)"></a>2、距离矢量路由选择(distance vector routing)</h3><p><code>基于分布式，每个节点维护一张路由表(到所有邻居的代价值)；节点间定期交换距离矢量(当前点到其他节点的代价值)</code></p>
+<p>路由表内容：</p>
+<table>
+<thead>
+<tr>
+<th>目标</th>
+<th>下一跳</th>
+<th>代价(ms)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A</td>
+<td>Z</td>
+<td>14</td>
+</tr>
+</tbody></table>
+<ol>
+<li>根据实测 得到本节点到相邻节点的代价</li>
+<li>根据各相邻节点声称他们到目标站点的(有些目标不知道代价∞就好)</li>
+<li>找到一个最小的代价和相应的下一跳</li>
+</ol>
+<p>相当于bellman ford算法（动态规划）</p>
+<p><code>现要求J到G的最优值：J到邻居A,I,H,K的延迟为自行实测，A,I,H,K到G的延迟是G告诉我的；加和就是J到G经由A,I,H,K四种方式的延迟，取最小为J-H-G</code></p>
+<img src="距离矢量路由选择.png" srcset="/earsh9.github.io/img/loading.gif" lazyload width="50%">
+
+<p>DV算法的特性：</p>
+<ul>
+<li>好消息传得快， 坏消息传的慢</li>
+</ul>
+<p>坏消息为什么传的慢？<br> A&lt;—–B&lt;——C</p>
+<p>比方说B到A需要代价1，C到B需要代价1。那么现在C到A的代价就是2（C的下一跳是B）。</p>
+<p>假设现在A挂掉了，那么B到A的代价就变成INF，然后下一次数据交换的时候，A&lt;—-B变为INF，但是C告诉B，C到A的代价是2，根据bellman ford算法，B到A的路径取较小值，变成了2+1&#x3D;3. 但是实际上这是行不通的且还会形成环路，因为这个路径是B-&gt;C-&gt;B-&gt;A，A已经挂掉了。</p>
+<p>如何加速这种情况？使用水平分裂算法(split horizon)，既然C-&gt;A的下一跳是B，那么C在给B说自己到A的距离的时候干脆就说无穷大，避免自己过于自信生成自己可以到达A的情况（因为C到A需要经过B，B知道A不可达，没必要卖关子）；而对于其它的节点D E F，C仍然对它们说自己到A的距离是2.</p>
+<p>LS和DV算法的比较</p>
+<ul>
+<li><p>消息复杂度： DV传输的消息少，LS需要全网泛红</p>
+</li>
+<li><p>收敛时间： LS算法收敛快，时间复杂度O(nlogn)，有可能发生震荡。DV收敛较慢，因为可能存在路由环路，当节点挂掉的时候需要多次交换才知道不可达。</p>
+</li>
+<li><p>健壮性：LS更健壮。比如说某个路由器说自己到所有的节点代价都为0，LS中只会影响相邻的路由器；而DV算法会经过多次迭代影响所有的路由器。</p>
+</li>
+</ul>
+<h2 id="自治系统内部的路由选择"><a href="#自治系统内部的路由选择" class="headerlink" title="自治系统内部的路由选择"></a>自治系统内部的路由选择</h2><h3 id="1、RIP-Routing-Infomation-Protocol"><a href="#1、RIP-Routing-Infomation-Protocol" class="headerlink" title="1、RIP(Routing Infomation Protocol)"></a>1、RIP(Routing Infomation Protocol)</h3><p>使用DV算法，30s发送一次，TTL为25,180s没收到通告就认为该路由器挂掉了</p>
+<p>以进程方式来实现，通过UDP发送。</p>
+<h3 id="2、OSPF-Open-Shortest-Path-First"><a href="#2、OSPF-Open-Shortest-Path-First" class="headerlink" title="2、OSPF (Open Shortest Path First)"></a>2、OSPF (Open Shortest Path First)</h3><p>使用LS算法</p>
+<p>所有的报文经过认证，防止恶意攻击</p>
+<p>允许多个代价相同的路径存在（即可以有多个代价指标，跳数、延时）</p>
+<p>将网络进行分层了，泛洪只在本范围进行泛洪；骨干区域-区域边界-小区域路由器</p>
+<h3 id="3、IS-IS"><a href="#3、IS-IS" class="headerlink" title="3、IS-IS"></a>3、IS-IS</h3><p>也是使用LS算法</p>
+<h2 id="ISP之间的路由选择"><a href="#ISP之间的路由选择" class="headerlink" title="ISP之间的路由选择"></a>ISP之间的路由选择</h2><p>不管是LS还是DV算法，因为全网路由器太多了，时间复杂度太高 —&gt; 在一个平面路由代价太大</p>
+<p>也有的路由器可能不想被分享自己的网络拓扑</p>
+<p>所以Internet把网络分成两个层面，<strong>自治区内以及自治区之间</strong>。自治区英文是(AS：“autonomous systems”)</p>
+<ul>
+<li><p>自治区域内，规模较小，采用LS还是DV都可以</p>
+</li>
+<li><p>自治区域之间，每个区域可以看做一个点，规模也不大，只要统一区域协议就可以</p>
+</li>
+</ul>
+<p>自治区域之间的路由选择：BGP(Border Gateway Protocol)，可以分为eBGP和iBGP</p>
+<ul>
+<li><p>eBGP：从相邻的ASes获得子网的可达信息（即向外通告本AS内的信息）</p>
+</li>
+<li><p>iBGP：将获得的子网可达信息传遍到AS内部的所有路由器</p>
+</li>
+</ul>
+<p>采用DV算法，不过进行了改进，在告诉相邻节点代价的同时告诉了整个路径，因此防止了环形的链路，收敛速度变快。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/earsh9.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" class="category-chain-item">计算机网络</a>
+  
+  
+    <span>></span>
+    
+  <a href="/earsh9.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E8%AF%BE/" class="category-chain-item">网课</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>中科大-计算机网络</div>
+      <div>https://earsh9.github.io/earsh9.github.io/2022/08/04/网络/中科大/计算机网络-中科大/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>earsh9</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月4日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/earsh9.github.io/2022/08/04/%E7%BD%91%E7%BB%9C/%E5%B0%8F%E6%9E%97/" title="一致性哈希">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">一致性哈希</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/earsh9.github.io/2022/08/04/%E6%90%AD%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/SpringCloud-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/0/" title="问题记录">
+                        <span class="hidden-mobile">问题记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/earsh9.github.io/js/events.js" ></script>
+<script  src="/earsh9.github.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/earsh9.github.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/earsh9.github.io/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/earsh9.github.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

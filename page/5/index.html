@@ -223,15 +223,564 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/earsh9.github.io/2022/08/04/5.%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/4.%E5%89%8Dk%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0/" target="_self">
-          前k个高频元素
+        <a href="/earsh9.github.io/2022/08/04/7.%E5%9B%9E%E6%BA%AF/2.%E5%AD%90%E9%9B%86%E9%97%AE%E9%A2%98/" target="_self">
+          子集问题
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/5.%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/4.%E5%89%8Dk%E4%B8%AA%E9%AB%98%E9%A2%91%E5%85%83%E7%B4%A0/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/7.%E5%9B%9E%E6%BA%AF/2.%E5%AD%90%E9%9B%86%E9%97%AE%E9%A2%98/" target="_self">
         <div>
-          347题 前k个高频元素给定一个非空的整数数组，返回其中出现频率前 k 高的元素。 示例 1: 输入: nums &#x3D; [1,1,1,2,2,3], k &#x3D; 2 输出: [1,2] 示例 2: 输入: nums &#x3D; [1], k &#x3D; 1 输出: [1] 提示： 你可以假设给定的 k 总是合理的，且 1 ≤ k ≤ 数组中不相同的元素的个数。 你的算法的时间复杂
+          组合、切割和排列问题只收集走到树中叶子节点的路径，即走到头了才加入answer。  子集问题则是收集树中的所有节点，需实时加入answer。  子集也是一种组合问题，因为它的集合是无序的，子集{1,2} 和 子集{2,1}是一样的。  集合无序，仍需去重，即回溯函数中有startIndex   78.子集给你一个整数数组 nums ，数组中的元素 互不相同 。返回该数组所有可能的子集（幂集）。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-04 17:22" pubdate>
+              2022-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%9B%9E%E6%BA%AF/" class="category-chain-item">回溯</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/8.%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E6%9F%A5%E6%89%BE/" target="_self">
+          自底向上查找
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/8.%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E6%9F%A5%E6%89%BE/" target="_self">
+        <div>
+          回溯！ 236. 二叉树的最近公共祖先给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。 百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。” 例如，给定如下二叉树:  root &#x3D; [3,5,1,6,2,0,8,null,null,7,4]
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-04 17:22" pubdate>
+              2022-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="category-chain-item">二叉树</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/1.%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/" target="_self">
+          遍历方式
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/1.%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/" target="_self">
+        <div>
+          二叉树主要有两种遍历方式：  深度优先遍历：先往深走，遇到叶子节点再往回走。栈 前序遍历（递归法，迭代法）：根左右 中序遍历（递归法，迭代法）：左根右 后序遍历（递归法，迭代法）：左右根   广度优先遍历：一层一层的去遍历。队列 层次遍历（迭代法）    深度优先遍历对应leetcode：  144.二叉树的前序遍历 145.二叉树的后序遍历 94.二叉树的中序遍历  递归实现 确定递归函数的参数
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-04 17:22" pubdate>
+              2022-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="category-chain-item">二叉树</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/2.%E7%BF%BB%E8%BD%AC%E3%80%81%E5%AF%B9%E7%A7%B0/" target="_self">
+          翻转&amp;对称
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/2.%E7%BF%BB%E8%BD%AC%E3%80%81%E5%AF%B9%E7%A7%B0/" target="_self">
+        <div>
+          显式的写出递归逻辑，更好理解226. 翻转二叉树翻转一棵二叉树。 示例： 输入： 12345     4   &#x2F;   \  2     7 &#x2F; \   &#x2F; \1   3 6   9  输出： 12345     4   &#x2F;   \  7     2 &#x2F; \   &#x2F; \9   6 3   1  针对二叉树的问题，解题之前一定要想清楚究竟是前中后序遍历，还是层序遍历。 思考：  前序遍历和后序遍历均可
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-04 17:22" pubdate>
+              2022-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="category-chain-item">二叉树</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/3.%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6/" target="_self">
+          最大&amp;最小深度
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/3.%E6%9C%80%E5%A4%A7%E6%B7%B1%E5%BA%A6%E5%92%8C%E6%9C%80%E5%B0%8F%E6%B7%B1%E5%BA%A6/" target="_self">
+        <div>
+          104.二叉树的最大深度给定一个二叉树，找出其最大深度。 二叉树的深度为根节点到最远叶子节点的最长路径上的节点数。 说明: 叶子节点是指没有子节点的节点。 示例： 给定二叉树 [3,9,20,null,null,15,7]   返回它的最大深度 3。 递归 前序和后序均可实现，前序（中左右）计算的是树的深度带有隐藏的回溯；后序（左右中）计算的是高度。而根节点的高度就是二叉树的最大深度。  若用后序
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-04 17:22" pubdate>
+              2022-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="category-chain-item">二叉树</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/4.%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91/" target="_self">
+          完全二叉树
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/4.%E5%AE%8C%E5%85%A8%E4%BA%8C%E5%8F%89%E6%A0%91/" target="_self">
+        <div>
+          222. 完全二叉树的节点个数给你一棵 完全二叉树 的根节点 root ，求出该树的节点个数。 完全二叉树 的定义如下： 在完全二叉树中，除了最底层节点可能没填满外，其余每层节点数都达到最大值，并且最下面一层的节点都集中在该层最左边的若干位置。 若最底层为第 h 层，则该层包含 1~ 2^h 个节点。 示例：   输入：root &#x3D; [1,2,3,4,5,6] 输出：6 「完全二叉树」和
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-04 17:22" pubdate>
+              2022-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="category-chain-item">二叉树</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/6.%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" target="_self">
+          构造二叉树
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/6.%E6%9E%84%E9%80%A0%E4%BA%8C%E5%8F%89%E6%A0%91/" target="_self">
+        <div>
+          分治 + 递归 切割区间时，保持区间不变性，以下全用左右双闭来写。 尽量在原数组上进行查找，也可以新建map以空间换时间。  106.从中序与后序遍历序列构造二叉树根据一棵树的中序遍历与后序遍历构造二叉树。 注意: 你可以假设树中没有重复的元素。 例如，给出 中序遍历 inorder &#x3D; [9,3,15,20,7] 后序遍历 postorder &#x3D; [9,15,7,20,3]
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-04 17:22" pubdate>
+              2022-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="category-chain-item">二叉树</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/5.%E9%80%92%E5%BD%92%E9%9A%90%E8%97%8F%E4%BA%86%E5%9B%9E%E6%BA%AF/" target="_self">
+          递归&amp;回溯
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/5.%E9%80%92%E5%BD%92%E9%9A%90%E8%97%8F%E4%BA%86%E5%9B%9E%E6%BA%AF/" target="_self">
+        <div>
+          深拷贝、浅拷贝；传值、传地址对于C、C++、java的任何赋值（即“&#x3D;”） 想看后者（被赋值被传参者）的动作是否会影响到原先的值，只需明白： 对于8个基本类型（byte、short、int、long、float、double、boolean、char）是深拷贝（新开辟空间存储后者）不会影响 对于非基本如TreeNode，String，是浅拷贝（直接指针指向前者）会影响   因为像Tree
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-04 17:22" pubdate>
+              2022-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="category-chain-item">二叉树</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/7.BST%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" target="_self">
+          BST
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/7.BST%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" target="_self">
+        <div>
+          二叉搜索树是一个有序树：  若它的左子树不空，则左子树上所有结点的值均小于它的根结点的值； 若它的右子树不空，则右子树上所有结点的值均大于它的根结点的值； 它的左、右子树也分别为二叉搜索树  这就决定了，二叉搜索树，递归遍历和迭代遍历和普通二叉树都不一样。 700.二叉搜索树中的搜索给定二叉搜索树（BST）的根节点和一个值。 你需要在BST中找到节点值等于给定值的节点。 返回以该节点为根的子树。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-04 17:22" pubdate>
+              2022-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="category-chain-item">二叉树</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/earsh9.github.io/2022/08/04/5.%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/1.%E4%BA%92%E7%9B%B8%E5%AE%9E%E7%8E%B0/" target="_self">
+          互相实现
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/5.%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/1.%E4%BA%92%E7%9B%B8%E5%AE%9E%E7%8E%B0/" target="_self">
+        <div>
+          232题 用栈实现队列请你仅使用两个栈实现先入先出队列。队列应当支持一般队列支持的所有操作（push、pop、peek、empty）： 实现 MyQueue 类： void push(int x) 将元素 x 推到队列的末尾int pop() 从队列的开头移除并返回元素int peek() 返回队列开头的元素boolean empty() 如果队列为空，返回 true ；否则，返回 false 思
         </div>
       </a>
 
@@ -261,555 +810,6 @@
     <span>></span>
     
   <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/" class="category-chain-item">栈与队列</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/earsh9.github.io/2022/08/04/5.%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/5.%E5%8D%95%E8%B0%83%E6%A0%88/" target="_self">
-          单调栈
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/5.%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/5.%E5%8D%95%E8%B0%83%E6%A0%88/" target="_self">
-        <div>
-          单调栈适用情况一维数组，寻找任意元素左(右)边第一个比自己大(小)的元素位置时使用 虽然单调栈是 for + while 的结构，但细看每个元素仅进栈一次出栈一次，时间复杂度为 O(n) 739. 每日温度给定一个整数数组 temperatures ，表示每天的温度，返回一个数组 answer ，其中 answer[i] 是指在第 i 天之后，才会有更高的温度。如果气温在这之后都不会升高，请在该位
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-04 17:22" pubdate>
-              2022-08-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
-  
-  
-    <span>></span>
-    
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/" class="category-chain-item">栈与队列</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/earsh9.github.io/2022/08/04/5.%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/3.%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%E9%97%AE%E9%A2%98/" target="_self">
-          滑动窗口最大值问题
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/5.%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/3.%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3%E6%9C%80%E5%A4%A7%E5%80%BC%E9%97%AE%E9%A2%98/" target="_self">
-        <div>
-          滑动窗口的最大值是使用单调队列的经典题目 单调队列随应用场景不同有不同写法，只是要保证单调递减或递增的原则。 与优先队列（大根堆）不同。 239题 滑动窗口最大值给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。 返回滑动窗口中的最大值。 示例 1： 输入：nums &#x3D; [1,3,-1
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-04 17:22" pubdate>
-              2022-08-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
-  
-  
-    <span>></span>
-    
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/" class="category-chain-item">栈与队列</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/1.%E6%A8%A1%E6%8B%9F/" target="_self">
-          模拟
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/1.%E6%A8%A1%E6%8B%9F/" target="_self">
-        <div>
-          对字符串进行反转、替换、翻转和左旋转等操作时：  若重点考察某一库函数的实现，则不能调包 进阶：不使用额外空间，直接原地修改。貌似C++可以，java中原字符串不可变，需要.tocharArray()空间复杂度也o(n)了。  344题 反转字符串编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。 不要给另外的数组分配额外的空间，你必须原地修改输入数组、
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-04 17:22" pubdate>
-              2022-08-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
-  
-  
-    <span>></span>
-    
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="category-chain-item">字符串</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/2.%E5%8F%8C%E6%8C%87%E9%92%88%E5%A1%AB%E5%85%85/" target="_self">
-          双指针填充
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/2.%E5%8F%8C%E6%8C%87%E9%92%88%E5%A1%AB%E5%85%85/" target="_self">
-        <div>
-          如何不使用额外空间，不调用split等库函数？剑指Offer 05.替换空格请实现一个函数，把字符串 s 中的每个空格替换成”%20”。 示例 1： 输入：s &#x3D; “We are happy.” 输出：”We%20are%20happy.” 思考：  若想原地修改，一个空格字符要变成”%20”这三个字符，涉及到扩容问题  假设面试官让在原先字符串上做替换，并保证输入字符串后有足够多的内存
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-04 17:22" pubdate>
-              2022-08-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
-  
-  
-    <span>></span>
-    
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="category-chain-item">字符串</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/3.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/" target="_self">
-          字符串匹配问题
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/3.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/" target="_self">
-        <div>
-          KMP核心思想当出现字符串不匹配时，可以记录一部分之前已经匹配的文本内容，利用这些信息避免从头再去做匹配。 重点：如何记录已经匹配的文本内容？用next()数组。next数组就是一个前缀表（prefix table）。 1）前缀表有什么作用呢？前缀表是用来回退的，它记录了模式串与主串(文本串)不匹配的时候，模式串应该从哪里开始重新匹配。 举例：要在文本串：aabaabaafa 中查找是否出现过一个
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-04 17:22" pubdate>
-              2022-08-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
-  
-  
-    <span>></span>
-    
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="category-chain-item">字符串</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/4.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/" target="_self">
-          字符串哈希
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/4.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/" target="_self">
-        <div>
-          若想在哈希表中记录字符串出现的次数  Java 中的 String 的 hashCode 实现是会对字符串进行遍历的，这样哈希计数过程仍与长度有关。 只有存放Integer 的 hashCode 就是该值本身，与长度无关。   如何用 int 型数据来区别或者表征不同的字符串？  使用质数 &#x2F; 二进制码 对字符串进行编码，保证不会有冲突即可。 对于质数 p 和其元根 N，对于 0 ~
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-04 17:22" pubdate>
-              2022-08-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
-  
-  
-    <span>></span>
-    
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="category-chain-item">字符串</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/earsh9.github.io/2022/08/04/3.%E5%93%88%E5%B8%8C%E8%A1%A8/%E4%B8%80%E4%BA%9B%E7%94%A8%E6%B3%95/" target="_self">
-          一些用法
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/3.%E5%93%88%E5%B8%8C%E8%A1%A8/%E4%B8%80%E4%BA%9B%E7%94%A8%E6%B3%95/" target="_self">
-        <div>
-          哈希表一般用来快速判断一个元素是否出现集合里像Set、Map底层实现有红黑树和哈希表两种：  哈希表的实现一定不保证有序。 哈希表是通过哈希函数将数据转化为不同的数值，即将数据映射到哈希表的索引数字了。  红黑树是一种平衡二叉树，所以有序。   1. 去重349题 两个数组的交集题意：给定两个数组，编写一个函数来计算它们的交集。 输入：nums1 &#x3D; [1,2,2,1], nums2 &amp;
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-04 17:22" pubdate>
-              2022-08-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
-  
-  
-    <span>></span>
-    
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%93%88%E5%B8%8C%E8%A1%A8/" class="category-chain-item">哈希表</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/earsh9.github.io/2022/08/04/2.%E9%93%BE%E8%A1%A8/1.%E8%99%9A%E6%8B%9F%E5%A4%B4%E8%8A%82%E7%82%B9/" target="_self">
-          虚拟头节点
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/2.%E9%93%BE%E8%A1%A8/1.%E8%99%9A%E6%8B%9F%E5%A4%B4%E8%8A%82%E7%82%B9/" target="_self">
-        <div>
-          由于链表的节点在内存中是分散存储，查找当前节点往往需要先找到其前序节点。设置虚拟头节点可以快速帮助厘清关系。 203题 移除链表元素要求：删除链表中等于给定值 val 的所有节点。 有了虚拟头节点，无需对真正头节点进行特殊处理 12345678910111213141516public ListNode removeElements(ListNode head, int val) &amp;#123;
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-04 17:22" pubdate>
-              2022-08-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
-  
-  
-    <span>></span>
-    
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E9%93%BE%E8%A1%A8/" class="category-chain-item">链表</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/earsh9.github.io/2022/08/04/2.%E9%93%BE%E8%A1%A8/2.%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/" target="_self">
-          CRUD
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/earsh9.github.io/2022/08/04/2.%E9%93%BE%E8%A1%A8/2.%E5%A2%9E%E5%88%A0%E6%94%B9%E6%9F%A5/" target="_self">
-        <div>
-          单链表  查找：o(n) 增加：o(n)，找到要插入位置的前驱节点 删除：o(n)，找到要插入位置的前驱节点   双链表   通过判断 index &lt; (size - 1) &#x2F; 2 来决定是从头结点还是尾节点遍历，提高效率 707题 设计链表细节满满 12345678910111213141516171819202122232425262728293031323334353637
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-04 17:22" pubdate>
-              2022-08-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
-  
-  
-    <span>></span>
-    
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E9%93%BE%E8%A1%A8/" class="category-chain-item">链表</a>
   
   
 
@@ -831,7 +831,7 @@
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/earsh9.github.io/page/4/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/earsh9.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/earsh9.github.io/page/3/#board">3</a><a class="page-number" href="/earsh9.github.io/page/4/#board">4</a><span class="page-number current">5</span><a class="page-number" href="/earsh9.github.io/page/6/#board">6</a><a class="extend next" rel="next" href="/earsh9.github.io/page/6/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/earsh9.github.io/page/4/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/earsh9.github.io/">1</a><span class="space">&hellip;</span><a class="page-number" href="/earsh9.github.io/page/3/#board">3</a><a class="page-number" href="/earsh9.github.io/page/4/#board">4</a><span class="page-number current">5</span><a class="page-number" href="/earsh9.github.io/page/6/#board">6</a><a class="page-number" href="/earsh9.github.io/page/7/#board">7</a><a class="page-number" href="/earsh9.github.io/page/8/#board">8</a><a class="extend next" rel="next" href="/earsh9.github.io/page/6/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 
