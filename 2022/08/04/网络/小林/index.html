@@ -24,7 +24,7 @@
 <meta property="og:description" content="一致性哈希是什么，使用场景，解决了什么问题？如何分配请求？大多数网站背后是多个服务器（节点）构成集群来对外提供服务的。多个节点如何分配客户端的请求？（负载均衡问题）  引入一个中间的负载均衡层  让它将外界的请求「轮流」的转发给内部的集群。比如集群有 3 个节点，外界请求有 3 个，那么每个节点都会处理 1 个请求，达到了分配请求的目的。   加权轮询：每个节点的硬件配置有所区别，将硬件配置更好的">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-04T10:12:52.619Z">
-<meta property="article:modified_time" content="2022-08-04T10:13:50.516Z">
+<meta property="article:modified_time" content="2022-08-04T13:46:38.675Z">
 <meta property="article:author" content="earsh9">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -299,7 +299,7 @@
 </ul>
 </li>
 </ul>
-<img src = "系统扩容导致映射关系改变.png">
+<img src = "/img/bg/network/系统扩容导致映射关系改变.png">
 
 <h2 id="一致哈希算法：减少数据迁移量，但节点分布不均"><a href="#一致哈希算法：减少数据迁移量，但节点分布不均" class="headerlink" title="一致哈希算法：减少数据迁移量，但节点分布不均"></a>一致哈希算法：减少数据迁移量，但节点分布不均</h2><p>哈希算法是对节点数量进行取模；<strong>一致哈希算法是对 2^32 进行取模运算，是一个固定的值。</strong></p>
 <p>哈希环：对 2^32 取模的结果值组织成一个圆环。（由 2^32 个点组成的圆）</p>

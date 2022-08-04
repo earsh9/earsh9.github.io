@@ -23,13 +23,13 @@
 <meta property="og:site_name" content="earsh9&#39;s blog">
 <meta property="og:description" content="会话技术：cookie 与 session 客户端会话技术是 Cookie；服务器端会话技术是 Session  Session 依赖于 Cookie  只要浏览器不关闭，Cookie 就会一直存在  Cookie：  浏览器第一次发送请求时，服务器会去 请求报文 中查找是否包含有 Cookie 信息  若没有，创建 HttpSession 对象，将 Session 对象放在服务器所维护的 Map">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://earsh9.github.io/2022/08/04/spring/SSM-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/springMVC/浏览器第一次请求时在响应报文中可以查到Cookie信息.png">
-<meta property="og:image" content="https://earsh9.github.io/2022/08/04/spring/SSM-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/springMVC/每一次请求都会创建Session对象-通过前端控制器映射的控制器方法中.png">
+<meta property="og:image" content="https://earsh9.github.io/img/bg/springMVC-photos/浏览器第一次请求时在响应报文中可以查到Cookie信息.png">
+<meta property="og:image" content="https://earsh9.github.io/img/bg/springMVC-photos/每一次请求都会创建Session对象-通过前端控制器映射的控制器方法中.png">
 <meta property="article:published_time" content="2022-08-04T09:59:35.921Z">
-<meta property="article:modified_time" content="2022-08-04T10:00:05.101Z">
+<meta property="article:modified_time" content="2022-08-04T13:40:05.285Z">
 <meta property="article:author" content="earsh9">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://earsh9.github.io/2022/08/04/spring/SSM-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/springMVC/浏览器第一次请求时在响应报文中可以查到Cookie信息.png">
+<meta name="twitter:image" content="https://earsh9.github.io/img/bg/springMVC-photos/浏览器第一次请求时在响应报文中可以查到Cookie信息.png">
   
   
   
@@ -297,8 +297,8 @@
 </ul>
 </li>
 </ul>
-<img src="浏览器第一次请求时在响应报文中可以查到Cookie信息.png" srcset="/img/loading.gif" lazyload>
-<img src="每一次请求都会创建Session对象-通过前端控制器映射的控制器方法中.png" srcset="/img/loading.gif" lazyload>
+<img src="/img/bg/springMVC-photos/浏览器第一次请求时在响应报文中可以查到Cookie信息.png" srcset="/img/loading.gif" lazyload>
+<img src="/img/bg/springMVC-photos/每一次请求都会创建Session对象-通过前端控制器映射的控制器方法中.png" srcset="/img/loading.gif" lazyload>
 
 <h2 id="服务器的三大组件：监听器、过滤器、Servlet"><a href="#服务器的三大组件：监听器、过滤器、Servlet" class="headerlink" title="服务器的三大组件：监听器、过滤器、Servlet"></a>服务器的三大组件：监听器、过滤器、Servlet</h2><h3 id="如何在-SpringMVC-中解决-中文乱码-问题？"><a href="#如何在-SpringMVC-中解决-中文乱码-问题？" class="headerlink" title="如何在 SpringMVC 中解决 中文乱码 问题？"></a>如何在 SpringMVC 中解决 中文乱码 问题？</h3><ul>
 <li><p>get 请求的乱码问题：在 tomcat 对应文件夹 config 下的 server.xml 中 添加 URIEncoding&#x3D;”UTF-8” 可以一次性解决</p>
