@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/earsh9.github.io/img/fluid.png">
-  <link rel="icon" href="/earsh9.github.io/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="对字符串进行反转、替换、翻转和左旋转等操作时：  若重点考察某一库函数的实现，则不能调包 进阶：不使用额外空间，直接原地修改。貌似C++可以，java中原字符串不可变，需要.tocharArray()空间复杂度也o(n)了。  344题 反转字符串编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。 不要给另外的数组分配额外的空间，你必须原地修改输入数组、">
 <meta property="og:type" content="article">
 <meta property="og:title" content="模拟">
-<meta property="og:url" content="https://earsh9.github.io/earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/1.%E6%A8%A1%E6%8B%9F/index.html">
+<meta property="og:url" content="https://earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/1.%E6%A8%A1%E6%8B%9F/index.html">
 <meta property="og:site_name" content="earsh9&#39;s blog">
 <meta property="og:description" content="对字符串进行反转、替换、翻转和左旋转等操作时：  若重点考察某一库函数的实现，则不能调包 进阶：不使用额外空间，直接原地修改。貌似C++可以，java中原字符串不可变，需要.tocharArray()空间复杂度也o(n)了。  344题 反转字符串编写一个函数，其作用是将输入的字符串反转过来。输入字符串以字符数组 char[] 的形式给出。 不要给另外的数组分配额外的空间，你必须原地修改输入数组、">
 <meta property="og:locale" content="zh_CN">
@@ -54,12 +54,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/earsh9.github.io/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/earsh9.github.io/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/earsh9.github.io/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
@@ -68,15 +68,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"earsh9.github.io","root":"/earsh9.github.io/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/earsh9.github.io/local-search.xml"};
+    var CONFIG = {"hostname":"earsh9.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/earsh9.github.io/js/utils.js" ></script>
-  <script  src="/earsh9.github.io/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
 
@@ -93,7 +93,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/earsh9.github.io/">
+    <a class="navbar-brand" href="/">
       <strong>earsh9&#39;s blog</strong>
     </a>
 
@@ -112,7 +112,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/earsh9.github.io/">
+              <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -124,7 +124,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/earsh9.github.io/archives/">
+              <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -136,7 +136,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/earsh9.github.io/categories/">
+              <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -148,7 +148,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/earsh9.github.io/tags/">
+              <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -160,7 +160,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/earsh9.github.io/about/">
+              <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -189,7 +189,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/earsh9.github.io/img/bg/background.jpeg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/bg/background.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -326,12 +326,12 @@
     
       <span class="category-chain">
         
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  <a href="/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
   
   
     <span>></span>
     
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="category-chain-item">字符串</a>
+  <a href="/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="category-chain-item">字符串</a>
   
   
 
@@ -354,7 +354,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>模拟</div>
-      <div>https://earsh9.github.io/earsh9.github.io/2022/08/04/4.字符串/1.模拟/</div>
+      <div>https://earsh9.github.io/2022/08/04/4.字符串/1.模拟/</div>
     </div>
     <div class="license-meta">
       
@@ -396,9 +396,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/earsh9.github.io/2022/08/04/5.%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97/5.%E5%8D%95%E8%B0%83%E6%A0%88/" title="单调栈">
+                      <a href="/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/2.%E5%8F%8C%E6%8C%87%E9%92%88%E5%A1%AB%E5%85%85/" title="双指针填充">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">单调栈</span>
+                        <span class="hidden-mobile">双指针填充</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -406,8 +406,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/2.%E5%8F%8C%E6%8C%87%E9%92%88%E5%A1%AB%E5%85%85/" title="双指针填充">
-                        <span class="hidden-mobile">双指针填充</span>
+                      <a href="/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/3.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/" title="字符串匹配问题">
+                        <span class="hidden-mobile">字符串匹配问题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -533,8 +533,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/earsh9.github.io/js/events.js" ></script>
-<script  src="/earsh9.github.io/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -556,7 +556,7 @@
 
 
   
-    <script  src="/earsh9.github.io/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -628,7 +628,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/earsh9.github.io/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -636,7 +636,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/earsh9.github.io/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   

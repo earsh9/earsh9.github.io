@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/earsh9.github.io/img/fluid.png">
-  <link rel="icon" href="/earsh9.github.io/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="二叉树主要有两种遍历方式：  深度优先遍历：先往深走，遇到叶子节点再往回走。栈 前序遍历（递归法，迭代法）：根左右 中序遍历（递归法，迭代法）：左根右 后序遍历（递归法，迭代法）：左右根   广度优先遍历：一层一层的去遍历。队列 层次遍历（迭代法）    深度优先遍历对应leetcode：  144.二叉树的前序遍历 145.二叉树的后序遍历 94.二叉树的中序遍历  递归实现 确定递归函数的参数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="遍历方式">
-<meta property="og:url" content="https://earsh9.github.io/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/1.%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/index.html">
+<meta property="og:url" content="https://earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/1.%E9%81%8D%E5%8E%86%E6%96%B9%E5%BC%8F/index.html">
 <meta property="og:site_name" content="earsh9&#39;s blog">
 <meta property="og:description" content="二叉树主要有两种遍历方式：  深度优先遍历：先往深走，遇到叶子节点再往回走。栈 前序遍历（递归法，迭代法）：根左右 中序遍历（递归法，迭代法）：左根右 后序遍历（递归法，迭代法）：左右根   广度优先遍历：一层一层的去遍历。队列 层次遍历（迭代法）    深度优先遍历对应leetcode：  144.二叉树的前序遍历 145.二叉树的后序遍历 94.二叉树的中序遍历  递归实现 确定递归函数的参数">
 <meta property="og:locale" content="zh_CN">
@@ -57,12 +57,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/earsh9.github.io/css/main.css" />
+<link  rel="stylesheet" href="/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/earsh9.github.io/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/earsh9.github.io/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
   
 
 
@@ -71,15 +71,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"earsh9.github.io","root":"/earsh9.github.io/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/earsh9.github.io/local-search.xml"};
+    var CONFIG = {"hostname":"earsh9.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/earsh9.github.io/js/utils.js" ></script>
-  <script  src="/earsh9.github.io/js/color-schema.js" ></script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
   
 
 
@@ -96,7 +96,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/earsh9.github.io/">
+    <a class="navbar-brand" href="/">
       <strong>earsh9&#39;s blog</strong>
     </a>
 
@@ -115,7 +115,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/earsh9.github.io/">
+              <a class="nav-link" href="/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -127,7 +127,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/earsh9.github.io/archives/">
+              <a class="nav-link" href="/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -139,7 +139,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/earsh9.github.io/categories/">
+              <a class="nav-link" href="/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -151,7 +151,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/earsh9.github.io/tags/">
+              <a class="nav-link" href="/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -163,7 +163,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/earsh9.github.io/about/">
+              <a class="nav-link" href="/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -192,7 +192,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/earsh9.github.io/img/bg/background.jpeg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/bg/background.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -348,7 +348,7 @@
 </ul>
 <h2 id="199-二叉树的右视图"><a href="#199-二叉树的右视图" class="headerlink" title="199. 二叉树的右视图"></a>199. 二叉树的右视图</h2><p>给定一个二叉树的 根节点 root，想象自己站在它的右侧，按照从顶部到底部的顺序，返回从右侧所能看到的节点值。</p>
 <p>示例：</p>
-<img src="https://assets.leetcode.com/uploads/2021/02/14/tree.jpg" srcset="/earsh9.github.io/img/loading.gif" lazyload width="50%">
+<img src="https://assets.leetcode.com/uploads/2021/02/14/tree.jpg" srcset="/img/loading.gif" lazyload width="50%">
 
 <p>输入: [1,2,3,null,5,null,4]</p>
 <p>输出: [1,3,4]</p>
@@ -364,7 +364,7 @@
 </ul>
 </li>
 </ol>
-<img src="https://assets.leetcode-cn.com/solution-static/199/fig1.png" srcset="/earsh9.github.io/img/loading.gif" lazyload width="50%">
+<img src="https://assets.leetcode-cn.com/solution-static/199/fig1.png" srcset="/img/loading.gif" lazyload width="50%">
 
 <p>上图表示了问题的一个实例。红色结点自上而下组成答案，边缘以访问顺序标号。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//BFS：</span><br><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title function_">rightSideView</span><span class="hljs-params">(TreeNode root)</span> &#123;<br>    List&lt;Integer&gt; res = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    <span class="hljs-keyword">if</span>(root == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span> res;<br><br>    Queue&lt;TreeNode&gt; queue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">LinkedList</span>&lt;&gt;();<br>    queue.offer(root);<br><br>    <span class="hljs-keyword">while</span>(!queue.isEmpty())&#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> queue.size();<br><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n; i++)&#123;<br>            <span class="hljs-type">TreeNode</span> <span class="hljs-variable">node</span> <span class="hljs-operator">=</span> queue.poll();<br>            <span class="hljs-keyword">if</span>(i == n - <span class="hljs-number">1</span>) res.add(node.val);    <span class="hljs-comment">//最右边的节点</span><br><br>            <span class="hljs-keyword">if</span>(node.left != <span class="hljs-literal">null</span>) queue.offer(node.left);<br>            <span class="hljs-keyword">if</span>(node.right != <span class="hljs-literal">null</span>) queue.offer(node.right);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> res;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -468,12 +468,12 @@
     
       <span class="category-chain">
         
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  <a href="/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
   
   
     <span>></span>
     
-  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="category-chain-item">二叉树</a>
+  <a href="/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E4%BA%8C%E5%8F%89%E6%A0%91/" class="category-chain-item">二叉树</a>
   
   
 
@@ -496,7 +496,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>遍历方式</div>
-      <div>https://earsh9.github.io/earsh9.github.io/2022/08/04/6.二叉树/1.遍历方式/</div>
+      <div>https://earsh9.github.io/2022/08/04/6.二叉树/1.遍历方式/</div>
     </div>
     <div class="license-meta">
       
@@ -538,7 +538,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/8.%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E6%9F%A5%E6%89%BE/" title="自底向上查找">
+                      <a href="/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/8.%E8%87%AA%E5%BA%95%E5%90%91%E4%B8%8A%E6%9F%A5%E6%89%BE/" title="自底向上查找">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">自底向上查找</span>
                         <span class="visible-mobile">上一篇</span>
@@ -548,7 +548,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/earsh9.github.io/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/2.%E7%BF%BB%E8%BD%AC%E3%80%81%E5%AF%B9%E7%A7%B0/" title="翻转&amp;对称">
+                      <a href="/2022/08/04/6.%E4%BA%8C%E5%8F%89%E6%A0%91/2.%E7%BF%BB%E8%BD%AC%E3%80%81%E5%AF%B9%E7%A7%B0/" title="翻转&amp;对称">
                         <span class="hidden-mobile">翻转&amp;对称</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -675,8 +675,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/earsh9.github.io/js/events.js" ></script>
-<script  src="/earsh9.github.io/js/plugins.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -698,7 +698,7 @@
 
 
   
-    <script  src="/earsh9.github.io/js/img-lazyload.js" ></script>
+    <script  src="/js/img-lazyload.js" ></script>
   
 
 
@@ -770,7 +770,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/earsh9.github.io/js/local-search.js" ></script>
+  <script  src="/js/local-search.js" ></script>
 
 
 
@@ -778,7 +778,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/earsh9.github.io/js/boot.js" ></script>
+<script  src="/js/boot.js" ></script>
 
 
   
