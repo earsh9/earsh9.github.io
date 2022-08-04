@@ -16,21 +16,21 @@
   <meta name="author" content="earsh9">
   <meta name="keywords" content="">
   
-    <meta name="description" content="因为给安装 linux 系统的服务器设置了IP地址：192.168.1.21，所以每次远程登录就行：ssh &amp;#111;&amp;#101;&amp;#109;&amp;#64;&amp;#x31;&amp;#x39;&amp;#50;&amp;#46;&amp;#49;&amp;#54;&amp;#x38;&amp;#x2e;&amp;#x31;&amp;#x2e;&amp;#x32;&amp;#x31;，密码abc123。无需使用 vmware 问题记录 Linux系统（Ubuntu） 中安装 redis6">
+    <meta name="description" content="官方文档 hexo 部署：  https:&#x2F;&#x2F;hexo.io&#x2F;zh-cn&#x2F;docs  hexo 主题官网：  https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;  fluid 主题用户手册：  https:&#x2F;&#x2F;hexo.fluid-dev.com&#x2F;docs *.github.io的个人博客网站无法连接的问题如果 hexo 要部署上 Github，对应的 Github 仓库需以 xxx.github.i">
 <meta property="og:type" content="article">
-<meta property="og:title" content="问题记录">
-<meta property="og:url" content="https://earsh9.github.io/earsh9.github.io/2022/08/04/%E6%90%AD%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/redis6/redis6/index.html">
+<meta property="og:title" content="hexo&amp;fluid博客搭建">
+<meta property="og:url" content="https://earsh9.github.io/earsh9.github.io/2022/08/04/%E5%A4%87%E5%BF%98/hexo&fluid/index.html">
 <meta property="og:site_name" content="earsh9&#39;s blog">
-<meta property="og:description" content="因为给安装 linux 系统的服务器设置了IP地址：192.168.1.21，所以每次远程登录就行：ssh &amp;#111;&amp;#101;&amp;#109;&amp;#64;&amp;#x31;&amp;#x39;&amp;#50;&amp;#46;&amp;#49;&amp;#54;&amp;#x38;&amp;#x2e;&amp;#x31;&amp;#x2e;&amp;#x32;&amp;#x31;，密码abc123。无需使用 vmware 问题记录 Linux系统（Ubuntu） 中安装 redis6">
+<meta property="og:description" content="官方文档 hexo 部署：  https:&#x2F;&#x2F;hexo.io&#x2F;zh-cn&#x2F;docs  hexo 主题官网：  https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;  fluid 主题用户手册：  https:&#x2F;&#x2F;hexo.fluid-dev.com&#x2F;docs *.github.io的个人博客网站无法连接的问题如果 hexo 要部署上 Github，对应的 Github 仓库需以 xxx.github.i">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-08-04T10:03:09.770Z">
-<meta property="article:modified_time" content="2022-08-04T10:11:29.522Z">
+<meta property="article:published_time" content="2022-08-04T10:41:05.878Z">
+<meta property="article:modified_time" content="2022-08-04T10:53:36.852Z">
 <meta property="article:author" content="earsh9">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>问题记录 - earsh9&#39;s blog</title>
+  <title>hexo&amp;fluid博客搭建 - earsh9&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="问题记录"></span>
+            <span id="subtitle" data-typed-text="hexo&amp;fluid博客搭建"></span>
           
         </div>
 
@@ -206,7 +206,7 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-04 18:03" pubdate>
+        <time datetime="2022-08-04 18:41" pubdate>
           2022年8月4日 晚上
         </time>
       </span>
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          619 字
+          492 字
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          6 分钟
+          5 分钟
         
       </span>
     
@@ -267,44 +267,28 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">问题记录</h1>
+            <h1 style="display: none">hexo&amp;fluid博客搭建</h1>
             
             
               <div class="markdown-body">
                 
-                <h1 id=""><a href="#" class="headerlink" title=""></a></h1><p>因为给安装 linux 系统的服务器设置了IP地址：192.168.1.21，所以每次远程登录就行：ssh <a href="mailto:&#111;&#101;&#109;&#64;&#x31;&#x39;&#50;&#46;&#49;&#54;&#x38;&#x2e;&#x31;&#x2e;&#x32;&#x31;">&#111;&#101;&#109;&#64;&#x31;&#x39;&#50;&#46;&#49;&#54;&#x38;&#x2e;&#x31;&#x2e;&#x32;&#x31;</a>，密码abc123。无需使用 vmware</p>
-<h2 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h2><ol>
-<li><p>Linux系统（Ubuntu） 中安装 redis6</p>
-<ul>
-<li><p>使用 make 编译完，想使用 make install 安装时， 报 error 详情为 Permission denied（权限否定）</p>
-<ul>
-<li>说明给的权限不够，前加 sudo 即可</li>
+                <h1 id=""><a href="#" class="headerlink" title=""></a></h1><h2 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h2><ul>
+<li>hexo 部署：</li>
 </ul>
-</li>
-<li><p>cd 后啥都不加表示进入当前用户的家目录下。使用 pwd 可以看到完整目录：&#x2F;home&#x2F;oem（此为当前用户），说明home目录下还有很多其他文件夹</p>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs">https://hexo.io/zh-cn/docs</a></p>
 <ul>
-<li>cd &#x2F;usr&#x2F;…：cd 后直接加一个 &#x2F; 表示从最顶端的目录开始往下找（即home目录），通过 cd home、ls 后确实可以看到一个 usr (即user) 目录</li>
+<li>hexo 主题官网：</li>
 </ul>
-</li>
-<li><p>为防止出问题，可以给redis设置密码（这里是abc123）。见<a target="_blank" rel="noopener" href="https://www.php.cn/redis/422222.html">https://www.php.cn/redis/422222.html</a></p>
-</li>
-<li><p>启动方式：进入 bin 目录、使用命令、查看进程、通过客户端连接</p>
-</li>
+<p><a target="_blank" rel="noopener" href="https://hexo.io/themes/">https://hexo.io/themes/</a></p>
+<ul>
+<li>fluid 主题用户手册：</li>
 </ul>
- <img src = "启动redis.png">
+<p><a target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs">https://hexo.fluid-dev.com/docs</a></p>
+<h2 id="github-io的个人博客网站无法连接的问题"><a href="#github-io的个人博客网站无法连接的问题" class="headerlink" title="*.github.io的个人博客网站无法连接的问题"></a>*.github.io的个人博客网站无法连接的问题</h2><p>如果 hexo 要部署上 Github，对应的 Github 仓库需以 <code>xxx.github.io</code> 命名，其中 xxx 为 Github 注册时的名字。</p>
+<p>如果是项目名字错误了可以直接在github上项目的setting那里修改就可以了，不需要删掉重新建。</p>
+<h2 id="更新部署步骤"><a href="#更新部署步骤" class="headerlink" title="更新部署步骤"></a>更新部署步骤</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs linux">$ hexo clean  # 清空一下缓存，有时候博客页面显示不正常也可以试试这个命令行<br>$ hexo g  # hexo generate的简写，把刚刚做的改动生成更新一下<br>$ hexo server  # 在本地服务器看看博客有没有更新成NexT主题：https://localhost:4000<br>$ hexo d  # 退出本地服务器之后 deploy 到 Github 上，这样直接拿 https://xxx.github.io 就能访问了<br></code></pre></td></tr></table></figure>
 
-<pre><code class="hljs"> 因为前面设置了密码，还需要 auth abc123 才能使用
-</code></pre>
-</li>
-</ol>
-<h2 id="基本解析"><a href="#基本解析" class="headerlink" title="基本解析"></a>基本解析</h2><ol>
-<li><p>redis是 单线程 + 多路IO复用</p>
-<ul>
-<li>具有原子性，操作一旦开始就会运行到结束。不会被其他线程所打断，因为是单线程嘛</li>
-</ul>
-</li>
-</ol>
-
+<h2 id="更换主题后，本地服务器运行成功，部署到github上就不能显示主题样式"><a href="#更换主题后，本地服务器运行成功，部署到github上就不能显示主题样式" class="headerlink" title="更换主题后，本地服务器运行成功，部署到github上就不能显示主题样式"></a>更换主题后，本地服务器运行成功，部署到github上就不能显示主题样式</h2>
                 
               </div>
             
@@ -322,15 +306,8 @@
     
       <span class="category-chain">
         
-  <a href="/earsh9.github.io/categories/%E6%90%AD%E7%8E%AF%E5%A2%83%E8%AE%B0%E5%BD%95/" class="category-chain-item">搭环境记录</a>
+  <a href="/earsh9.github.io/categories/%E5%A4%87%E5%BF%98/" class="category-chain-item">备忘</a>
   
-  
-    <span>></span>
-    
-  <a href="/earsh9.github.io/categories/%E6%90%AD%E7%8E%AF%E5%A2%83%E8%AE%B0%E5%BD%95/redis6/" class="category-chain-item">redis6</a>
-  
-  
-
   
 
       </span>
@@ -349,8 +326,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>问题记录</div>
-      <div>https://earsh9.github.io/earsh9.github.io/2022/08/04/搭环境配置/redis6/redis6/</div>
+      <div>hexo&amp;fluid博客搭建</div>
+      <div>https://earsh9.github.io/earsh9.github.io/2022/08/04/备忘/hexo&amp;fluid/</div>
     </div>
     <div class="license-meta">
       
@@ -392,18 +369,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/earsh9.github.io/2022/08/04/%E6%90%AD%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/SpringCloud-%E4%B8%AA%E4%BA%BA%E7%AC%94%E8%AE%B0/0/" title="问题记录">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">问题记录</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/earsh9.github.io/2022/08/04/%E5%A4%87%E5%BF%98/git%E5%B8%B8%E8%A7%81%E6%8C%87%E4%BB%A4/" title="常见指令&amp;配置">
-                        <span class="hidden-mobile">常见指令&amp;配置</span>
+                      <a href="/earsh9.github.io/2022/08/04/%E5%A4%87%E5%BF%98/vscode%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5/" title="vsCode远程连接">
+                        <span class="hidden-mobile">vsCode远程连接</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
