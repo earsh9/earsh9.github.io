@@ -1,0 +1,719 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/earsh9.github.io/img/fluid.png">
+  <link rel="icon" href="/earsh9.github.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="earsh9">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="给定一张有权图，如何求某两点之间的最短路径？ 743.网络延迟时间 提交了所有最短路算法  三种存图方式约定 n 为顶点数，m 为边数  邻接矩阵：适合边数较多的稠密图（m ≈ n^2）  二维矩阵：int[][] g &#x3D; new int[n][n];  (x,y)为起点到终点，weight 为权重：g[x][y] &#x3D; weight    邻接表：适合边数较少的稀疏图（m ≈">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最短路算法">
+<meta property="og:url" content="https://earsh9.github.io/earsh9.github.io/2022/08/04/10.%E5%9B%BE%E8%AE%BA/0.%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95/index.html">
+<meta property="og:site_name" content="earsh9&#39;s blog">
+<meta property="og:description" content="给定一张有权图，如何求某两点之间的最短路径？ 743.网络延迟时间 提交了所有最短路算法  三种存图方式约定 n 为顶点数，m 为边数  邻接矩阵：适合边数较多的稠密图（m ≈ n^2）  二维矩阵：int[][] g &#x3D; new int[n][n];  (x,y)为起点到终点，weight 为权重：g[x][y] &#x3D; weight    邻接表：适合边数较少的稀疏图（m ≈">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-04T09:22:38.176Z">
+<meta property="article:modified_time" content="2022-08-04T09:38:13.010Z">
+<meta property="article:author" content="earsh9">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>最短路算法 - earsh9&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/earsh9.github.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/earsh9.github.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/earsh9.github.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"earsh9.github.io","root":"/earsh9.github.io/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/earsh9.github.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/earsh9.github.io/js/utils.js" ></script>
+  <script  src="/earsh9.github.io/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/earsh9.github.io/">
+      <strong>earsh9&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/earsh9.github.io/img/bg/background.jpeg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="最短路算法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-04 17:22" pubdate>
+          2022年8月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          51 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">最短路算法</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="给定一张有权图，如何求某两点之间的最短路径？"><a href="#给定一张有权图，如何求某两点之间的最短路径？" class="headerlink" title="给定一张有权图，如何求某两点之间的最短路径？"></a>给定一张有权图，如何求某两点之间的最短路径？</h1><ul>
+<li>743.网络延迟时间 提交了所有最短路算法</li>
+</ul>
+<h2 id="三种存图方式"><a href="#三种存图方式" class="headerlink" title="三种存图方式"></a>三种存图方式</h2><p>约定 n 为顶点数，m 为边数</p>
+<ol>
+<li><p>邻接矩阵：适合边数较多的稠密图（m ≈ n^2）</p>
+<ul>
+<li><p>二维矩阵：int[][] g &#x3D; new int[n][n];</p>
+</li>
+<li><p>(x,y)为起点到终点，weight 为权重：g[x][y] &#x3D; weight</p>
+</li>
+</ul>
+</li>
+<li><p>邻接表：适合边数较少的稀疏图（m ≈ n）</p>
+<ul>
+<li><p>又称链式前向星。用数组模拟邻接表，以链表的形式存边。</p>
+<ul>
+<li><p>head[u]：以 u 作为起点的第一条边的编号</p>
+</li>
+<li><p>next[cnt]：编号为 cnt 的边的下一条边，该边与 cnt 同一个起点。</p>
+</li>
+<li><p>to[cnt]：编号为 cnt 的边的终点</p>
+</li>
+<li><p>初始时，令 head[u] &#x3D; cnt &#x3D; 0（或者 -1），表示尚未有边，每个点都是孤立点。(能自圆其说即可)</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span>[] head = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n];       <span class="hljs-comment">//存储某个节点所对应的边的 集合 / 链表 所对应的头节点</span><br><span class="hljs-type">int</span>[] to = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[m];         <span class="hljs-comment">//访问某条边的尾节点</span><br><span class="hljs-type">int</span>[] next = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[m];       <span class="hljs-comment">//由于是以链表形式存边的，该数组用于找到下一条边</span><br><span class="hljs-type">int</span>[] val = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[m];        <span class="hljs-comment">//存权值</span><br><br><span class="hljs-type">int</span> <span class="hljs-variable">cnt</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;                   <span class="hljs-comment">//对边进行编号</span><br>Arrays.fill(head, -<span class="hljs-number">1</span>);         <span class="hljs-comment">//初始化链表头</span><br><br><span class="hljs-comment">//添边：</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> v, <span class="hljs-type">int</span> w)</span>&#123;           <span class="hljs-comment">//起点为 u, 终点为 v，权重为 w 的边</span><br>   to[cnt] = v;<br>   next[cnt] = head[u];<br>   head[u] = cnt;<br>   val[cnt] = w;<br>   cnt++;<br>&#125;<br><br><span class="hljs-comment">//遍历：先找到 head 节点，依次遍历到结束为止</span><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> head[u]; i != -<span class="hljs-number">1</span>; i = next[i])&#123;<br>   <span class="hljs-type">int</span> <span class="hljs-variable">v</span> <span class="hljs-operator">=</span> to[i];<br>   ...<br>&#125;<br><br><span class="hljs-comment">//删边：相当于链表里的删点操作。例如删除 e(u, vv)</span><br><span class="hljs-type">int</span> <span class="hljs-variable">last</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;      <span class="hljs-comment">//记录待删边的前一条边的编号</span><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> head[u]; i != -<span class="hljs-number">1</span>; i = next[i])&#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> to[i];<br>    <span class="hljs-keyword">if</span>(j == vv)&#123;<br>        <span class="hljs-keyword">if</span>(i == head[u]) head[u] = next[i];    <span class="hljs-comment">//要删的是链表的第一条边</span><br>        <span class="hljs-keyword">else</span> next[last] = next[i];             <span class="hljs-comment">//前一条边的 next 边 就是 当前待删的 i 边的下一条边</span><br>        <span class="hljs-keyword">break</span>;<br>    &#125;<br>    last = i;<br>&#125;<br><br><span class="hljs-comment">//反向添边</span><br>cnt ^ <span class="hljs-number">1</span> = cnt + <span class="hljs-number">1</span>;   <span class="hljs-comment">//cnt 起始为奇数时</span><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>也可以拿结构体来写</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Edge</span>&#123;<br>    <span class="hljs-type">int</span> to, next, val;                    <span class="hljs-comment">//终点、下一条边、权重</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Edge</span><span class="hljs-params">(<span class="hljs-type">int</span> to, <span class="hljs-type">int</span> next, <span class="hljs-type">int</span> val)</span>&#123;<br>        <span class="hljs-built_in">this</span>.to = to;<span class="hljs-built_in">this</span>.next = next;<span class="hljs-built_in">this</span>.val = val;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">static</span> <span class="hljs-type">int</span>[] head;<span class="hljs-type">int</span> <span class="hljs-variable">cnt</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;      <span class="hljs-comment">//边编号 从 1 开始</span><br><span class="hljs-keyword">static</span> Edge[] es;<br><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> v, <span class="hljs-type">int</span> w)</span>&#123;<br>    es[cnt] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Edge</span>(v, head[u], w);<br>    head[u] = cnt;                 <span class="hljs-comment">//head 指针由 -1 转为指向 边编号</span><br>    cnt++;<br>&#125;<br><br>main()&#123;<br>    head = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n + <span class="hljs-number">1</span>];<br>    Arrays.fill(head, -<span class="hljs-number">1</span>);        <span class="hljs-comment">//初始化时让每条边 .next 都指向 -1，后随着 head[u] 存储的边编号的改变 而像链表一样 顺次排开</span><br>    es = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Edge</span>[m + <span class="hljs-number">1</span>];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>类：严格要求某操作复杂度要 O(m) 时才会考虑使用(很少用)<ul>
+<li>用 List 存所有边对象，在需要时进行遍历</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Edge</span>&#123;<br><br>   <span class="hljs-comment">//代表从 x 到 y 有一条权重为 weight 的边</span><br><br>   <span class="hljs-type">int</span> x, y, weight;<br>   Edge(<span class="hljs-type">int</span> x, <span class="hljs-type">int</span> y, <span class="hljs-type">int</span> weight)&#123;<br>      <span class="hljs-built_in">this</span>.x = x;<br>      <span class="hljs-built_in">this</span>.y = y;<br>      <span class="hljs-built_in">this</span>.weight = weight;<br>   &#125;<br>&#125;<br><br>List&lt;Edge&gt; es = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>...<br><span class="hljs-keyword">for</span>(Edge e : es)&#123;<br>   ...<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Floyd（邻接矩阵存图）"><a href="#Floyd（邻接矩阵存图）" class="headerlink" title="Floyd（邻接矩阵存图）"></a>Floyd（邻接矩阵存图）</h2><p>又称为Floyd-Warshell算法。Warshell算法是离散数学中求传递闭包的算法，两者思想一致。</p>
+<ol>
+<li>Floyd算法是求解 <strong>多源最短路</strong> 时常用算法，经一次算法即可求出任意两点之间的最短距离，且可处理有负权边的情况（但无法处理负权环）</li>
+<li>本质是 <strong>动态规划</strong>，三层 for 循环枚举 中转点 - 起点 - 终点 - 松弛。</li>
+<li>时间复杂度 O(n ^ 3)，空间复杂度 O(n ^ 2)</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">void</span> <span class="hljs-title function_">floyd</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">p</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; p &lt;= n; p++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt;= n; i++) &#123;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;<br>                w[i][j] = Math.min(w[i][j], w[i][p] + w[p][j]);<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Dijkstra算法"><a href="#Dijkstra算法" class="headerlink" title="Dijkstra算法"></a>Dijkstra算法</h2><ol>
+<li>求解 <strong>单源最短路</strong> 中最快的算法，缺点：无法处理存在负权边的情况。</li>
+<li>本质是 <strong>贪心</strong>，通过不断调整每个点的“当前距离”最终得到最优结果；必须遍历完整个图！</li>
+</ol>
+<p><strong>算法流程：</strong></p>
+<p>求某一点 s 到其他所有点的最短距离，对于每个点 v 维护一个 “当前距离”（dist[v]）和“是否访问过”(visited[v])。</p>
+<p>首先 dist[s]初始化为0，其他点的距离初始化为无穷，并将所有点初始化为未访问。</p>
+<p>记 u -&gt; v 的边权为weight[u-&gt;v]。然后进行以下步骤：</p>
+<ol>
+<li><p>从所有未访问的点中，找出当前距离最小的，设为u，并将其标记为已访问的。</p>
+</li>
+<li><p>调整u的所有边（若是有向图则为出边）连接的并且未被访问过的点：若weight[u-&gt;v] + dist[u] &lt; dist[v], 则将dist[v]更新为dist[u]+weight[u-&gt;v]。</p>
+</li>
+<li><p>重复1和2步骤，直到所有点都被标记为已访问的，则dist[i]即s到i的最短距离。如果只想求从s到某一点的最短距离，那么当该点被标记为访问过之后可直接退出。</p>
+</li>
+<li><p>补充：如果除了最短距离之外还想求出具体的路径，只需建立一个pre数组，在步骤2后添加操作：pre[v] &#x3D; u（前提是dist[v]被更新）。</p>
+</li>
+</ol>
+<h3 id="朴素版本-O-n-2"><a href="#朴素版本-O-n-2" class="headerlink" title="朴素版本 O(n ^ 2)"></a>朴素版本 O(n ^ 2)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-type">int</span> <span class="hljs-variable">INF</span> <span class="hljs-operator">=</span> <span class="hljs-number">0x3f3f3f3f</span>;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dijkstra</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">int</span>[][] g = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n + <span class="hljs-number">1</span>][n + <span class="hljs-number">1</span>];<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt;= n; i++)&#123;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; j &lt;= n; j++)&#123;<br>            g[i][j] = g[j][i] = i == j ? <span class="hljs-number">0</span> : INF;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">//存图：</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span>[] time : times)&#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> time[<span class="hljs-number">0</span>], y = time[<span class="hljs-number">1</span>], w = time[<span class="hljs-number">2</span>];<br>        g[x][y] = w;<br>    &#125;<br><br>    <span class="hljs-type">int</span>[] dist = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n + <span class="hljs-number">1</span>];      <span class="hljs-comment">//从起点 到 当前点 的距离</span><br>    Arrays.fill(dist, INF);<br>    dist[k] = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">boolean</span>[] vis = <span class="hljs-keyword">new</span> <span class="hljs-title class_">boolean</span>[n + <span class="hljs-number">1</span>];<br><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt;= n; i++)&#123;      <span class="hljs-comment">//遍历 n 次以确保全图所有顶点均被遍历</span><br><br>        <span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> -<span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">y</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; y &lt;= n; y++)&#123;  <span class="hljs-comment">//寻找未被访问过的、最短路径的起点</span><br>            <span class="hljs-keyword">if</span>(!vis[y] &amp;&amp; (x == -<span class="hljs-number">1</span> || dist[y] &lt; dist[x]))&#123;<br>                x = y;<br>            &#125;<br>        &#125;<br><br>        vis[x] = <span class="hljs-literal">true</span>;<br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">y</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; y &lt;= n; y++)&#123;   <span class="hljs-comment">//松弛</span><br>            <span class="hljs-keyword">if</span>(dist[y] &gt; dist[x] + g[x][y])&#123;<br>                dist[y] = dist[x] + g[x][y];<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="堆优化-O-mlogn"><a href="#堆优化-O-mlogn" class="headerlink" title="堆优化 O(mlogn)"></a>堆优化 O(mlogn)</h3><ul>
+<li><p>虽外部一个while内部一个for，但本质只是遍历完了所有边(顶点有vis数组限制)。加上pq.offer()操作，为 <strong>ElogV</strong></p>
+<ul>
+<li>优先队列本质为树，每次入队出队维护的时间复杂度为树高 logV</li>
+</ul>
+</li>
+<li><p>pq.poll()操作为 logV，执行 V 次，即 <strong>VlogV</strong>。</p>
+</li>
+<li><p>二者并行执行，综上时间复杂度为 O(VlogV + ElogV)。一般情况下 E &gt; V，化简为 O(ElogV)。</p>
+<ul>
+<li>当图为稠密图(E &#x3D; V ^ 2)时，时间复杂度为 O(V^2 logE)。此时运行时间上还不如 朴素版本的快。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> <span class="hljs-variable">INF</span> <span class="hljs-operator">=</span> <span class="hljs-number">0x3f3f3f3f</span>;<br><span class="hljs-type">int</span> n, k, m;                           <span class="hljs-comment">//全局变量，在任何函数均未执行前已经初始化为 0</span><br><span class="hljs-type">int</span>[] head;<span class="hljs-type">int</span>[] to;                   <span class="hljs-comment">//故此处的数组 不能 new，只能预先声明</span><br><span class="hljs-type">int</span>[] next;<span class="hljs-type">int</span>[] val;<br><span class="hljs-type">int</span> <span class="hljs-variable">cnt</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">()</span>&#123;<br>    head = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n + <span class="hljs-number">1</span>];to = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[m + <span class="hljs-number">1</span>];<br>    next = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[m + <span class="hljs-number">1</span>];val = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[m + <span class="hljs-number">1</span>];<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> v, <span class="hljs-type">int</span> w)</span>&#123;<br>    next[++cnt] = head[u];<br>    head[u] = cnt;<br>    to[cnt] = v;<br>    val[cnt] = w;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dijkstra</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-built_in">this</span>.n = n; <span class="hljs-built_in">this</span>.k = k; m = times.length;<br>    init();<br><br>    Arrays.fill(head, <span class="hljs-number">0</span>);<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span>[] time : times) &#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">u</span> <span class="hljs-operator">=</span> time[<span class="hljs-number">0</span>], v = time[<span class="hljs-number">1</span>], w = time[<span class="hljs-number">2</span>];<br>        add(u, v, w);<br>    &#125;<br><br>    <span class="hljs-type">int</span>[] dist = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n + <span class="hljs-number">1</span>];<br>    Arrays.fill(dist, INF);<br>    dist[k] = <span class="hljs-number">0</span>;<br>    <span class="hljs-type">boolean</span>[] vis = <span class="hljs-keyword">new</span> <span class="hljs-title class_">boolean</span>[n + <span class="hljs-number">1</span>];<br><br>    PriorityQueue&lt;<span class="hljs-type">int</span>[]&gt; pq = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PriorityQueue</span>&lt;&gt;(((o1, o2) -&gt; o1[<span class="hljs-number">1</span>] - o2[<span class="hljs-number">1</span>]));<br>    pq.offer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;k, <span class="hljs-number">0</span>&#125;);           <span class="hljs-comment">//(点编号，到起点的距离）</span><br><br>    <span class="hljs-keyword">while</span> (!pq.isEmpty())&#123;<br>        <span class="hljs-type">int</span>[] poll = pq.poll();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">id</span> <span class="hljs-operator">=</span> poll[<span class="hljs-number">0</span>], step = poll[<span class="hljs-number">1</span>];<br><br>        <span class="hljs-keyword">if</span> (vis[id]) <span class="hljs-keyword">continue</span>;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> head[id]; i != <span class="hljs-number">0</span>; i = next[i])&#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> to[i];<br>            <span class="hljs-keyword">if</span> (dist[j] &gt; dist[id] + val[i])&#123;<br>                dist[j] = dist[id] + val[i];<br>                pq.offer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;j, dist[j]&#125;);<br>            &#125;<br>        &#125;<br>        vis[id] = <span class="hljs-literal">true</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="Bellmon-Ford-算法"><a href="#Bellmon-Ford-算法" class="headerlink" title="Bellmon-Ford 算法"></a>Bellmon-Ford 算法</h2><ul>
+<li><p>单源最短路算法。时间复杂度为 O(nm)，虽不如 Dijkstra 快，但能处理 负权边 和 负权环 的情况。</p>
+</li>
+<li><p>原理：<strong>对于一个不包含 负权环 的 n 个点的图，任意两点之间的最短路径 至多 包含 n - 1 条边。</strong></p>
+<ul>
+<li>如果存在 负权环，每次在负权环上走一圈，都会使换上每一点的距离减少，因此不存在最短路。BF算法可以检测出这一点。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Edge</span>&#123;<br>        <span class="hljs-type">int</span> u, v, w;<br>        Edge(<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> v, <span class="hljs-type">int</span> w)&#123;<br>            <span class="hljs-built_in">this</span>.u = u;<span class="hljs-built_in">this</span>.v = v; <span class="hljs-built_in">this</span>.w = w;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">BF</span><span class="hljs-params">()</span> &#123;<br>        List&lt;Edge&gt; edges = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span>[] time : times) &#123;      <span class="hljs-comment">//添边</span><br>            edges.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Edge</span>(time[<span class="hljs-number">0</span>], time[<span class="hljs-number">1</span>], time[<span class="hljs-number">2</span>]));<br>        &#125;<br><br>        <span class="hljs-type">int</span>[] dist = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n];       <span class="hljs-comment">//源点 到 当前点的最短距离</span><br>        Arrays.fill(dist, INF);<br>        dist[k - <span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;               <span class="hljs-comment">//源点 k，存点从 0 开始所以需减一</span><br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; n; i++)&#123;   <span class="hljs-comment">//遍历 n 次</span><br>            <span class="hljs-keyword">for</span> (Edge edge : edges) &#123;  <span class="hljs-comment">//暴力地去遍历每条边来检查哪些点的当前距离可以更新</span><br>                <span class="hljs-type">int</span> <span class="hljs-variable">from</span> <span class="hljs-operator">=</span> edge.u, to = edge.v, weight = edge.w;<br>                <span class="hljs-keyword">if</span> (dist[to - <span class="hljs-number">1</span>] &gt; dist[from] + weight)&#123;<br>                    dist[to - <span class="hljs-number">1</span>] = dist[from] + weight;<br><span class="hljs-comment">//                    pre[to] = pre[from];     用于记录具体的最短路径</span><br>                &#125;<br>            &#125;<br>        &#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="SPFA：对BF的改进"><a href="#SPFA：对BF的改进" class="headerlink" title="SPFA：对BF的改进"></a>SPFA：对BF的改进</h2><ul>
+<li><p>BF 为暴力的检查哪些点的距离可以被更新</p>
+</li>
+<li><p>SPFA优化为采用类似bfs的思想，使用 队列 或 栈 进行有选择的选取</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">spfa</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">int</span>[] dist = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n + <span class="hljs-number">1</span>];<br>    Arrays.fill(dist, INF);<br>    dist[k] = <span class="hljs-number">0</span>;<br><br>    Deque&lt;Integer&gt; dq = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayDeque</span>&lt;&gt;();   <span class="hljs-comment">//点编号</span><br>    <span class="hljs-type">boolean</span>[] inque = <span class="hljs-keyword">new</span> <span class="hljs-title class_">boolean</span>[n + <span class="hljs-number">1</span>];<br>    dq.addLast(k);<br>    inque[k] = <span class="hljs-literal">true</span>;<br><br>    <span class="hljs-keyword">while</span> (!dq.isEmpty())&#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">poll</span> <span class="hljs-operator">=</span> dq.pollFirst();<br>        inque[poll] = <span class="hljs-literal">false</span>;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> head[poll]; i != <span class="hljs-number">0</span>; i = next[i])&#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> to[i], w = val[i];<br>            <span class="hljs-keyword">if</span> (dist[j] &gt; dist[poll] + w)&#123;<br>                dist[j] = dist[poll] + w;<br>                <span class="hljs-keyword">if</span> (inque[j]) <span class="hljs-keyword">continue</span>;<br>                dq.addLast(j);<br>                inque[j] = <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%9B%BE%E8%AE%BA/" class="category-chain-item">图论</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>最短路算法</div>
+      <div>https://earsh9.github.io/earsh9.github.io/2022/08/04/10.图论/0.最短路算法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>earsh9</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月4日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/earsh9.github.io/2022/08/04/%E5%85%B6%E4%BB%96/%E6%95%B0%E8%AE%BA/" title="数论">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">数论</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/earsh9.github.io/2022/08/04/10.%E5%9B%BE%E8%AE%BA/1.%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%9B%B8%E5%85%B3%E5%BB%B6%E4%BC%B8/" title="最短路相关延申">
+                        <span class="hidden-mobile">最短路相关延申</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/earsh9.github.io/js/events.js" ></script>
+<script  src="/earsh9.github.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/earsh9.github.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/earsh9.github.io/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/earsh9.github.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

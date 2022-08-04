@@ -1,0 +1,802 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/earsh9.github.io/img/fluid.png">
+  <link rel="icon" href="/earsh9.github.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="earsh9">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="01背包有 n 件物品和一个最多能背重量为 w 的背包。第 i 件物品的重量是 weight[i]，得到的价值是 value[i]。 每件物品只能用一次，求解将哪些物品装入背包里物品价值总和最大。   二维 dp 数组暴力每个物品只有两种状态，选 还是 不选，采用回溯进行 o(n ^ 2) 的搜索，n 为物品的数量。 动态规划进行优化dp[i][j] : 对于容量为 j 的背包，0 ~ i 的物品">
+<meta property="og:type" content="article">
+<meta property="og:title" content="背包问题">
+<meta property="og:url" content="https://earsh9.github.io/earsh9.github.io/2022/08/04/9.%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/2.%20%E8%83%8C%E5%8C%85/index.html">
+<meta property="og:site_name" content="earsh9&#39;s blog">
+<meta property="og:description" content="01背包有 n 件物品和一个最多能背重量为 w 的背包。第 i 件物品的重量是 weight[i]，得到的价值是 value[i]。 每件物品只能用一次，求解将哪些物品装入背包里物品价值总和最大。   二维 dp 数组暴力每个物品只有两种状态，选 还是 不选，采用回溯进行 o(n ^ 2) 的搜索，n 为物品的数量。 动态规划进行优化dp[i][j] : 对于容量为 j 的背包，0 ~ i 的物品">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-04T09:22:37.968Z">
+<meta property="article:modified_time" content="2022-08-04T09:37:08.605Z">
+<meta property="article:author" content="earsh9">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>背包问题 - earsh9&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/earsh9.github.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/earsh9.github.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/earsh9.github.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"earsh9.github.io","root":"/earsh9.github.io/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/earsh9.github.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/earsh9.github.io/js/utils.js" ></script>
+  <script  src="/earsh9.github.io/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/earsh9.github.io/">
+      <strong>earsh9&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/earsh9.github.io/img/bg/background.jpeg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="背包问题"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-04 17:22" pubdate>
+          2022年8月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          74 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">背包问题</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="01背包"><a href="#01背包" class="headerlink" title="01背包"></a>01背包</h1><p>有 n 件物品和一个最多能背重量为 w 的背包。第 i 件物品的重量是 weight[i]，得到的价值是 value[i]。</p>
+<p>每件物品只能用一次，求解将哪些物品装入背包里物品价值总和最大。</p>
+<img src = "https://img-blog.csdnimg.cn/20210117175428387.jpg" width = "50%"/>
+
+<h2 id="二维-dp-数组"><a href="#二维-dp-数组" class="headerlink" title="二维 dp 数组"></a>二维 dp 数组</h2><h3 id="暴力"><a href="#暴力" class="headerlink" title="暴力"></a>暴力</h3><p>每个物品只有两种状态，选 还是 不选，采用回溯进行 o(n ^ 2) 的搜索，n 为物品的数量。</p>
+<h3 id="动态规划进行优化"><a href="#动态规划进行优化" class="headerlink" title="动态规划进行优化"></a>动态规划进行优化</h3><p>dp[i][j] : 对于容量为 j 的背包，0 ~ i 的物品任意选取所能产生的最大价值总和。</p>
+<p>可以从两个方向递推出 dp[i][j]：</p>
+<ol>
+<li><p>不放物品 i ：直接由 dp[i - 1][j] 得到。即背包容量为 j 时，不放物品 i 的最大价值。（适用于物品 i 的质量大于背包 j 的质量时）</p>
+</li>
+<li><p>放物品 i ：由 dp[i - 1][j - weight[i]] + value[i] 得到。</p>
+</li>
+</ol>
+<p>所以递推公式：dp[i][j] &#x3D; Math.max(dp[i - 1][j], dp[i - 1][j - weight[i]] + value[i]);</p>
+<ul>
+<li>如何初始化？</li>
+</ul>
+<p>首先背包容量为 0 时的 dp[i][0] 无论选取什么物品价值总和一定为零。</p>
+<p>其次，背包容量比 0 号物品质量还小时 即 j &lt; weight[0]，dp[0][j] &#x3D; 0; 而当 j &gt;&#x3D; weight[0] 时，dp[0][j] &#x3D; value[0]。此时背包容量足够装下物品 0 。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//dp 数组初始化</span><br><span class="hljs-type">int</span>[][] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[weight.length + <span class="hljs-number">1</span>][bagSize + <span class="hljs-number">1</span>];   <span class="hljs-comment">//数组初始化为0，第一个无需重复初始化</span><br><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; weight[<span class="hljs-number">0</span>]; j++)&#123;<br>    dp[<span class="hljs-number">0</span>][j] = <span class="hljs-number">0</span>;<br>&#125;<br><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> weight[<span class="hljs-number">0</span>]; j &lt;= bagWeight; j++)&#123;<br>    dp[<span class="hljs-number">0</span>][j] = value[<span class="hljs-number">0</span>];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>确定遍历顺序</li>
+</ul>
+<p>明确两个遍历维度：物品 与 背包质量。先遍历哪一个都可以！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//先遍历物品，好理解</span><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; weight.length; i++)&#123;      <span class="hljs-comment">//遍历物品</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt;= bagWeight; j++)&#123;     <span class="hljs-comment">//遍历背包容量</span><br>        <span class="hljs-keyword">if</span>(j &lt; weight[i]) dp[i][j] = dp[i - <span class="hljs-number">1</span>][j];<br>        dp[i][j] = Math.max(dp[i - <span class="hljs-number">1</span>][j], dp[i - <span class="hljs-number">1</span>][j - weight[i]] + value[i]);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//先遍历背包容量</span><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt;= bagWeight; j++)&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; weight.length; i++)&#123;<br>        <span class="hljs-keyword">if</span>(j &lt; weight[i]) dp[i][j] = dp[i - <span class="hljs-number">1</span>][j];<br>        dp[i][j] = Math.max(dp[i - <span class="hljs-number">1</span>][j], dp[i - <span class="hljs-number">1</span>][j - weight[i]] + value[i]);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>两个 for 循环虽然次序不同，但 dp[i][j] 所需数据都是左上角的，所以都可以。</p>
+<h2 id="滚动数组优化成一维-dp-数组"><a href="#滚动数组优化成一维-dp-数组" class="headerlink" title="滚动数组优化成一维 dp 数组"></a>滚动数组优化成一维 dp 数组</h2><p>将 dp[i - 1] 那一层的结果拷贝给 dp[i]，递推变为 dp[i][j] &#x3D; Math.max(dp[i][j], dp[i][j - weight[i]] + value[i]);</p>
+<p>与其拷贝，不如直接使用一维数组。</p>
+<p>将每一层的结果自然的由 for 循环赋值传递，而不再额外使用空间。</p>
+<h3 id="为何遍历顺序不同？"><a href="#为何遍历顺序不同？" class="headerlink" title="为何遍历顺序不同？"></a>为何遍历顺序不同？</h3><p>dp[j] : 容量为 j 的背包所背的最大价值。dp[j] &#x3D; Math.max(dp[j], dp[j - weight[i]] + value[i]);</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span>[] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[bagSize + <span class="hljs-number">1</span>];<br><br><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; weight.length; i++)&#123;   <span class="hljs-comment">//物品</span><br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> bagSize; j &gt;= weight[i];  j++)&#123;   <span class="hljs-comment">//背包容量，需时刻大于 weight[i]</span><br>        dp[j] = Math.max(dp[j], dp[j - weight[i]] + value[i]);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><strong>背包容量大小 倒序遍历 是为了防止物品被重复加入！</strong></p>
+<p>若正序：例如物品 0 的重量 weight[0] &#x3D; 0, value[0] &#x3D; 15</p>
+<p>dp[1] &#x3D; dp[1 - weight[0]] + value[0] &#x3D; 15;</p>
+<p>dp[2] &#x3D; dp[2 - weight[0]] + value[0] &#x3D; 30;</p>
+<p>物品 0 被重复放入两次！</p>
+<p>若倒序：先计算 dp[2]</p>
+<p>dp[2] &#x3D; dp[2 - weight[0]] + value[0] &#x3D; 15;  &#x2F;&#x2F;当物品价值为正时，数组都可初始化即默认为0</p>
+<p>dp[1] &#x3D; dp[1 - weight[0]] + value[0] &#x3D; 15;</p>
+<p>倒序遍历可以保证每次取得的状态不与之前取得的状态重合，这样每个物品只用取一次。</p>
+<p>而二维 dp 数组，每一层的状态都是由上一层得来，本层的数据不会被覆盖，无需倒序!</p>
+<h1 id="01背包的应用"><a href="#01背包的应用" class="headerlink" title="01背包的应用"></a>01背包的应用</h1><p>集中在 Question01 - ALmid416.java</p>
+<h2 id="416题-分割等和子集"><a href="#416题-分割等和子集" class="headerlink" title="416题 分割等和子集"></a>416题 分割等和子集</h2><p>给你一个 只包含正整数 的 非空 数组 nums 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。</p>
+<p>示例 1：</p>
+<p>输入：nums &#x3D; [1,5,11,5]</p>
+<p>输出：true</p>
+<p>解释：数组可以分割成 [1, 5, 5] 和 [11] 。</p>
+<p>示例 2：</p>
+<p>输入：nums &#x3D; [1,2,3,5]</p>
+<p>输出：false</p>
+<p>解释：数组不能分割成两个元素和相等的子集。</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; nums.length &lt;&#x3D; 200</p>
+<p>1 &lt;&#x3D; nums[i] &lt;&#x3D; 100</p>
+<h3 id="判断问题的类型"><a href="#判断问题的类型" class="headerlink" title="判断问题的类型"></a>判断问题的类型</h3><ol>
+<li>背包的容量：数组和的一半</li>
+<li>背包中要放入的物品重量：数组元素的数值</li>
+<li>元素不能重复选取：01背包</li>
+<li>只有物品刚好装满背包才行（与原始01背包的 “ 有 N 件物品和一个最多能被重量为 W 的背包” 不同）</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">canPartition</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums)</span> &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">maxNum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> num : nums) &#123;<br>        sum += num;<br>        maxNum = Math.max(maxNum, num);<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> ((sum &amp; <span class="hljs-number">1</span>) != <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;      <span class="hljs-comment">//奇数和无法均分成两堆</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">weight</span> <span class="hljs-operator">=</span> sum / <span class="hljs-number">2</span>;                  <span class="hljs-comment">//一个背包要装的重量</span><br>    <span class="hljs-keyword">if</span> (maxNum &gt; weight) <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;     <span class="hljs-comment">//如果最大元素 比 背包容量还大，说明另一个子集凑不到背包容量，直接返回false</span><br>    <span class="hljs-type">int</span>[] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[weight + <span class="hljs-number">1</span>];<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> num : nums)&#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">w</span> <span class="hljs-operator">=</span> weight; w &gt;= num; w--)&#123;<br>            dp[w] = Math.max(dp[w], dp[w - num] + num);      <span class="hljs-comment">//物品的重量就是数组元素的数值</span><br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> dp[weight] == weight;          <span class="hljs-comment">//判断容量为 weight 的背包中是否装了重量为 weight 的物品</span><br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>类似的还有：</p>
+<ul>
+<li>1049题 最后一块石头的重量 II</li>
+</ul>
+<h2 id="494题-目标和"><a href="#494题-目标和" class="headerlink" title="494题 目标和"></a>494题 目标和</h2><p>给你一个整数数组 nums 和一个整数 target 。</p>
+<p>向数组中的每个整数前添加 ‘+’ 或 ‘-‘ ，然后串联起所有整数，可以构造一个 表达式 ：</p>
+<p>例如，nums &#x3D; [2, 1] ，可以在 2 之前添加 ‘+’ ，在 1 之前添加 ‘-‘ ，然后串联起来得到表达式 “+2-1” 。</p>
+<p>返回可以通过上述方法构造的、运算结果等于 target 的不同 表达式 的数目。</p>
+<p>示例 1：</p>
+<p>输入：nums &#x3D; [1,1,1,1,1], target &#x3D; 3</p>
+<p>输出：5</p>
+<p>解释：一共有 5 种方法让最终目标和为 3 。</p>
+<p>-1 + 1 + 1 + 1 + 1 &#x3D; 3</p>
+<p>+1 - 1 + 1 + 1 + 1 &#x3D; 3</p>
+<p>+1 + 1 - 1 + 1 + 1 &#x3D; 3</p>
+<p>+1 + 1 + 1 - 1 + 1 &#x3D; 3</p>
+<p>+1 + 1 + 1 + 1 - 1 &#x3D; 3</p>
+<p>提示：</p>
+<ul>
+<li>1 &lt;&#x3D; nums.length &lt;&#x3D; 20</li>
+<li>0 &lt;&#x3D; nums[i] &lt;&#x3D; 1000</li>
+<li>0 &lt;&#x3D; sum(nums[i]) &lt;&#x3D; 1000</li>
+<li>-1000 &lt;&#x3D; target &lt;&#x3D; 1000</li>
+</ul>
+<h3 id="组合问题如何转化"><a href="#组合问题如何转化" class="headerlink" title="组合问题如何转化"></a>组合问题如何转化</h3><p>dp[j] : 填满容量为 j 的背包的方案种数。初始化 dp[0] &#x3D; 1</p>
+<p>如何推出 dp[j] ？</p>
+<ul>
+<li><p>填满容量为j - nums[i]的背包，有dp[j - nums[i]]种方法。</p>
+</li>
+<li><p>那么只要搞到nums[i]的话，凑成dp[j]就有dp[j - nums[i]] 种方法。</p>
+</li>
+</ul>
+<p>求组合类问题的公式，都是类似这种：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">dp[j] += dp[j - nums[i]]<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//target 有正有负，num 为非负整数</span><br><span class="hljs-comment">//分成l, r 一正一负两个背包：l + r = sum; l - r = target; 2 * l = sum + target;</span><br><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">findTargetSumWays</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums, <span class="hljs-type">int</span> target)</span> &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> num : nums) &#123;<br>        sum += num;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (sum + target &lt; <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;                <span class="hljs-comment">//正数的背包不能加和为负</span><br>    <span class="hljs-keyword">if</span> (((sum + target) &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;       <span class="hljs-comment">//2 * l, 必须要能均分</span><br><br>    <span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> (sum + target) / <span class="hljs-number">2</span>;<br>    <span class="hljs-type">int</span>[] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[m + <span class="hljs-number">1</span>];<br>    dp[<span class="hljs-number">0</span>] = <span class="hljs-number">1</span>;                                    <span class="hljs-comment">//代表不考虑任何数，凑出计算结果为 0 的方案数为 1</span><br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> num : nums) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> m; j &gt;= num; j--)&#123;<br>            dp[j] += dp[j - num];<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> dp[m];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>数组较小时，也可以回溯爆炸搜索。但注意很容易超限</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//回溯：每个数有成为正数 和 负数 两种选择，爆搜</span><br><span class="hljs-type">int</span>[] nums;<br><span class="hljs-type">int</span> target;<br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">findTargetSumWays0</span><span class="hljs-params">(<span class="hljs-type">int</span>[] nums, <span class="hljs-type">int</span> target)</span> &#123;<br>    <span class="hljs-built_in">this</span>.nums = nums;<br>    <span class="hljs-built_in">this</span>.target = target;<br>    <span class="hljs-keyword">return</span> dfs(<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> i, <span class="hljs-type">int</span> t)</span>&#123;       <span class="hljs-comment">//当前索引、加和值</span><br>    <span class="hljs-keyword">if</span> (i == nums.length)&#123;<br>        <span class="hljs-keyword">return</span> t == target ? <span class="hljs-number">1</span> : <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-type">int</span> <span class="hljs-variable">left</span> <span class="hljs-operator">=</span> dfs(i + <span class="hljs-number">1</span>, t + nums[i]);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">right</span> <span class="hljs-operator">=</span> dfs(i + <span class="hljs-number">1</span>, t - nums[i]);<br>    <span class="hljs-keyword">return</span> left + right;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="474题-一和零"><a href="#474题-一和零" class="headerlink" title="474题 一和零"></a>474题 一和零</h2><p>给你一个二进制字符串数组 strs 和两个整数 m 和 n 。</p>
+<p>请你找出并返回 strs 的最大子集的长度，该子集中 最多 有 m 个 0 和 n 个 1 。</p>
+<p>如果 x 的所有元素也是 y 的元素，集合 x 是集合 y 的 子集 。</p>
+<p>示例 1：</p>
+<p>输入：strs &#x3D; [“10”, “0001”, “111001”, “1”, “0”], m &#x3D; 5, n &#x3D; 3</p>
+<p>输出：4</p>
+<p>解释：最多有 5 个 0 和 3 个 1 的最大子集是 {“10”,”0001”,”1”,”0”} ，因此答案是 4 。</p>
+<p>其他满足题意但较小的子集包括 {“0001”,”1”} 和 {“10”,”1”,”0”} 。{“111001”} 不满足题意，因为它含 4 个 1 ，大于 n 的值 3 。</p>
+<h3 id="两个维度的-01-背包问题"><a href="#两个维度的-01-背包问题" class="headerlink" title="两个维度的 01 背包问题"></a>两个维度的 01 背包问题</h3><p>首先第一个 for 循环是字符串数组 不言而喻，而字符串中 0 和 1 的个数对应于 物品重量，此乃两个维度。</p>
+<p>故 dp[i][j] : 有 m 个 0，n 个 1 的子集个数</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-comment">//之所以还是 01背包 而非多重背包，是由于数组元素即物品还是一个</span><br>    <span class="hljs-comment">//求解子集中最多有 m 个 0，n 个 1；取 还是 不取 选 max</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">findMaxForm</span><span class="hljs-params">(String[] strs, <span class="hljs-type">int</span> m, <span class="hljs-type">int</span> n)</span> &#123;<br>        <span class="hljs-type">int</span>[][] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[m + <span class="hljs-number">1</span>][n + <span class="hljs-number">1</span>];<br><br>        <span class="hljs-keyword">for</span> (String str : strs) &#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">oneNum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, zeroNum = <span class="hljs-number">0</span>;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">char</span> c : str.toCharArray()) &#123;<br>                <span class="hljs-keyword">if</span> (c == <span class="hljs-string">&#x27;1&#x27;</span>) oneNum++;<br>                <span class="hljs-keyword">else</span> zeroNum++;<br>            &#125;<br><br><span class="hljs-comment">//此处两层 for 循环都是遍历 物品重量 这一维度。没有先后之分</span><br><span class="hljs-comment">//每一个 dp[i][j] 都对应一种 是否从 str 转变过来的个数，但只有成功转到 dp[m][n] 的个数才算有意义。</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> m; i &gt;= zeroNum; i--)&#123;<br>                <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> n; j &gt;= oneNum; j--)&#123;<br>                    dp[i][j] = Math.max(dp[i][j], dp[i - zeroNum][j - oneNum] + <span class="hljs-number">1</span>);<br>                    <span class="hljs-comment">// + 1 对应 物品的价值</span><br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> dp[m][n];<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="完全背包"><a href="#完全背包" class="headerlink" title="完全背包"></a>完全背包</h1><p>有 N 件物品和一个最多能背重量为 W 的背包。第i件物品的重量是 weight[i]，得到的价值是 value[i] 。</p>
+<p>每件物品都有无限个（也就是可以放入背包多次），<strong>求解将哪些物品装入背包里物品价值总和最大</strong>。</p>
+<p>完全背包和01背包问题唯一不同的地方就是，<strong>每种物品有无限件</strong>。</p>
+<h2 id="五部曲也只有遍历顺序不同"><a href="#五部曲也只有遍历顺序不同" class="headerlink" title="五部曲也只有遍历顺序不同"></a>五部曲也只有遍历顺序不同</h2><p>01背包内嵌的循环是从大到小遍历，为了保证每个物品仅被添加一次。</p>
+<p>而完全背包的物品是可以添加多次的，所以要从小到大去遍历，即：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; weight.length; i++)&#123;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> weight[i]; j &lt; bagWeight; j++)&#123;<br>        dp[j] = Math.max(dp[j], dp[j - weight[i]] + value[i]);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>对于 01背包：</p>
+<ul>
+<li>物品 和 背包容量 的双层 for循环，二维 dp 数组无先后顺序之分</li>
+<li>一维 dp 数组 必须先物品 后背包容量</li>
+</ul>
+<p>而 完全背包：</p>
+<ul>
+<li>一维 dp 数组 同样无先后顺序之分。</li>
+<li>因为 dp[j] 是根据 j 之前的下标计算出来的，只要保证 j 之前的 dp[j] 是计算出来的就行。</li>
+</ul>
+<h2 id="组合数-与-排列数"><a href="#组合数-与-排列数" class="headerlink" title="组合数 与 排列数"></a>组合数 与 排列数</h2><p>{1，5} 与 {5，1} 是同一个组合，却是两种排列。</p>
+<ul>
+<li><p>求组合数：外层for循环遍历物品，内层for遍历背包。如 - 518. 零钱兑换 II</p>
+<ul>
+<li>因为将 物品 按次序遍历，只会出现一种组合方式。</li>
+</ul>
+</li>
+<li><p>求排列数：外层for遍历背包，内层for循环遍历物品。如 - 377. 组合总和 IV</p>
+<ul>
+<li>而 物品 在内层循环，会出现多种排列方式。</li>
+</ul>
+</li>
+<li><p>求满足方案的最少个数：两种遍历方式都可以。注意一下数组的初始化即可</p>
+<ul>
+<li>如 - 70. 爬楼梯、- 322. 零钱兑换、- 279. 完全平方数</li>
+</ul>
+</li>
+</ul>
+<h2 id="变个花样的背包：139-单词拆分"><a href="#变个花样的背包：139-单词拆分" class="headerlink" title="变个花样的背包：139.单词拆分"></a>变个花样的背包：139.单词拆分</h2><p>给定一个非空字符串 s 和一个包含非空单词的列表 wordDict，判定 s 是否可以被空格拆分为一个或多个在字典中出现的单词。</p>
+<p>说明：</p>
+<p>拆分时可以重复使用字典中的单词。</p>
+<p>你可以假设字典中没有重复的单词。</p>
+<p>示例 1：</p>
+<p>输入: s &#x3D; “leetcode”, wordDict &#x3D; [“leet”, “code”]</p>
+<p>输出: true</p>
+<p>解释: 返回 true 因为 “leetcode” 可以被拆分成 “leet code”。</p>
+<p>示例 2：</p>
+<p>输入: s &#x3D; “applepenapple”, wordDict &#x3D; [“apple”, “pen”]</p>
+<p>输出: true</p>
+<p>解释: 返回 true 因为 “applepenapple” 可以被拆分成 “apple pen apple”。</p>
+<p>注意你可以重复使用字典中的单词。</p>
+<p><strong>思路：</strong></p>
+<ol>
+<li><p>知道是完全背包；字符串 s 是背包，wordDict 是物品。</p>
+<ul>
+<li>但不知 内层遍历物品是遍历子串，当子串在 wordDict 中出现时转为 true</li>
+</ul>
+</li>
+<li><p>dfs爆搜也可以，需要记忆化搜索否则超限</p>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">wordBreak</span><span class="hljs-params">(String s, List&lt;String&gt; wordDict)</span> &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> s.length();<br>    <span class="hljs-type">boolean</span>[] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">boolean</span>[n + <span class="hljs-number">1</span>];<br>    Arrays.fill(dp, <span class="hljs-literal">false</span>);<br>    dp[<span class="hljs-number">0</span>] = <span class="hljs-literal">true</span>;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; j &lt;= n; j++) &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; j; i++)&#123;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">sub</span> <span class="hljs-operator">=</span> s.substring(i,j);<br>            <span class="hljs-keyword">if</span> (wordDict.contains(sub) &amp;&amp; dp[i])&#123;<br>                dp[j] = <span class="hljs-literal">true</span>;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> dp[n];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;String&gt; wordDict;<br>String s;<br><span class="hljs-type">int</span> n;<br><span class="hljs-type">int</span>[] memo;<br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">wordBreak1</span><span class="hljs-params">(String s, List&lt;String&gt; wordDict)</span> &#123;<br>    <span class="hljs-built_in">this</span>.wordDict = wordDict;<br>    <span class="hljs-built_in">this</span>.s = s;<br>    n = s.length();<br>    memo = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n];<br>    Arrays.fill(memo, -<span class="hljs-number">1</span>);         <span class="hljs-comment">//初始</span><br><br>    <span class="hljs-keyword">return</span> dfs(<span class="hljs-number">0</span>);<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">dfs</span><span class="hljs-params">(<span class="hljs-type">int</span> st)</span> &#123;<br>    <span class="hljs-keyword">if</span> (st &gt;= n) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br><br>    <span class="hljs-keyword">if</span> (memo[st] != -<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> memo[st] == <span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> st; i &lt; n; i++)&#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">sub</span> <span class="hljs-operator">=</span> s.substring(st, i + <span class="hljs-number">1</span>);<br><br>        <span class="hljs-keyword">if</span> (wordDict.contains(sub) &amp;&amp; dfs(i + <span class="hljs-number">1</span>))&#123;<br>            memo[st] = <span class="hljs-number">1</span>;           <span class="hljs-comment">//可以被拆分</span><br>            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>        &#125;<br>    &#125;<br>    memo[st] = <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="多重背包"><a href="#多重背包" class="headerlink" title="多重背包"></a>多重背包</h1><p>与 <strong>01背包</strong> 相似，不同在于每件物品不能无限使用而有限制。</p>
+<p>有N种物品和一个容量为 V 的背包。第 i 种物品最多有 Mi 件可用，每件耗费的空间是 Ci ，价值是 Wi 。</p>
+<p>求解将哪些物品装入背包可使这些物品的耗费的空间 总和不超过背包容量，且价值总和最大。</p>
+<h2 id="实现：拆分"><a href="#实现：拆分" class="headerlink" title="实现：拆分"></a>实现：拆分</h2><ol>
+<li>将多件的物品一件件展开，其余不变。</li>
+<li>在 01背包 循环内，一个一个遍历物品。(遍历一个每种商品的数量)</li>
+<li>二进制优化：把每种物品的数量，打包成一个个独立的包。</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testMultiPack1</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-comment">// 版本一：改变物品数量为01背包格式</span><br>    List&lt;Integer&gt; weight = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>));<br>    List&lt;Integer&gt; value = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(Arrays.asList(<span class="hljs-number">15</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>));<br>    List&lt;Integer&gt; nums = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;(Arrays.asList(<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>));<br>    <span class="hljs-type">int</span> <span class="hljs-variable">bagWeight</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; nums.size(); i++) &#123;<br>        <span class="hljs-keyword">while</span> (nums.get(i) &gt; <span class="hljs-number">1</span>) &#123; <span class="hljs-comment">// 把物品展开为 i</span><br>            weight.add(weight.get(i));<br>            value.add(value.get(i));<br>            nums.set(i, nums.get(i) - <span class="hljs-number">1</span>);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-type">int</span>[] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[bagWeight + <span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; weight.size(); i++) &#123; <span class="hljs-comment">// 遍历物品</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> bagWeight; j &gt;= weight.get(i); j--) &#123; <span class="hljs-comment">// 遍历背包容量</span><br>            dp[j] = Math.max(dp[j], dp[j - weight.get(i)] + value.get(i));<br>        &#125;<br>        System.out.println(Arrays.toString(dp));<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">testMultiPack2</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-comment">// 版本二：改变遍历个数</span><br>    <span class="hljs-type">int</span>[] weight = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] &#123;<span class="hljs-number">1</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>&#125;;<br>    <span class="hljs-type">int</span>[] value = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] &#123;<span class="hljs-number">15</span>, <span class="hljs-number">20</span>, <span class="hljs-number">30</span>&#125;;<br>    <span class="hljs-type">int</span>[] nums = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[] &#123;<span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">2</span>&#125;;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">bagWeight</span> <span class="hljs-operator">=</span> <span class="hljs-number">10</span>;<br><br>    <span class="hljs-type">int</span>[] dp = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[bagWeight + <span class="hljs-number">1</span>];<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; weight.length; i++) &#123; <span class="hljs-comment">// 遍历物品</span><br>        <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> bagWeight; j &gt;= weight[i]; j--) &#123; <span class="hljs-comment">// 遍历背包容量</span><br>            <span class="hljs-comment">// 以上为01背包，然后加一个遍历个数</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">k</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; k &lt;= nums[i] &amp;&amp; (j - k * weight[i]) &gt;= <span class="hljs-number">0</span>; k++) &#123; <span class="hljs-comment">// 遍历个数</span><br>                dp[j] = Math.max(dp[j], dp[j - k * weight[i]] + k * value[i]);<br>            &#125;<br>            System.out.println(Arrays.toString(dp));<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" class="category-chain-item">动态规划</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>背包问题</div>
+      <div>https://earsh9.github.io/earsh9.github.io/2022/08/04/9.动态规划/2. 背包/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>earsh9</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月4日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/earsh9.github.io/2022/08/04/9.%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/5.%E5%85%B6%E4%BB%96%E7%B1%BB%E5%9E%8Bdp/" title="其他类型dp">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">其他类型dp</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/earsh9.github.io/2022/08/04/9.%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/4.%E5%AD%90%E5%BA%8F%E5%88%97%E9%97%AE%E9%A2%98/" title="子序列问题">
+                        <span class="hidden-mobile">子序列问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/earsh9.github.io/js/events.js" ></script>
+<script  src="/earsh9.github.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/earsh9.github.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/earsh9.github.io/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/earsh9.github.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

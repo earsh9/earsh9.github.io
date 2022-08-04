@@ -1,0 +1,738 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/earsh9.github.io/img/fluid.png">
+  <link rel="icon" href="/earsh9.github.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="earsh9">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="双向链表 + 哈希表的运用 解决 “缓存”(cache) 类型的题一般是设计一个数据结构实现 增、查 和 改操作，要求每一步时间复杂度为 O(1) 432. 全 O(1) 的数据结构请你设计一个用于存储字符串计数的数据结构，并能够返回计数最小和最大的字符串。 实现 AllOne 类： AllOne() 初始化数据结构的对象。 inc(String key) 字符串 key 的计数增加 1 。如果数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="双向链表">
+<meta property="og:url" content="https://earsh9.github.io/earsh9.github.io/2022/08/04/2.%E9%93%BE%E8%A1%A8/5.%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/index.html">
+<meta property="og:site_name" content="earsh9&#39;s blog">
+<meta property="og:description" content="双向链表 + 哈希表的运用 解决 “缓存”(cache) 类型的题一般是设计一个数据结构实现 增、查 和 改操作，要求每一步时间复杂度为 O(1) 432. 全 O(1) 的数据结构请你设计一个用于存储字符串计数的数据结构，并能够返回计数最小和最大的字符串。 实现 AllOne 类： AllOne() 初始化数据结构的对象。 inc(String key) 字符串 key 的计数增加 1 。如果数">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-04T09:22:36.896Z">
+<meta property="article:modified_time" content="2022-08-04T09:26:04.899Z">
+<meta property="article:author" content="earsh9">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>双向链表 - earsh9&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/earsh9.github.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/earsh9.github.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/earsh9.github.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"earsh9.github.io","root":"/earsh9.github.io/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/earsh9.github.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/earsh9.github.io/js/utils.js" ></script>
+  <script  src="/earsh9.github.io/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/earsh9.github.io/">
+      <strong>earsh9&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/earsh9.github.io/img/bg/background.jpeg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="双向链表"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-04 17:22" pubdate>
+          2022年8月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          9.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          83 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">双向链表</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="双向链表-哈希表的运用-解决-“缓存”-cache-类型的题"><a href="#双向链表-哈希表的运用-解决-“缓存”-cache-类型的题" class="headerlink" title="双向链表 + 哈希表的运用 解决 “缓存”(cache) 类型的题"></a>双向链表 + 哈希表的运用 解决 “缓存”(cache) 类型的题</h1><p>一般是设计一个数据结构实现 增、查 和 改操作，要求每一步时间复杂度为 O(1)</p>
+<h2 id="432-全-O-1-的数据结构"><a href="#432-全-O-1-的数据结构" class="headerlink" title="432. 全 O(1) 的数据结构"></a>432. 全 O(1) 的数据结构</h2><p>请你设计一个用于存储字符串计数的数据结构，并能够返回计数最小和最大的字符串。</p>
+<p>实现 AllOne 类：</p>
+<p>AllOne() 初始化数据结构的对象。</p>
+<p>inc(String key) 字符串 key 的计数增加 1 。如果数据结构中尚不存在 key ，那么插入计数为 1 的 key 。</p>
+<p>dec(String key) 字符串 key 的计数减少 1 。如果 key 的计数在减少后为 0 ，那么需要将这个 key 从数据结构中删除。</p>
+<p>测试用例保证：在减少计数前，key 存在于数据结构中。</p>
+<p>getMaxKey() 返回任意一个计数最大的字符串。如果没有元素存在，返回一个空字符串 “” 。</p>
+<p>getMinKey() 返回任意一个计数最小的字符串。如果没有元素存在，返回一个空字符串 “” 。</p>
+<p>示例：</p>
+<p>输入</p>
+<p>[“AllOne”, “inc”, “inc”, “getMaxKey”, “getMinKey”, “inc”, “getMaxKey”, “getMinKey”]</p>
+<p>[[], [“hello”], [“hello”], [], [], [“leet”], [], []]</p>
+<p>输出</p>
+<p>[null, null, null, “hello”, “hello”, null, “hello”, “leet”]</p>
+<p>解释</p>
+<p>AllOne allOne &#x3D; new AllOne();</p>
+<p>allOne.inc(“hello”);</p>
+<p>allOne.inc(“hello”);</p>
+<p>allOne.getMaxKey(); &#x2F;&#x2F; 返回 “hello”</p>
+<p>allOne.getMinKey(); &#x2F;&#x2F; 返回 “hello”</p>
+<p>allOne.inc(“leet”);</p>
+<p>allOne.getMaxKey(); &#x2F;&#x2F; 返回 “hello”</p>
+<p>allOne.getMinKey(); &#x2F;&#x2F; 返回 “leet”</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; key.length &lt;&#x3D; 10</p>
+<p>key 由小写英文字母组成</p>
+<p>测试用例保证：在每次调用 dec 时，数据结构中总存在 key</p>
+<p>最多调用 inc、dec、getMaxKey 和 getMinKey 方法 5 * 10^4 次</p>
+<h3 id="双向链表实现-O-1-排序"><a href="#双向链表实现-O-1-排序" class="headerlink" title="双向链表实现 O(1) 排序"></a>双向链表实现 O(1) 排序</h3><ol>
+<li><p>使用 TreeMap 和 Map 无法实现所有操作均 O(1)，但目前数据量较弱还可以通过</p>
+</li>
+<li><p>字符串长度最大为10，可将其长度视为常数空间</p>
+</li>
+<li><p>双向链表中每个节点 Node 的属性：prev,next,keys,count</p>
+<ul>
+<li><p>除前序和后序节点外，keys表征所有出现次数为 count 的字符串集合</p>
+</li>
+<li><p><strong>双向链表按照单调递增的顺序；哈希表维护（字符串，节点）的键值对方便查找</strong></p>
+</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">AllOne</span> &#123;<br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>&#123;                         <span class="hljs-comment">//手动实现自定义的 Node，作为双向链表的节点元素</span><br>        Node prev, next;<br>        Set&lt;String&gt; keys;<br>        <span class="hljs-type">int</span> count;<br><br>        Node()&#123;<br>            <span class="hljs-built_in">this</span>(<span class="hljs-string">&quot;&quot;</span>, <span class="hljs-number">0</span>);<br>        &#125;<br><br>        Node(String key, <span class="hljs-type">int</span> count)&#123;<br>            <span class="hljs-built_in">this</span>.count = count;<br>            keys = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashSet</span>&lt;&gt;();<br>            keys.add(key);<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> Node <span class="hljs-title function_">insert</span><span class="hljs-params">(Node node)</span>&#123;    <span class="hljs-comment">//在 this 后插入 node 节点</span><br>            node.prev = <span class="hljs-built_in">this</span>;<br>            node.next = <span class="hljs-built_in">this</span>.next;<br>            node.prev.next = node;<br>            node.next.prev = node;<br>            <span class="hljs-keyword">return</span> node;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">remove</span><span class="hljs-params">()</span>&#123;              <span class="hljs-comment">//移除自己</span><br>            <span class="hljs-built_in">this</span>.prev.next = <span class="hljs-built_in">this</span>.next;<br>            <span class="hljs-built_in">this</span>.next.prev = <span class="hljs-built_in">this</span>.prev;<br>        &#125;<br>    &#125;<br><br>    Node root;<br>    Map&lt;String, Node&gt; nodes;            <span class="hljs-comment">//当前字符串所处的链表节点</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">AllOne</span><span class="hljs-params">()</span>&#123;<br>        root = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>();<br>        root.prev = root;<br>        root.next = root;              <span class="hljs-comment">//初始化哨兵，若判断某节点 .next/.prev 为 root 即代表为空</span><br>        nodes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">inc</span><span class="hljs-params">(String key)</span> &#123;<br>        <span class="hljs-keyword">if</span> (nodes.containsKey(key))&#123;<br>            <span class="hljs-type">Node</span> <span class="hljs-variable">cur</span> <span class="hljs-operator">=</span> nodes.get(key);        <span class="hljs-comment">//cur 与 nxt 原先在链表中就是递增的，区别只在于 cur.count 与 nxt.count 是差 1 还是差好多</span><br>            <span class="hljs-type">Node</span> <span class="hljs-variable">nxt</span> <span class="hljs-operator">=</span> cur.next;<br>            <span class="hljs-keyword">if</span> (cur.next == root || cur.count + <span class="hljs-number">1</span> &lt; nxt.count)&#123;<br>                <span class="hljs-comment">//insert 中的 this 就是当前对象所指向的 Node 即此处的 cur; 插入完成后返回的是当前字符串所对应的最新链表节点</span><br>                nodes.put(key, cur.insert(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(key, cur.count + <span class="hljs-number">1</span>)));<br>            &#125;<span class="hljs-keyword">else</span> &#123;    <span class="hljs-comment">//说明原先cur.count 与 nxt.count 差 1，现在即相等，直接合并</span><br>                nxt.keys.add(key);<br>                nodes.put(key, nxt);<br>            &#125;<br>            cur.keys.remove(key);<br>            <span class="hljs-keyword">if</span> (cur.keys.isEmpty())&#123;<br>                cur.remove();<br>            &#125;<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-keyword">if</span> (root.next == root || root.next.count &gt; <span class="hljs-number">1</span>)&#123;<br>                nodes.put(key, root.insert(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(key, <span class="hljs-number">1</span>)));<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                root.next.keys.add(key);<br>                nodes.put(key, root.next);<br>            &#125;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">dec</span><span class="hljs-params">(String key)</span> &#123;<br>        <span class="hljs-type">Node</span> <span class="hljs-variable">cur</span> <span class="hljs-operator">=</span> nodes.get(key);<br>        <span class="hljs-keyword">if</span> (cur.count == <span class="hljs-number">1</span>)&#123;            <span class="hljs-comment">//key 仅出现一次的情况单另处理</span><br>            nodes.remove(key);<br>        &#125;<span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-type">Node</span> <span class="hljs-variable">pre</span> <span class="hljs-operator">=</span> cur.prev;<br>            <span class="hljs-keyword">if</span> (pre == root || cur.count - <span class="hljs-number">1</span> &gt; pre.count)&#123;<br>                nodes.put(key, pre.insert(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(key, cur.count - <span class="hljs-number">1</span>)));<br>            &#125;<span class="hljs-keyword">else</span>&#123;<br>                pre.keys.add(key);<br>                nodes.put(key, pre);<br>            &#125;<br>        &#125;<br>        cur.keys.remove(key);<br>        <span class="hljs-keyword">if</span> (cur.keys.isEmpty())&#123;<br>            cur.remove();<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getMaxKey</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> root.prev != <span class="hljs-literal">null</span> ? root.prev.keys.iterator().next() : <span class="hljs-string">&quot;&quot;</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">getMinKey</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> root.next != <span class="hljs-literal">null</span> ? root.next.keys.iterator().next() : <span class="hljs-string">&quot;&quot;</span>;<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your AllOne object will be instantiated and called as such:</span><br><span class="hljs-comment"> * AllOne obj = new AllOne();</span><br><span class="hljs-comment"> * obj.inc(key);</span><br><span class="hljs-comment"> * obj.dec(key);</span><br><span class="hljs-comment"> * String param_3 = obj.getMaxKey();</span><br><span class="hljs-comment"> * String param_4 = obj.getMinKey();</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="146-LRU-缓存"><a href="#146-LRU-缓存" class="headerlink" title="146. LRU 缓存"></a>146. LRU 缓存</h2><p>请你设计并实现一个满足  LRU (最近最少使用) 缓存 约束的数据结构。</p>
+<p>实现 LRUCache 类：</p>
+<p>LRUCache(int capacity) 以 正整数 作为容量 capacity 初始化 LRU 缓存</p>
+<p>int get(int key) 如果关键字 key 存在于缓存中，则返回关键字的值，否则返回 -1 。</p>
+<p>void put(int key, int value) 如果关键字 key 已经存在，则变更其数据值 value ；如果不存在，则向缓存中插入该组 key-value 。如果插入操作导致关键字数量超过 capacity ，则应该 逐出 最久未使用的关键字。</p>
+<p>函数 get 和 put 必须以 O(1) 的平均时间复杂度运行。</p>
+<p>示例：</p>
+<p>输入</p>
+<p>[“LRUCache”, “put”, “put”, “get”, “put”, “get”, “put”, “get”, “get”, “get”]</p>
+<p>[[2], [1, 1], [2, 2], [1], [3, 3], [2], [4, 4], [1], [3], [4]]</p>
+<p>输出</p>
+<p>[null, null, null, 1, null, -1, null, -1, 3, 4]</p>
+<p>解释<br>LRUCache lRUCache &#x3D; new LRUCache(2);</p>
+<p>lRUCache.put(1, 1); &#x2F;&#x2F; 缓存是 {1&#x3D;1}</p>
+<p>lRUCache.put(2, 2); &#x2F;&#x2F; 缓存是 {1&#x3D;1, 2&#x3D;2}</p>
+<p>lRUCache.get(1);    &#x2F;&#x2F; 返回 1</p>
+<p>lRUCache.put(3, 3); &#x2F;&#x2F; 该操作会使得关键字 2 作废，缓存是 {1&#x3D;1, 3&#x3D;3}</p>
+<p>lRUCache.get(2);    &#x2F;&#x2F; 返回 -1 (未找到)</p>
+<p>lRUCache.put(4, 4); &#x2F;&#x2F; 该操作会使得关键字 1 作废，缓存是 {4&#x3D;4, 3&#x3D;3}</p>
+<p>lRUCache.get(1);    &#x2F;&#x2F; 返回 -1 (未找到)</p>
+<p>lRUCache.get(3);    &#x2F;&#x2F; 返回 3</p>
+<p>lRUCache.get(4);    &#x2F;&#x2F; 返回 4</p>
+<p>提示：</p>
+<p>1 &lt;&#x3D; capacity &lt;&#x3D; 3000</p>
+<p>0 &lt;&#x3D; key &lt;&#x3D; 10000</p>
+<p>0 &lt;&#x3D; value &lt;&#x3D; 105</p>
+<p>最多调用 2 * 10^5 次 get 和 put</p>
+<h3 id="衡量-最久未使用-的标准仅一个：时间上最早进缓存却一直未使用的-Key"><a href="#衡量-最久未使用-的标准仅一个：时间上最早进缓存却一直未使用的-Key" class="headerlink" title="衡量 最久未使用 的标准仅一个：时间上最早进缓存却一直未使用的 Key"></a>衡量 最久未使用 的标准仅一个：时间上最早进缓存却一直未使用的 Key</h3><ul>
+<li>每一次操作都使得被操作节点移到最前面，链表从前往后代表使用关键字的频率从高到低</li>
+<li>和 LinkedHashMap 都使用头插法，超出缓存时删除尾节点</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-keyword">class</span> <span class="hljs-title class_">LRUCache</span> &#123;<br>        <span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>&#123;<br>            Node prev, next;<br>            <span class="hljs-type">int</span> key, value;<br><br>            Node(<span class="hljs-type">int</span> k, <span class="hljs-type">int</span> val)&#123;<br>                key = k;value = val;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-type">int</span> capacity, size;<br>        Map&lt;Integer, Node&gt; nodes;         <span class="hljs-comment">//(关键字，链表节点)</span><br>        Node head, tail;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-title function_">LRUCache</span><span class="hljs-params">(<span class="hljs-type">int</span> capacity)</span> &#123;<br>            <span class="hljs-built_in">this</span>.capacity = capacity;<br>            size = <span class="hljs-number">0</span>;<br>            nodes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>            head = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(-<span class="hljs-number">1000</span>,-<span class="hljs-number">1000</span>);<br>            tail = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(-<span class="hljs-number">1000</span>,-<span class="hljs-number">1000</span>);<br>            head.next = tail;<br>            tail.prev = head;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">get</span><span class="hljs-params">(<span class="hljs-type">int</span> key)</span> &#123;<br>            <span class="hljs-keyword">if</span> (!nodes.containsKey(key)) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>            <span class="hljs-type">Node</span> <span class="hljs-variable">cur</span> <span class="hljs-operator">=</span> nodes.get(key);<br>            moveToTail(cur);<br>            <span class="hljs-keyword">return</span> cur.value;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">put</span><span class="hljs-params">(<span class="hljs-type">int</span> key, <span class="hljs-type">int</span> value)</span> &#123;<br>            <span class="hljs-type">Node</span> <span class="hljs-variable">node</span> <span class="hljs-operator">=</span> nodes.get(key);<br>            <span class="hljs-keyword">if</span> (node == <span class="hljs-literal">null</span>)&#123;                  <span class="hljs-comment">//如果key不存在，创建新节点</span><br>                <span class="hljs-type">Node</span> <span class="hljs-variable">new_node</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(key, value);<br>                addToTail(new_node);<br>                nodes.put(key, new_node);<br>                size++;<br>                <span class="hljs-keyword">if</span> (size &gt; capacity)&#123;           <span class="hljs-comment">//删除当前链表的头节点</span><br>                    <span class="hljs-type">Node</span> <span class="hljs-variable">del</span> <span class="hljs-operator">=</span> removeHead();<br>                    nodes.remove(del.key);<br>                    size--;<br>                &#125;<br>            &#125;<span class="hljs-keyword">else</span> &#123;                             <span class="hljs-comment">//若存在，修改值即可，不用走 size 的流程</span><br>                node.value = value;<br>                moveToTail(node);<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addToTail</span><span class="hljs-params">(Node node)</span>&#123;    <span class="hljs-comment">//怕先后顺序出错，就先把 node 给处理了</span><br>            node.next = tail;<br>            node.prev = tail.prev;<br>            tail.prev.next = node;<br>            tail.prev = node;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">remove</span><span class="hljs-params">(Node node)</span>&#123;<br>            node.prev.next = node.next;<br>            node.next.prev = node.prev;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">moveToTail</span><span class="hljs-params">(Node node)</span>&#123;<br>            remove(node);<br>            addToTail(node);<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> Node <span class="hljs-title function_">removeHead</span><span class="hljs-params">()</span>&#123;               <span class="hljs-comment">//便于在 nodes 中删除节点</span><br>            <span class="hljs-type">Node</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> head.next;<br>            head.next = res.next;<br>            res.next.prev = head;<br>            <span class="hljs-keyword">return</span> res;<br>        &#125;<br>    &#125;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * Your LRUCache object will be instantiated and called as such:</span><br><span class="hljs-comment"> * LRUCache obj = new LRUCache(capacity);</span><br><span class="hljs-comment"> * int param_1 = obj.get(key);</span><br><span class="hljs-comment"> * obj.put(key,value);</span><br><span class="hljs-comment"> */</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="460-LFU-缓存"><a href="#460-LFU-缓存" class="headerlink" title="460. LFU 缓存"></a>460. LFU 缓存</h2><p>请你为 最不经常使用（LFU）缓存算法设计并实现数据结构。</p>
+<p>实现 LFUCache 类：</p>
+<p>LFUCache(int capacity) - 用数据结构的容量 capacity 初始化对象</p>
+<p>int get(int key) - 如果键 key 存在于缓存中，则获取键的值，否则返回 -1 。</p>
+<p>void put(int key, int value) - 如果键 key 已存在，则变更其值；如果键不存在，请插入键值对。当缓存达到其容量 capacity 时，则应该在插入新项之前，移除最不经常使用的项。在此问题中，当存在平局（即两个或更多个键具有相同使用频率）时，应该去除 <strong>最近最久未使用</strong> 的键。</p>
+<p>为了确定最不常使用的键，可以为缓存中的每个键维护一个 使用计数器 。使用计数最小的键是最久未使用的键。</p>
+<p>当一个键首次插入到缓存中时，它的使用计数器被设置为 1 (由于 put 操作)。对缓存中的键执行 get 或 put 操作，使用计数器的值将会递增。</p>
+<p>函数 get 和 put 必须以 O(1) 的平均时间复杂度运行。</p>
+<p>示例：</p>
+<p>输入：</p>
+<p>[“LFUCache”, “put”, “put”, “get”, “put”, “get”, “get”, “put”, “get”, “get”, “get”]</p>
+<p>[[2], [1, 1], [2, 2], [1], [3, 3], [2], [3], [4, 4], [1], [3], [4]]</p>
+<p>输出：</p>
+<p>[null, null, null, 1, null, -1, 3, null, -1, 3, 4]</p>
+<p>解释：</p>
+<p>&#x2F;&#x2F; cnt(x) &#x3D; 键 x 的使用计数</p>
+<p>&#x2F;&#x2F; cache&#x3D;[] 将显示最后一次使用的顺序（最左边的元素是最近的）</p>
+<p>LFUCache lfu &#x3D; new LFUCache(2);</p>
+<p>lfu.put(1, 1);   &#x2F;&#x2F; cache&#x3D;[1,_], cnt(1)&#x3D;1</p>
+<p>lfu.put(2, 2);   &#x2F;&#x2F; cache&#x3D;[2,1], cnt(2)&#x3D;1, cnt(1)&#x3D;1</p>
+<p>lfu.get(1);      &#x2F;&#x2F; 返回 1<br>                 &#x2F;&#x2F; cache&#x3D;[1,2], cnt(2)&#x3D;1, cnt(1)&#x3D;2</p>
+<p>lfu.put(3, 3);   &#x2F;&#x2F; 去除键 2 ，因为 cnt(2)&#x3D;1 ，使用计数最小<br>                 &#x2F;&#x2F; cache&#x3D;[3,1], cnt(3)&#x3D;1, cnt(1)&#x3D;2</p>
+<p>lfu.get(2);      &#x2F;&#x2F; 返回 -1（未找到）</p>
+<p>lfu.get(3);      &#x2F;&#x2F; 返回 3<br>                 &#x2F;&#x2F; cache&#x3D;[3,1], cnt(3)&#x3D;2, cnt(1)&#x3D;2</p>
+<p>lfu.put(4, 4);   &#x2F;&#x2F; 去除键 1 ，1 和 3 的 cnt 相同，但 1 最久未使用<br>                 &#x2F;&#x2F; cache&#x3D;[4,3], cnt(4)&#x3D;1, cnt(3)&#x3D;2</p>
+<p>lfu.get(1);      &#x2F;&#x2F; 返回 -1（未找到）</p>
+<p>lfu.get(3);      &#x2F;&#x2F; 返回 3<br>                 &#x2F;&#x2F; cache&#x3D;[3,4], cnt(4)&#x3D;1, cnt(3)&#x3D;3</p>
+<p>lfu.get(4);      &#x2F;&#x2F; 返回 4<br>                 &#x2F;&#x2F; cache&#x3D;[3,4], cnt(4)&#x3D;2, cnt(3)&#x3D;3</p>
+<p>提示：</p>
+<p>0 &lt;&#x3D; capacity &lt;&#x3D; 10^4</p>
+<p>0 &lt;&#x3D; key &lt;&#x3D; 10^5</p>
+<p>0 &lt;&#x3D; value &lt;&#x3D; 10^9</p>
+<p>最多调用 2 * 105 次 get 和 put 方法</p>
+<h3 id="两个维度衡量（双哈希表方法）"><a href="#两个维度衡量（双哈希表方法）" class="headerlink" title="两个维度衡量（双哈希表方法）"></a>两个维度衡量（双哈希表方法）</h3><ul>
+<li><p>LFU 简单理解则是指「移除使用次数最少的元素」，如果存在多个使用次数最小的元素，则移除「最近不被使用的那个」（LRU 规则）</p>
+</li>
+<li><p>需要用哈希表存储每个元素的使用次数，以及同一使用次数的先后顺序。 -&gt; （次数，双向链表）</p>
+<ul>
+<li>另一个哈希表同 LRU 中的：（key, Node)</li>
+</ul>
+</li>
+<li><p>在 O(1) 的复杂度内:「修改某个元素的使用次数」-&gt; 双向链表</p>
+<ul>
+<li>「找到使用次数最小的元素」-&gt; 维护一个 int 型的 minUsedFreq 方便哈希表直接提取</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><code class="hljs java">    <span class="hljs-comment">/*</span><br><span class="hljs-comment">    * 双哈希表：(key, Node) + (freq, DoubleLinkedList)</span><br><span class="hljs-comment">    * */</span><br><br>    <span class="hljs-keyword">class</span> <span class="hljs-title class_">LFUCache</span> &#123;<br>        <span class="hljs-keyword">class</span> <span class="hljs-title class_">Node</span>&#123;<br>            Node prev, next;<br>            <span class="hljs-type">int</span> key, value, freq;<br>            Node()&#123;&#125;<br><br>            Node(<span class="hljs-type">int</span> key, <span class="hljs-type">int</span> value, <span class="hljs-type">int</span> freq)&#123;<br>                <span class="hljs-built_in">this</span>.key = key;<br>                <span class="hljs-built_in">this</span>.value = value;<br>                <span class="hljs-built_in">this</span>.freq = freq;<br>            &#125;<br>        &#125;<br><br>        <span class="hljs-keyword">class</span> <span class="hljs-title class_">DoubleLinkedList</span>&#123;<br>            Node head, tail;<br>            DoubleLinkedList()&#123;<br>                head = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>();<br>                tail = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>();<br>                head.next = tail;<br>                tail.prev = head;<br>            &#125;<br><br>            <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isEmpty</span><span class="hljs-params">()</span>&#123;<br>                <span class="hljs-keyword">return</span> head.next == tail;<br>            &#125;<br><br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">removeNode</span><span class="hljs-params">(Node node)</span>&#123;<br>                node.prev.next = node.next;<br>                node.next.prev = node.prev;<br>            &#125;<br><br>            <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addToHead</span><span class="hljs-params">(Node node)</span>&#123;<br>                node.prev = head;<br>                node.next = head.next;<br>                head.next = node;<br>                node.next.prev = node;<br>            &#125;<br><br>            <span class="hljs-keyword">public</span> Node <span class="hljs-title function_">deleteTail</span><span class="hljs-params">()</span>&#123;<br>                <span class="hljs-type">Node</span> <span class="hljs-variable">res</span> <span class="hljs-operator">=</span> tail.prev;<br>                res.prev.next = tail;<br>                tail.prev = res.prev;<br>                <span class="hljs-keyword">return</span> res;<br>            &#125;<br>        &#125;<br><br><br>        <span class="hljs-type">int</span> capacity, size;<br>        Map&lt;Integer, Node&gt; nodes;                   <span class="hljs-comment">//(key, node)</span><br>        Map&lt;Integer, DoubleLinkedList&gt; map;         <span class="hljs-comment">//(freq, DoubleLinkedList)</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">minUsedFreq</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br>        <span class="hljs-keyword">public</span> <span class="hljs-title function_">LFUCache</span><span class="hljs-params">(<span class="hljs-type">int</span> capacity)</span> &#123;<br>            <span class="hljs-built_in">this</span>.capacity = capacity;<br>            size = <span class="hljs-number">0</span>;                               <span class="hljs-comment">//当前进入缓存的节点个数</span><br>            nodes = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>            map = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">get</span><span class="hljs-params">(<span class="hljs-type">int</span> key)</span> &#123;<br>            <span class="hljs-type">Node</span> <span class="hljs-variable">cur</span> <span class="hljs-operator">=</span> nodes.get(key);<br>            <span class="hljs-keyword">if</span> (cur == <span class="hljs-literal">null</span> || capacity == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>            map.get(cur.freq).removeNode(cur);       <span class="hljs-comment">//原先频率的链表中移除当前节点</span><br>            <span class="hljs-keyword">if</span> (map.get(cur.freq).isEmpty() &amp;&amp; cur.freq == minUsedFreq)&#123;<br>                minUsedFreq++;<br>            &#125;<br>            cur.freq++;<br>            <span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">dll</span> <span class="hljs-operator">=</span> map.getOrDefault(cur.freq, <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>());<br>            dll.addToHead(cur);<br>            map.put(cur.freq, dll);       <span class="hljs-comment">//新频率下将当前节点头插</span><br>            <span class="hljs-keyword">return</span> cur.value;<br>        &#125;<br><br>        <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">put</span><span class="hljs-params">(<span class="hljs-type">int</span> key, <span class="hljs-type">int</span> value)</span> &#123;<br>            <span class="hljs-keyword">if</span> (capacity == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span>;<br>            <span class="hljs-type">Node</span> <span class="hljs-variable">cur</span> <span class="hljs-operator">=</span> nodes.get(key);<br>            <span class="hljs-keyword">if</span> (cur != <span class="hljs-literal">null</span>)&#123;                       <span class="hljs-comment">//仅对当前 key 进行 value 修改，不涉及缓存容量的增加</span><br>                cur.value = value;<br>                nodes.put(key, cur);                <span class="hljs-comment">//对 nodes 进行更新</span><br>                get(key);                           <span class="hljs-comment">//调用一次 get() 即可进行频率的更新</span><br>                <span class="hljs-keyword">return</span>;<br>            &#125;<br><br>            <span class="hljs-keyword">if</span> (size == capacity)&#123;<br>                <span class="hljs-type">Node</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> map.get(minUsedFreq).deleteTail();<br>                nodes.remove(tmp.key);<br>                size--;<br>            &#125;<br><br>            <span class="hljs-type">Node</span> <span class="hljs-variable">newNode</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Node</span>(key, value, <span class="hljs-number">1</span>);<br>            minUsedFreq = <span class="hljs-number">1</span>;<br>            <span class="hljs-type">DoubleLinkedList</span> <span class="hljs-variable">dll</span> <span class="hljs-operator">=</span> map.getOrDefault(<span class="hljs-number">1</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">DoubleLinkedList</span>());<br>            dll.addToHead(newNode);       <span class="hljs-comment">//新频率下将当前节点头插,三步需分开写</span><br>            map.put(<span class="hljs-number">1</span>, dll);<br><span class="hljs-comment">//            map.put(1, map.getOrDefault(1, new DoubleLinkedList()).addToHead(newNode));</span><br>            size++;<br>            nodes.put(key, newNode);<br>        &#125;<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E9%93%BE%E8%A1%A8/" class="category-chain-item">链表</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>双向链表</div>
+      <div>https://earsh9.github.io/earsh9.github.io/2022/08/04/2.链表/5.双向链表/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>earsh9</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月4日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/earsh9.github.io/2022/08/04/2.%E9%93%BE%E8%A1%A8/4.%E7%9B%B8%E4%BA%A4%E5%92%8C%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" title="相交和环形链表">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">相交和环形链表</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/earsh9.github.io/2022/08/04/1.%E6%95%B0%E7%BB%84/0.%E4%BA%8C%E5%88%86%E6%B3%95/" title="二分法">
+                        <span class="hidden-mobile">二分法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/earsh9.github.io/js/events.js" ></script>
+<script  src="/earsh9.github.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/earsh9.github.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/earsh9.github.io/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/earsh9.github.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

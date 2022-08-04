@@ -1,0 +1,697 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/earsh9.github.io/img/fluid.png">
+  <link rel="icon" href="/earsh9.github.io/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="earsh9">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="最短路 一题多解2045. 到达目的地的第二短时间城市用一个 双向连通 图表示，图中有 n 个节点，从 1 到 n 编号（包含 1 和 n）。图中的边用一个二维整数数组 edges 表示，其中每个 edges[i] &#x3D; [ui, vi] 表示一条节点 ui 和节点 vi 之间的双向连通边。每组节点对由 最多一条 边连通，顶点不存在连接到自身的边。穿过任意一条边的时间是 time 分钟。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="最短路相关延申">
+<meta property="og:url" content="https://earsh9.github.io/earsh9.github.io/2022/08/04/10.%E5%9B%BE%E8%AE%BA/1.%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%9B%B8%E5%85%B3%E5%BB%B6%E4%BC%B8/index.html">
+<meta property="og:site_name" content="earsh9&#39;s blog">
+<meta property="og:description" content="最短路 一题多解2045. 到达目的地的第二短时间城市用一个 双向连通 图表示，图中有 n 个节点，从 1 到 n 编号（包含 1 和 n）。图中的边用一个二维整数数组 edges 表示，其中每个 edges[i] &#x3D; [ui, vi] 表示一条节点 ui 和节点 vi 之间的双向连通边。每组节点对由 最多一条 边连通，顶点不存在连接到自身的边。穿过任意一条边的时间是 time 分钟。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-08-04T09:22:38.176Z">
+<meta property="article:modified_time" content="2022-08-04T09:38:29.379Z">
+<meta property="article:author" content="earsh9">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>最短路相关延申 - earsh9&#39;s blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/earsh9.github.io/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/earsh9.github.io/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/earsh9.github.io/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"earsh9.github.io","root":"/earsh9.github.io/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/earsh9.github.io/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/earsh9.github.io/js/utils.js" ></script>
+  <script  src="/earsh9.github.io/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/earsh9.github.io/">
+      <strong>earsh9&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/earsh9.github.io/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/earsh9.github.io/img/bg/background.jpeg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="最短路相关延申"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2022-08-04 17:22" pubdate>
+          2022年8月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          75 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">最短路相关延申</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1 id="最短路-一题多解"><a href="#最短路-一题多解" class="headerlink" title="最短路 一题多解"></a>最短路 一题多解</h1><h2 id="2045-到达目的地的第二短时间"><a href="#2045-到达目的地的第二短时间" class="headerlink" title="2045. 到达目的地的第二短时间"></a>2045. 到达目的地的第二短时间</h2><p>城市用一个 双向连通 图表示，图中有 n 个节点，从 1 到 n 编号（包含 1 和 n）。图中的边用一个二维整数数组 edges 表示，其中每个 edges[i] &#x3D; [ui, vi] 表示一条节点 ui 和节点 vi 之间的双向连通边。每组节点对由 最多一条 边连通，顶点不存在连接到自身的边。穿过任意一条边的时间是 time 分钟。</p>
+<p>每个节点都有一个交通信号灯，每 change 分钟改变一次，从绿色变成红色，再由红色变成绿色，循环往复。所有信号灯都 同时 改变。你可以在 任何时候 进入某个节点，但是 只能 在节点 信号灯是绿色时 才能离开。如果信号灯是  绿色 ，你 不能 在节点等待，必须离开。</p>
+<p>第二小的值 是 严格大于 最小值的所有值中最小的值。</p>
+<p>例如，[2, 3, 4] 中第二小的值是 3 ，而 [2, 2, 4] 中第二小的值是 4 。<br>给你 n、edges、time 和 change ，返回从节点 1 到节点 n 需要的 第二短时间 。</p>
+<p>注意：</p>
+<p>你可以 任意次 穿过任意顶点，包括 1 和 n 。<br>你可以假设在 启程时 ，所有信号灯刚刚变成 绿色 。</p>
+<img src = "https://assets.leetcode.com/uploads/2021/09/29/e1.png" width = "25%">
+
+<img src = "https://assets.leetcode.com/uploads/2021/09/29/e2.png" width = "25%">
+
+<p>输入：n &#x3D; 5, edges &#x3D; [[1,2],[1,3],[1,4],[3,4],[4,5]], time &#x3D; 3, change &#x3D; 5</p>
+<p>输出：13</p>
+<p>解释：</p>
+<p>上面的左图展现了给出的城市交通图。右图中的蓝色路径是最短时间路径。</p>
+<p>花费的时间是：</p>
+<ul>
+<li>从节点 1 开始，总花费时间&#x3D;0</li>
+<li>1 -&gt; 4：3 分钟，总花费时间&#x3D;3</li>
+<li>4 -&gt; 5：3 分钟，总花费时间&#x3D;6</li>
+</ul>
+<p>因此需要的最小时间是 6 分钟。</p>
+<p>右图中的红色路径是第二短时间路径。</p>
+<ul>
+<li>从节点 1 开始，总花费时间&#x3D;0</li>
+<li>1 -&gt; 3：3 分钟，总花费时间&#x3D;3</li>
+<li>3 -&gt; 4：3 分钟，总花费时间&#x3D;6</li>
+<li>在节点 4 等待 4 分钟，总花费时间&#x3D;10</li>
+<li>4 -&gt; 5：3 分钟，总花费时间&#x3D;13</li>
+</ul>
+<p>因此第二短时间是 13 分钟。</p>
+<h3 id="在一张正权无向图上求严格次短路，该图无重边与自环"><a href="#在一张正权无向图上求严格次短路，该图无重边与自环" class="headerlink" title="在一张正权无向图上求严格次短路，该图无重边与自环"></a>在一张正权无向图上求严格次短路，该图无重边与自环</h3><p>由提示 edges.length &lt;&#x3D; min(2 * 10^4, n(n - 1) &#x2F; 2) 知该图为稀松图。</p>
+<p><strong>无 vis 数组，次短路有可能出现节点复走的情况：</strong></p>
+<h4 id="method1-堆优化-Dijkatra"><a href="#method1-堆优化-Dijkatra" class="headerlink" title="method1 : 堆优化 Dijkatra"></a>method1 : 堆优化 Dijkatra</h4><p>在 [最短路] 的基础上 再加一个 [严格次短路] 数组</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-type">int</span> n, m, cnt;<br><span class="hljs-type">int</span> <span class="hljs-variable">INF</span> <span class="hljs-operator">=</span> <span class="hljs-number">0x3f3f3f3f</span>;<br><span class="hljs-keyword">static</span> <span class="hljs-type">int</span>[] head;<span class="hljs-keyword">static</span> <span class="hljs-type">int</span>[] to;<br><span class="hljs-keyword">static</span> <span class="hljs-type">int</span>[] next;<br><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">()</span>&#123;<br>    head = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n + <span class="hljs-number">1</span>];<br>    to = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">2</span> * m + <span class="hljs-number">2</span>];<br>    next = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[<span class="hljs-number">2</span> * m + <span class="hljs-number">2</span>];<br>&#125;<br><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> v)</span>&#123;<br>    next[++cnt] = head[u];<br>    head[u] = cnt;<br>    to[cnt] = v;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">secondMinimum</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span>[][] edges, <span class="hljs-type">int</span> time, <span class="hljs-type">int</span> change)</span> &#123;<br>    <span class="hljs-built_in">this</span>.n = n;<span class="hljs-built_in">this</span>.m = edges.length;<br>    init();<br>    Arrays.fill(head, -<span class="hljs-number">1</span>);<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span>[] edge : edges) &#123;<br>        add(edge[<span class="hljs-number">0</span>], edge[<span class="hljs-number">1</span>]);   <span class="hljs-comment">//无向图两边都要加且数组初始化也要 *2</span><br>        add(edge[<span class="hljs-number">1</span>], edge[<span class="hljs-number">0</span>]);<br>    &#125;<br><br>    <span class="hljs-type">int</span>[] dist1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n + <span class="hljs-number">1</span>];     <span class="hljs-comment">//最短路径</span><br>    <span class="hljs-type">int</span>[] dist2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n + <span class="hljs-number">1</span>];     <span class="hljs-comment">//次短路径</span><br>    Arrays.fill(dist1, INF);<br>    Arrays.fill(dist2, INF);<br>    dist1[<span class="hljs-number">1</span>] = <span class="hljs-number">0</span>;<br><br>    PriorityQueue&lt;<span class="hljs-type">int</span>[]&gt; pq = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PriorityQueue</span>&lt;&gt;(((o1, o2) -&gt; o1[<span class="hljs-number">1</span>] - o2[<span class="hljs-number">1</span>]));<br>    pq.offer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;<span class="hljs-number">1</span>, <span class="hljs-number">0</span>&#125;);           <span class="hljs-comment">//点编号，路径长度</span><br><br>    <span class="hljs-keyword">while</span> (!pq.isEmpty())&#123;<br>        <span class="hljs-type">int</span>[] poll = pq.poll();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">id</span> <span class="hljs-operator">=</span> poll[<span class="hljs-number">0</span>], step = poll[<span class="hljs-number">1</span>];<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> head[id]; i != -<span class="hljs-number">1</span>; i = next[i])&#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> to[i];<br>            <span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> step / change, b = step % change;    <span class="hljs-comment">//例:当前所花时间为6min,每5min改变一次,6/5=1,奇数次,需等待 change - 6%5分钟</span><br>            <span class="hljs-type">int</span> <span class="hljs-variable">wait</span> <span class="hljs-operator">=</span> (a &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span> ? <span class="hljs-number">0</span> : change - b;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">dist</span> <span class="hljs-operator">=</span> step + time + wait;<br>            <span class="hljs-keyword">if</span> (dist &lt; dist1[j])&#123;<br>                dist2[j] = dist1[j];<br>                dist1[j] = dist;<br>                pq.offer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;j, dist1[j]&#125;);<br>                pq.offer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;j, dist2[j]&#125;);<br>            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (dist &gt; dist1[j] &amp;&amp; dist &lt; dist2[j])&#123;<br>                dist2[j] = dist;<br>                pq.offer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;j, dist2[j]&#125;);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> dist2[n];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="method2-BFS，既然边权一致，先求步数后算时间"><a href="#method2-BFS，既然边权一致，先求步数后算时间" class="headerlink" title="method2 : BFS，既然边权一致，先求步数后算时间"></a>method2 : BFS，既然边权一致，先求步数后算时间</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">secondMinimum</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span>[][] edges, <span class="hljs-type">int</span> time, <span class="hljs-type">int</span> change)</span> &#123;<br>    List&lt;Integer&gt;[] graph = <span class="hljs-keyword">new</span> <span class="hljs-title class_">List</span>[n + <span class="hljs-number">1</span>];         <span class="hljs-comment">//list类型的数组比 Map 更快些</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt;= n; i++)&#123;<br>        graph[i] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();<br>    &#125;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span>[] edge : edges) &#123;<br>        graph[edge[<span class="hljs-number">0</span>]].add(edge[<span class="hljs-number">1</span>]);<br>        graph[edge[<span class="hljs-number">1</span>]].add(edge[<span class="hljs-number">0</span>]);<br>    &#125;<br><br>    <span class="hljs-type">int</span>[][] path = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n + <span class="hljs-number">1</span>][<span class="hljs-number">2</span>];         <span class="hljs-comment">//记录两个指标：到达节点 i 的 最小 和 次小 步长</span><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt;= n; i++)&#123;<br>        Arrays.fill(path[i], Integer.MAX_VALUE);<br>    &#125;<br>    path[<span class="hljs-number">1</span>][<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>    Queue&lt;<span class="hljs-type">int</span>[]&gt; queue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayDeque</span>&lt;&gt;();<br>    queue.offer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;<span class="hljs-number">1</span>, <span class="hljs-number">0</span>&#125;);<br><br>    <span class="hljs-comment">//没有 visit 数组的原因在于：次小路径有可能出现节点复走</span><br>    <span class="hljs-keyword">while</span> (path[n][<span class="hljs-number">1</span>] == Integer.MAX_VALUE)&#123;<br>        <span class="hljs-type">int</span>[] cur = queue.poll();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">node</span> <span class="hljs-operator">=</span> cur[<span class="hljs-number">0</span>], step = cur[<span class="hljs-number">1</span>];<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i : graph[node]) &#123;<br>            <span class="hljs-keyword">if</span> (step + <span class="hljs-number">1</span> &lt; path[i][<span class="hljs-number">0</span>])&#123;           <span class="hljs-comment">//只计算所走的节点个数，比较后的最小 或者 次小 都可以加入队列</span><br>                path[i][<span class="hljs-number">0</span>] = step + <span class="hljs-number">1</span>;<br>                queue.offer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;i, step + <span class="hljs-number">1</span>&#125;);<br>            &#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (step + <span class="hljs-number">1</span> &gt; path[i][<span class="hljs-number">0</span>] &amp;&amp; step + <span class="hljs-number">1</span> &lt; path[i][<span class="hljs-number">1</span>])&#123;<br>                path[i][<span class="hljs-number">1</span>] = step + <span class="hljs-number">1</span>;<br>                queue.offer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;i, step + <span class="hljs-number">1</span>&#125;);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">ret</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; path[n][<span class="hljs-number">1</span>]; i++) &#123;               <span class="hljs-comment">//path[n][1] 为第二小路径所经过的节点个数</span><br>        <span class="hljs-keyword">if</span> (ret % (<span class="hljs-number">2</span> * change) &gt;= change)&#123;              <span class="hljs-comment">//只有到达当前节点时间 与 一轮红绿灯时间 取余的结果 又刚变红灯不就要等了</span><br>            ret += (<span class="hljs-number">2</span> * change - ret % (<span class="hljs-number">2</span> * change));<br>        &#125;<br>        ret += time;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ret;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="method3：AStar-算法（启发式算法）"><a href="#method3：AStar-算法（启发式算法）" class="headerlink" title="method3：AStar 算法（启发式算法）"></a>method3：AStar 算法（启发式算法）</h4><p>将问题拓展为「使用 AStar 算法来找第 K 短路」（修改代码的 K 即可）</p>
+<p><strong>利用终点的第 k 次出队必然是第 k 短路（注意要求的是严格的第 k 短路）。</strong></p>
+<ol>
+<li><p>AStar 算法：计算公式为 F &#x3D; G + H</p>
+<ul>
+<li><p>其中 G 为 Dijkstra 算法所计算的从 源点s 到 i 的最短距离，我们要求的也是 第 K 小的 G。（Dijkstra 算法的计算公式就是 F &#x3D; G）</p>
+</li>
+<li><p>H 为点 i 到 终点 的距离，因为此题所有边权一样直接 step + 1 即可。</p>
+</li>
+</ul>
+</li>
+<li><p>优先队列里是按 F 进行升序排列的，即我们找到的是从 s 途径 i 的最小距离 而不是 s 到 i 的最小距离！</p>
+<ul>
+<li>但如果只求 源点s 到 终点n 的最短距离，此时 H &#x3D; 0，最小的 F 就是 最小的 G</li>
+</ul>
+</li>
+<li><p>类似的还有 -127.单词接龙（超限）</p>
+<ul>
+<li>A* 算法需预先证明正确性，在数据量较大时若无法很好提前判断「是否有解」， Astar 将不能带来「搜索空间的优化」，效果不如「双向 BFS」。</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Edge</span>&#123;<br>    <span class="hljs-type">int</span> to, next;       <span class="hljs-comment">//终点、下一条边；权重 val 一般也放在这里</span><br><br>    <span class="hljs-keyword">public</span> <span class="hljs-title function_">Edge</span><span class="hljs-params">(<span class="hljs-type">int</span> to, <span class="hljs-type">int</span> next)</span>&#123;<br>        <span class="hljs-built_in">this</span>.to = to;<span class="hljs-built_in">this</span>.next = next;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">static</span> <span class="hljs-type">int</span>[] head;<span class="hljs-type">int</span> <span class="hljs-variable">cnt</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;      <span class="hljs-comment">//边编号 从 1 开始</span><br><span class="hljs-keyword">static</span> Edge[] es;<br><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> u, <span class="hljs-type">int</span> v)</span>&#123;<br>    es[cnt] = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Edge</span>(v, head[u]);<br>    head[u] = cnt;                 <span class="hljs-comment">//head 指针由 -1 转为指向 边编号</span><br>    cnt++;<br>&#125;<br><br><span class="hljs-type">int</span>[] dist;<span class="hljs-type">int</span> <span class="hljs-variable">INF</span> <span class="hljs-operator">=</span> <span class="hljs-number">0x3f3f3f3f</span>;<br><span class="hljs-type">int</span> n;<span class="hljs-type">int</span>[][] edges;<br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">secondMinimum</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span>[][] edges, <span class="hljs-type">int</span> time, <span class="hljs-type">int</span> change)</span> &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> edges.length;<br>    head = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n + <span class="hljs-number">1</span>];<br>    es = <span class="hljs-keyword">new</span> <span class="hljs-title class_">Edge</span>[<span class="hljs-number">2</span> * m + <span class="hljs-number">1</span>];<br>    Arrays.fill(head, -<span class="hljs-number">1</span>);               <span class="hljs-comment">//初始化时让每条边 .next 都指向 -1，后随着 head[u] 存储的边编号的改变 而像链表一样 顺次排开</span><br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span>[] edge : edges) &#123;<br>        add(edge[<span class="hljs-number">0</span>], edge[<span class="hljs-number">1</span>]);<br>        add(edge[<span class="hljs-number">1</span>], edge[<span class="hljs-number">0</span>]);<br>    &#125;<br><br>    dist = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n + <span class="hljs-number">1</span>];<br>    <span class="hljs-built_in">this</span>.n = n;<span class="hljs-built_in">this</span>.edges = edges;<br>    bfs();<br>    <span class="hljs-type">int</span> <span class="hljs-variable">cnt</span> <span class="hljs-operator">=</span> Astar(<span class="hljs-number">2</span>);<br>    <span class="hljs-type">int</span> <span class="hljs-variable">ans</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; cnt; i++)&#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">a</span> <span class="hljs-operator">=</span> ans / change, b = ans % change;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">wait</span> <span class="hljs-operator">=</span> (a &amp; <span class="hljs-number">1</span>) == <span class="hljs-number">0</span> ? <span class="hljs-number">0</span> : change - b;<br>        ans += time + wait;<br>    &#125;<br>    <span class="hljs-keyword">return</span> ans;<br>&#125;<br><br><span class="hljs-keyword">void</span> <span class="hljs-title function_">bfs</span><span class="hljs-params">()</span>&#123;<br>    Arrays.fill(dist, INF);<br>    Deque&lt;Integer&gt; dq = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayDeque</span>&lt;&gt;();<br>    dq.addLast(n);<br>    dist[n] = <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">while</span> (!dq.isEmpty())&#123;<br>        <span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> dq.pollFirst(), step = dist[x];<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> head[x]; i != -<span class="hljs-number">1</span>; i = es[i].next)&#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> es[i].to;<br>            <span class="hljs-keyword">if</span> (dist[j] != INF) <span class="hljs-keyword">continue</span>;<br>            dist[j] = step + <span class="hljs-number">1</span>;<br>            dq.addLast(j);<br>        &#125;<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">Astar</span><span class="hljs-params">(<span class="hljs-type">int</span> k)</span>&#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">min</span> <span class="hljs-operator">=</span> -<span class="hljs-number">1</span>;<br>    PriorityQueue&lt;<span class="hljs-type">int</span>[]&gt; pq = <span class="hljs-keyword">new</span> <span class="hljs-title class_">PriorityQueue</span>&lt;&gt;((o1, o2) -&gt; o1[<span class="hljs-number">2</span>] - o2[<span class="hljs-number">2</span>]);<br>    pq.offer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;<span class="hljs-number">1</span>, <span class="hljs-number">0</span>, dist[<span class="hljs-number">1</span>]&#125;);     <span class="hljs-comment">//F : 0 + dist[1]</span><br><br>    <span class="hljs-keyword">while</span> (!pq.isEmpty())&#123;<br>        <span class="hljs-type">int</span>[] poll = pq.poll();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> poll[<span class="hljs-number">0</span>], step = poll[<span class="hljs-number">1</span>];   <span class="hljs-comment">//step 为 G</span><br>        <span class="hljs-keyword">if</span> (x == n &amp;&amp; min != step)&#123;<br>            min = step;<br>            <span class="hljs-keyword">if</span> (--k == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> min;<br>        &#125;<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> head[x]; i != -<span class="hljs-number">1</span>; i = es[i].next)&#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> es[i].to;<br>            pq.offer(<span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[]&#123;j, step + <span class="hljs-number">1</span>, step + <span class="hljs-number">1</span> + dist[j]&#125;);<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="127-单词接龙"><a href="#127-单词接龙" class="headerlink" title="127. 单词接龙"></a>127. 单词接龙</h2><p>字典 wordList 中从单词 beginWord 和 endWord 的 转换序列 是一个按下述规格形成的序列 beginWord -&gt; s1 -&gt; s2 -&gt; … -&gt; sk：</p>
+<p>每一对相邻的单词只差一个字母。</p>
+<p>对于 1 &lt;&#x3D; i &lt;&#x3D; k 时，每个 si 都在 wordList 中。注意， beginWord 不需要在 wordList 中。sk &#x3D;&#x3D; endWord</p>
+<p>给你两个单词 beginWord 和 endWord 和一个字典 wordList ，返回 从 beginWord 到 endWord 的 最短转换序列 中的 单词数目 。如果不存在这样的转换序列，返回 0 。</p>
+<p>示例 1：</p>
+<p>输入：beginWord &#x3D; “hit”, endWord &#x3D; “cog”, wordList &#x3D; [“hot”,”dot”,”dog”,”lot”,”log”,”cog”]</p>
+<p>输出：5</p>
+<p>解释：一个最短转换序列是 “hit” -&gt; “hot” -&gt; “dot” -&gt; “dog” -&gt; “cog”, 返回它的长度 5。</p>
+<h3 id="双向-bfs：解决搜索空间爆炸问题"><a href="#双向-bfs：解决搜索空间爆炸问题" class="headerlink" title="双向 bfs：解决搜索空间爆炸问题"></a>双向 bfs：解决搜索空间爆炸问题</h3><ul>
+<li><p>创建「两个队列」分别用于两个方向的搜索；</p>
+</li>
+<li><p>创建「两个哈希表」用于「解决相同节点重复搜索」和「记录转换次数」；</p>
+</li>
+<li><p>为了尽可能让两个搜索方向“平均”，每次从队列中取值进行扩展时，先判断哪个队列容量较少；</p>
+</li>
+<li><p>如果在搜索过程中「搜索到对方搜索过的节点」，说明找到了最短路径。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//wordList 不单拎出来都会超限</span><br>List&lt;String&gt; wordList;<br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">ladderLength0</span><span class="hljs-params">(String beginWord, String endWord, List&lt;String&gt; wordList)</span> &#123;<br>    <span class="hljs-keyword">if</span> (!wordList.contains(endWord)) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    <span class="hljs-built_in">this</span>.wordList = wordList;<br><br>    Deque&lt;String&gt; d1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayDeque</span>&lt;&gt;(), d2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayDeque</span>&lt;&gt;();<br>    d1.addLast(beginWord);<br>    d2.addLast(endWord);<br><br>    Map&lt;String, Integer&gt; map1 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;(), map2 = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();      <span class="hljs-comment">//当前单词，从不同方向替换了多少次才变成的</span><br>    map1.put(beginWord, <span class="hljs-number">0</span>);<br>    map2.put(endWord, <span class="hljs-number">0</span>);<br><br>    <span class="hljs-type">int</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> -<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">while</span>(!d1.isEmpty() &amp;&amp; !d2.isEmpty())&#123;<br>        <span class="hljs-keyword">if</span> (d1.size() &lt;= d2.size())&#123;<br>            t = update(d1, map1, map2);<br>        &#125;<span class="hljs-keyword">else</span> t = update(d2, map2, map1);<br>        <span class="hljs-keyword">if</span> (t != -<span class="hljs-number">1</span>) <span class="hljs-keyword">break</span>;                       <span class="hljs-comment">//t 算的是转换次数，题目求的是转换序列的单词数目</span><br>    &#125;<br>    <span class="hljs-keyword">return</span> t == -<span class="hljs-number">1</span> ? <span class="hljs-number">0</span> : t + <span class="hljs-number">1</span>;<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">update</span><span class="hljs-params">(Deque&lt;String&gt; dq, Map&lt;String, Integer&gt; map1, Map&lt;String, Integer&gt; map2)</span>&#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> dq.size();<br>    <span class="hljs-keyword">while</span> (m-- &gt; <span class="hljs-number">0</span>)&#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">s</span> <span class="hljs-operator">=</span> dq.pollFirst();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">step</span> <span class="hljs-operator">=</span> map1.getOrDefault(s, <span class="hljs-number">0</span>);<br><br>        <span class="hljs-comment">//枚举</span><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; s.length(); i++)&#123;        <span class="hljs-comment">//第几位被替换</span><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; j &lt; <span class="hljs-number">26</span>; j++)&#123;            <span class="hljs-comment">//被替换成啥字母</span><br>                <span class="hljs-type">String</span> <span class="hljs-variable">sub</span> <span class="hljs-operator">=</span> s.substring(<span class="hljs-number">0</span>,i) + (<span class="hljs-type">char</span>)(<span class="hljs-string">&#x27;a&#x27;</span> + j) + s.substring(i + <span class="hljs-number">1</span>);  <span class="hljs-comment">//注意替换后还要char回来！</span><br>                <span class="hljs-keyword">if</span> (!wordList.contains(sub)) <span class="hljs-keyword">continue</span>;<br><br>                <span class="hljs-keyword">if</span> (map2.containsKey(sub)) <span class="hljs-keyword">return</span> step + <span class="hljs-number">1</span> + map2.get(sub);<br><br>                <span class="hljs-keyword">if</span> (!map1.containsKey(sub)) &#123;<br>                    dq.addLast(sub);<br>                    map1.put(sub, step + <span class="hljs-number">1</span>);<br>                &#125;<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="bfs-优化建图"><a href="#bfs-优化建图" class="headerlink" title="bfs + 优化建图"></a>bfs + 优化建图</h3><ul>
+<li>所有单词长度相同，用带 * 号 一次性取代 替换 26个字母的for循环，更高效。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Solution</span> &#123;<br>    Map&lt;String, Integer&gt; wordId = <span class="hljs-keyword">new</span> <span class="hljs-title class_">HashMap</span>&lt;&gt;();   <span class="hljs-comment">//单词(边),边编号</span><br>    List&lt;List&lt;Integer&gt;&gt; edge = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();    <span class="hljs-comment">//存图</span><br>    <span class="hljs-type">int</span> <span class="hljs-variable">nodeNum</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">ladderLength</span><span class="hljs-params">(String beginWord, String endWord, List&lt;String&gt; wordList)</span> &#123;<br>        <span class="hljs-keyword">for</span> (String word : wordList) &#123;<br>            addEdge(word);<br>        &#125;<br>        addEdge(beginWord);<br>        <span class="hljs-keyword">if</span> (!wordId.containsKey(endWord)) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><br>        <span class="hljs-type">int</span>[] dist = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[nodeNum];<br>        Arrays.fill(dist, Integer.MAX_VALUE);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">stId</span> <span class="hljs-operator">=</span> wordId.get(beginWord), edId = wordId.get(endWord);<br>        dist[stId] = <span class="hljs-number">0</span>;<br>        Queue&lt;Integer&gt; queue = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayDeque</span>&lt;&gt;();<br>        queue.offer(stId);<br><br>        <span class="hljs-keyword">while</span> (!queue.isEmpty())&#123;<br>            <span class="hljs-type">int</span> <span class="hljs-variable">curId</span> <span class="hljs-operator">=</span> queue.poll(), step = dist[curId];<br>            <span class="hljs-keyword">if</span> (curId == edId)&#123;<br>                <span class="hljs-keyword">return</span> step / <span class="hljs-number">2</span> + <span class="hljs-number">1</span>;    <span class="hljs-comment">//每个单词 都是 通过带 * 号的中间单词 变换到另一个 List 中的单词的</span><br>            &#125;<br><br>            <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> nxtId : edge.get(curId))&#123;<br>                <span class="hljs-keyword">if</span> (dist[nxtId] == Integer.MAX_VALUE)&#123;<br>                    dist[nxtId] = step + <span class="hljs-number">1</span>;<br>                    queue.offer(nxtId);<br>                &#125;<br>            &#125;<br>        &#125;<br>        <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addEdge</span><span class="hljs-params">(String s)</span>&#123;<br>        addWord(s);<br>        <span class="hljs-type">char</span>[] ch = s.toCharArray();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">len</span> <span class="hljs-operator">=</span> s.length();<br>        <span class="hljs-type">int</span> <span class="hljs-variable">id1</span> <span class="hljs-operator">=</span> wordId.get(s);<br><br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; len; i++)&#123;<br>            <span class="hljs-type">char</span> <span class="hljs-variable">tmp</span> <span class="hljs-operator">=</span> ch[i];<br>            ch[i] = <span class="hljs-string">&#x27;*&#x27;</span>;<br>            <span class="hljs-type">String</span> <span class="hljs-variable">newWord</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">String</span>(ch);<br>            addWord(newWord);<br>            <span class="hljs-type">int</span> <span class="hljs-variable">id2</span> <span class="hljs-operator">=</span> wordId.get(newWord);<br>            edge.get(id1).add(id2);<br>            edge.get(id2).add(id1);<br>            ch[i] = tmp;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addWord</span><span class="hljs-params">(String word)</span>&#123;<br>        <span class="hljs-keyword">if</span> (!wordId.containsKey(word))&#123;<br>            wordId.put(word, nodeNum++);<br>            edge.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;());<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%9B%BE%E8%AE%BA/" class="category-chain-item">图论</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>最短路相关延申</div>
+      <div>https://earsh9.github.io/earsh9.github.io/2022/08/04/10.图论/1.最短路相关延伸/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>earsh9</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2022年8月4日</div>
+        </div>
+      
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/earsh9.github.io/2022/08/04/10.%E5%9B%BE%E8%AE%BA/0.%E6%9C%80%E7%9F%AD%E8%B7%AF%E7%AE%97%E6%B3%95/" title="最短路算法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">最短路算法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/earsh9.github.io/2022/08/04/10.%E5%9B%BE%E8%AE%BA/2.%E6%8B%93%E6%89%91%E6%8E%92%E5%BA%8F/" title="拓扑排序">
+                        <span class="hidden-mobile">拓扑排序</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/earsh9.github.io/js/events.js" ></script>
+<script  src="/earsh9.github.io/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/earsh9.github.io/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/earsh9.github.io/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/earsh9.github.io/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
