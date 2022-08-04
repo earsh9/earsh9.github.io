@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/earsh9.github.io/img/fluid.png">
+  <link rel="icon" href="/earsh9.github.io/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,27 +19,27 @@
     <meta name="description" content="一、SpringMVC简介1、什么是MVCMVC是一种软件架构的思想，将软件按照模型、视图、控制器来划分 M：Model，模型层，指工程中的JavaBean，作用是处理数据 JavaBean分为两类：  一类称为实体类Bean：专门存储业务数据的，如 Student、User 等 一类称为业务处理 Bean：指 Service 或 Dao 对象，专门用于处理业务逻辑和数据访问。  V：View，视">
 <meta property="og:type" content="article">
 <meta property="og:title" content="入门笔记">
-<meta property="og:url" content="https://earsh9.github.io/2022/08/04/spring/SpringMVC%E7%AC%94%E8%AE%B0/index.html">
+<meta property="og:url" content="https://earsh9.github.io/earsh9.github.io/2022/08/04/spring/SpringMVC%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="earsh9&#39;s blog">
 <meta property="og:description" content="一、SpringMVC简介1、什么是MVCMVC是一种软件架构的思想，将软件按照模型、视图、控制器来划分 M：Model，模型层，指工程中的JavaBean，作用是处理数据 JavaBean分为两类：  一类称为实体类Bean：专门存储业务数据的，如 Student、User 等 一类称为业务处理 Bean：指 Service 或 Dao 对象，专门用于处理业务逻辑和数据访问。  V：View，视">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://earsh9.github.io/img%5Cimg001.png">
-<meta property="og:image" content="https://earsh9.github.io/img/img002.png">
-<meta property="og:image" content="https://earsh9.github.io/img/img003.png">
-<meta property="og:image" content="https://earsh9.github.io/img/img004.png">
-<meta property="og:image" content="https://earsh9.github.io/springMVC-photos%5CmappedHandler%E6%89%A7%E8%A1%8C%E9%93%BE%E4%B8%AD%E7%9A%84%E4%B8%89%E4%B8%AA%E9%83%A8%E5%88%86.png">
-<meta property="og:image" content="https://earsh9.github.io/springMVC-photos%5CpostHandle()%E5%92%8CafterComplation()%E4%BC%9A%E6%8C%89%E7%85%A7%E9%85%8D%E7%BD%AE%E7%9A%84%E5%8F%8D%E5%BA%8F%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8E%9F%E5%9B%A0.png">
-<meta property="og:image" content="https://earsh9.github.io/springMVC-photos%5CpreHandle()%E8%BF%94%E5%9B%9Efalse%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8%E4%B9%8B%E5%89%8D%E7%9A%84afterComplation%E6%96%B9%E6%B3%95%E4%B9%9F%E4%BC%9A%E6%89%A7%E8%A1%8C.jpg">
-<meta property="og:image" content="https://earsh9.github.io/img/img005.png">
-<meta property="og:image" content="https://earsh9.github.io/img/img006.png">
-<meta property="og:image" content="https://earsh9.github.io/img/img007.png">
-<meta property="og:image" content="https://earsh9.github.io/img/img008.png">
-<meta property="og:image" content="https://earsh9.github.io/img/img009.png">
+<meta property="og:image" content="https://earsh9.github.io/earsh9.github.io/img/mvc_img/img001.png">
+<meta property="og:image" content="https://earsh9.github.io/earsh9.github.io/img/img002.png">
+<meta property="og:image" content="https://earsh9.github.io/earsh9.github.io/img/img003.png">
+<meta property="og:image" content="https://earsh9.github.io/earsh9.github.io/img/img004.png">
+<meta property="og:image" content="https://earsh9.github.io/earsh9.github.io/img/springMVC-photos/mappedHandler%E6%89%A7%E8%A1%8C%E9%93%BE%E4%B8%AD%E7%9A%84%E4%B8%89%E4%B8%AA%E9%83%A8%E5%88%86.png">
+<meta property="og:image" content="https://earsh9.github.io/earsh9.github.io/img/springMVC-photos/postHandle()%E5%92%8CafterComplation()%E4%BC%9A%E6%8C%89%E7%85%A7%E9%85%8D%E7%BD%AE%E7%9A%84%E5%8F%8D%E5%BA%8F%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8E%9F%E5%9B%A0.png">
+<meta property="og:image" content="https://earsh9.github.io/earsh9.github.io/img/springMVC-photos/preHandle()%E8%BF%94%E5%9B%9Efalse%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8%E4%B9%8B%E5%89%8D%E7%9A%84afterComplation%E6%96%B9%E6%B3%95%E4%B9%9F%E4%BC%9A%E6%89%A7%E8%A1%8C.jpg">
+<meta property="og:image" content="https://earsh9.github.io/earsh9.github.io/img/mvc_img/img001.png/img005.png">
+<meta property="og:image" content="https://earsh9.github.io/earsh9.github.io/img/img006.png">
+<meta property="og:image" content="https://earsh9.github.io/earsh9.github.io/img/img007.png">
+<meta property="og:image" content="https://earsh9.github.io/earsh9.github.io/img/img008.png">
+<meta property="og:image" content="https://earsh9.github.io/earsh9.github.io/img/img009.png">
 <meta property="article:published_time" content="2022-08-04T09:54:45.371Z">
-<meta property="article:modified_time" content="2022-08-04T09:55:45.491Z">
+<meta property="article:modified_time" content="2022-08-04T13:14:46.804Z">
 <meta property="article:author" content="earsh9">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://earsh9.github.io/img%5Cimg001.png">
+<meta name="twitter:image" content="https://earsh9.github.io/earsh9.github.io/img/mvc_img/img001.png">
   
   
   
@@ -67,12 +67,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/earsh9.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/earsh9.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/earsh9.github.io/css/highlight-dark.css" />
   
 
 
@@ -81,15 +81,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"earsh9.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"earsh9.github.io","root":"/earsh9.github.io/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/earsh9.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/earsh9.github.io/js/utils.js" ></script>
+  <script  src="/earsh9.github.io/js/color-schema.js" ></script>
   
 
 
@@ -106,7 +106,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/earsh9.github.io/">
       <strong>earsh9&#39;s blog</strong>
     </a>
 
@@ -125,7 +125,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/earsh9.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -137,7 +137,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/earsh9.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -149,7 +149,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/earsh9.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -161,7 +161,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/earsh9.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -173,7 +173,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/earsh9.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -202,7 +202,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/bg/background.jpeg') no-repeat center center; background-size: cover;">
+     style="background: url('/earsh9.github.io/img/bg/background.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -315,7 +315,7 @@
 <h3 id="2、创建maven工程"><a href="#2、创建maven工程" class="headerlink" title="2、创建maven工程"></a>2、创建maven工程</h3><h5 id="a-gt-添加web模块"><a href="#a-gt-添加web模块" class="headerlink" title="a&gt;添加web模块"></a>a&gt;添加web模块</h5><h5 id="b-gt-打包方式：war"><a href="#b-gt-打包方式：war" class="headerlink" title="b&gt;打包方式：war"></a>b&gt;打包方式：war</h5><h5 id="c-gt-引入依赖"><a href="#c-gt-引入依赖" class="headerlink" title="c&gt;引入依赖"></a>c&gt;引入依赖</h5><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-comment">&lt;!-- SpringMVC --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-webmvc<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>5.3.1<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- 日志 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>ch.qos.logback<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>logback-classic<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.3<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- ServletAPI --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.servlet<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>javax.servlet-api<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.1.0<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>provided<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-comment">&lt;!-- Spring5和Thymeleaf整合包 --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.thymeleaf<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>thymeleaf-spring5<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>3.0.12.RELEASE<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>注：由于 Maven 的传递性，我们不必将所有需要的包全部配置依赖，而是配置最顶端的依赖，其他靠传递性导入。</p>
-<p><img src="/img%5Cimg001.png" srcset="/img/loading.gif" lazyload alt="images"></p>
+<p><img src="/earsh9.github.io/img/mvc_img/img001.png" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="images"></p>
 <h3 id="3、配置web-xml"><a href="#3、配置web-xml" class="headerlink" title="3、配置web.xml"></a>3、配置web.xml</h3><p>注册SpringMVC的前端控制器DispatcherServlet</p>
 <h5 id="a-gt-默认配置方式"><a href="#a-gt-默认配置方式" class="headerlink" title="a&gt;默认配置方式"></a>a&gt;默认配置方式</h5><p>此配置作用下，SpringMVC的配置文件默认位于WEB-INF下，默认名称为&lt;servlet-name&gt;-servlet.xml，例如，以下配置所对应SpringMVC的配置文件位于WEB-INF下，文件名为springMVC-servlet.xml</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-comment">&lt;!-- 配置SpringMVC的前端控制器，对浏览器发送的请求统一进行处理 --&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springMVC<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-class</span>&gt;</span>org.springframework.web.servlet.DispatcherServlet<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-class</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet</span>&gt;</span><br><span class="hljs-tag">&lt;<span class="hljs-name">servlet-mapping</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">servlet-name</span>&gt;</span>springMVC<span class="hljs-tag">&lt;/<span class="hljs-name">servlet-name</span>&gt;</span><br>    <span class="hljs-comment">&lt;!--</span><br><span class="hljs-comment">        设置springMVC的核心控制器所能处理的请求的请求路径</span><br><span class="hljs-comment">        /所匹配的请求可以是/login或.html或.js或.css方式的请求路径</span><br><span class="hljs-comment">        但是/不能匹配.jsp请求路径的请求</span><br><span class="hljs-comment">    --&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">url-pattern</span>&gt;</span>/<span class="hljs-tag">&lt;/<span class="hljs-name">url-pattern</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">servlet-mapping</span>&gt;</span><br></code></pre></td></tr></table></figure>
@@ -470,20 +470,20 @@
 <h3 id="1、ThymeleafView"><a href="#1、ThymeleafView" class="headerlink" title="1、ThymeleafView"></a>1、ThymeleafView</h3><p>当控制器方法中所设置的视图名称没有任何前缀时，此时的视图名称会被SpringMVC配置文件中所配置的视图解析器解析，视图名称拼接视图前缀和视图后缀所得到的最终路径，会通过转发的方式实现跳转</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/testHello&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">testHello</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;hello&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/img/img002.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/earsh9.github.io/img/img002.png" srcset="/earsh9.github.io/img/loading.gif" lazyload></p>
 <h3 id="2、转发视图"><a href="#2、转发视图" class="headerlink" title="2、转发视图"></a>2、转发视图</h3><p>SpringMVC中默认的转发视图是InternalResourceView</p>
 <p>SpringMVC中创建转发视图的情况：</p>
 <p>当控制器方法中所设置的视图名称以”forward:”为前缀时，创建InternalResourceView视图，此时的视图名称不会被SpringMVC配置文件中所配置的视图解析器解析，而是会将前缀”forward:”去掉，剩余部分作为最终路径通过转发的方式实现跳转</p>
 <p>例如”forward:&#x2F;“，”forward:&#x2F;employee”</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/testForward&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">testForward</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;forward:/testHello&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/img/img003.png" srcset="/img/loading.gif" lazyload alt="image-20210706201316593"></p>
+<p><img src="/earsh9.github.io/img/img003.png" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="image-20210706201316593"></p>
 <h3 id="3、重定向视图"><a href="#3、重定向视图" class="headerlink" title="3、重定向视图"></a>3、重定向视图</h3><p>SpringMVC中默认的重定向视图是RedirectView</p>
 <p>当控制器方法中所设置的视图名称以”redirect:”为前缀时，创建RedirectView视图，此时的视图名称不会被SpringMVC配置文件中所配置的视图解析器解析，而是会将前缀”redirect:”去掉，剩余部分作为最终路径通过重定向的方式实现跳转</p>
 <p>例如”redirect:&#x2F;“，”redirect:&#x2F;employee”</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@RequestMapping(&quot;/testRedirect&quot;)</span><br><span class="hljs-keyword">public</span> String <span class="hljs-title function_">testRedirect</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;redirect:/testHello&quot;</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p><img src="/img/img004.png" srcset="/img/loading.gif" lazyload alt="image-20210706201602267"></p>
+<p><img src="/earsh9.github.io/img/img004.png" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="image-20210706201602267"></p>
 <blockquote>
 <p>注：</p>
 <p>重定向视图在解析时，会先将redirect:前缀去掉，然后会判断剩余部分是否以&#x2F;开头，若是则会自动拼接上下文路径</p>
@@ -724,10 +724,10 @@
 </ul>
 </li>
 </ul>
-<p><img src="/springMVC-photos%5CmappedHandler%E6%89%A7%E8%A1%8C%E9%93%BE%E4%B8%AD%E7%9A%84%E4%B8%89%E4%B8%AA%E9%83%A8%E5%88%86.png" srcset="/img/loading.gif" lazyload alt="images"></p>
+<p><img src="/earsh9.github.io/img/springMVC-photos/mappedHandler%E6%89%A7%E8%A1%8C%E9%93%BE%E4%B8%AD%E7%9A%84%E4%B8%89%E4%B8%AA%E9%83%A8%E5%88%86.png" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="images"></p>
 <p>preHandle()会按照配置的顺序执行，而postHandle()和afterComplation()会按照配置的反序执行</p>
 <p>原因：for 循环就是倒序执行的</p>
-<p><img src="/springMVC-photos%5CpostHandle()%E5%92%8CafterComplation()%E4%BC%9A%E6%8C%89%E7%85%A7%E9%85%8D%E7%BD%AE%E7%9A%84%E5%8F%8D%E5%BA%8F%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8E%9F%E5%9B%A0.png" srcset="/img/loading.gif" lazyload alt="images"></p>
+<p><img src="/earsh9.github.io/img/springMVC-photos/postHandle()%E5%92%8CafterComplation()%E4%BC%9A%E6%8C%89%E7%85%A7%E9%85%8D%E7%BD%AE%E7%9A%84%E5%8F%8D%E5%BA%8F%E6%89%A7%E8%A1%8C%E7%9A%84%E5%8E%9F%E5%9B%A0.png" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="images"></p>
 <ul>
 <li><p>若某个拦截器的preHandle()返回了false</p>
 <ul>
@@ -747,7 +747,7 @@
 </ul>
 </li>
 </ul>
-<p><img src="/springMVC-photos%5CpreHandle()%E8%BF%94%E5%9B%9Efalse%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8%E4%B9%8B%E5%89%8D%E7%9A%84afterComplation%E6%96%B9%E6%B3%95%E4%B9%9F%E4%BC%9A%E6%89%A7%E8%A1%8C.jpg" srcset="/img/loading.gif" lazyload alt="images"></p>
+<p><img src="/earsh9.github.io/img/springMVC-photos/preHandle()%E8%BF%94%E5%9B%9Efalse%E7%9A%84%E6%8B%A6%E6%88%AA%E5%99%A8%E4%B9%8B%E5%89%8D%E7%9A%84afterComplation%E6%96%B9%E6%B3%95%E4%B9%9F%E4%BC%9A%E6%89%A7%E8%A1%8C.jpg" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="images"></p>
 <h1 id="十一、异常处理器"><a href="#十一、异常处理器" class="headerlink" title="十一、异常处理器"></a>十一、异常处理器</h1><h3 id="1、基于配置的异常处理"><a href="#1、基于配置的异常处理" class="headerlink" title="1、基于配置的异常处理"></a>1、基于配置的异常处理</h3><p>SpringMVC 提供了一个处理控制器方法执行过程中所出现的异常的接口：HandlerExceptionResolver</p>
 <p>HandlerExceptionResolver 接口的实现类有：</p>
 <ul>
@@ -798,7 +798,7 @@
 </ul>
 <p>作用：将模型数据通过页面展示给用户</p>
 <h3 id="2、DispatcherServlet初始化过程"><a href="#2、DispatcherServlet初始化过程" class="headerlink" title="2、DispatcherServlet初始化过程"></a>2、DispatcherServlet初始化过程</h3><p>DispatcherServlet 本质上是一个 Servlet，所以天然的遵循 Servlet 的生命周期。所以宏观上是 Servlet 生命周期来进行调度。</p>
-<p><img src="/img/img005.png" srcset="/img/loading.gif" lazyload alt="images"></p>
+<p><img src="/earsh9.github.io/img/mvc_img/img001.png/img005.png" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="images"></p>
 <h5 id="a-gt-初始化WebApplicationContext"><a href="#a-gt-初始化WebApplicationContext" class="headerlink" title="a&gt;初始化WebApplicationContext"></a>a&gt;初始化WebApplicationContext</h5><p>所在类：org.springframework.web.servlet.FrameworkServlet</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">protected</span> WebApplicationContext <span class="hljs-title function_">initWebApplicationContext</span><span class="hljs-params">()</span> &#123;<br>    <span class="hljs-type">WebApplicationContext</span> <span class="hljs-variable">rootContext</span> <span class="hljs-operator">=</span><br>        WebApplicationContextUtils.getWebApplicationContext(getServletContext());<br>    <span class="hljs-type">WebApplicationContext</span> <span class="hljs-variable">wac</span> <span class="hljs-operator">=</span> <span class="hljs-literal">null</span>;<br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.webApplicationContext != <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-comment">// A context instance was injected at construction time -&gt; use it</span><br>        wac = <span class="hljs-built_in">this</span>.webApplicationContext;<br>        <span class="hljs-keyword">if</span> (wac <span class="hljs-keyword">instanceof</span> ConfigurableWebApplicationContext) &#123;<br>            <span class="hljs-type">ConfigurableWebApplicationContext</span> <span class="hljs-variable">cwac</span> <span class="hljs-operator">=</span> (ConfigurableWebApplicationContext) wac;<br>            <span class="hljs-keyword">if</span> (!cwac.isActive()) &#123;<br>                <span class="hljs-comment">// The context has not yet been refreshed -&gt; provide services such as</span><br>                <span class="hljs-comment">// setting the parent context, setting the application context id, etc</span><br>                <span class="hljs-keyword">if</span> (cwac.getParent() == <span class="hljs-literal">null</span>) &#123;<br>                    <span class="hljs-comment">// The context instance was injected without an explicit parent -&gt; set</span><br>                    <span class="hljs-comment">// the root application context (if any; may be null) as the parent</span><br>                    cwac.setParent(rootContext);<br>                &#125;<br>                configureAndRefreshWebApplicationContext(cwac);<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (wac == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-comment">// No context instance was injected at construction time -&gt; see if one</span><br>        <span class="hljs-comment">// has been registered in the servlet context. If one exists, it is assumed</span><br>        <span class="hljs-comment">// that the parent context (if any) has already been set and that the</span><br>        <span class="hljs-comment">// user has performed any initialization such as setting the context id</span><br>        wac = findWebApplicationContext();<br>    &#125;<br>    <span class="hljs-keyword">if</span> (wac == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-comment">// No context instance is defined for this servlet -&gt; create a local one</span><br>        <span class="hljs-comment">// 创建WebApplicationContext</span><br>        wac = createWebApplicationContext(rootContext);<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (!<span class="hljs-built_in">this</span>.refreshEventReceived) &#123;<br>        <span class="hljs-comment">// Either the context is not a ConfigurableApplicationContext with refresh</span><br>        <span class="hljs-comment">// support or the context injected at construction time had already been</span><br>        <span class="hljs-comment">// refreshed -&gt; trigger initial onRefresh manually here.</span><br>        <span class="hljs-keyword">synchronized</span> (<span class="hljs-built_in">this</span>.onRefreshMonitor) &#123;<br>            <span class="hljs-comment">// 刷新WebApplicationContext</span><br>            onRefresh(wac);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.publishContext) &#123;<br>        <span class="hljs-comment">// Publish the context as a servlet context attribute.</span><br>        <span class="hljs-comment">// 将IOC容器在应用域共享</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">attrName</span> <span class="hljs-operator">=</span> getServletContextAttributeName();<br>        getServletContext().setAttribute(attrName, wac);<br>    &#125;<br><br>    <span class="hljs-keyword">return</span> wac;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -830,11 +830,11 @@
 <p>a) 不存在</p>
 <p>i. 再判断是否配置了mvc:default-servlet-handler</p>
 <p>ii. 如果没配置，则控制台报映射查找不到，客户端展示404错误</p>
-<p><img src="/img/img006.png" srcset="/img/loading.gif" lazyload alt="image-20210709214911404"></p>
-<p><img src="/img/img007.png" srcset="/img/loading.gif" lazyload alt="image-20210709214947432"></p>
+<p><img src="/earsh9.github.io/img/img006.png" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="image-20210709214911404"></p>
+<p><img src="/earsh9.github.io/img/img007.png" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="image-20210709214947432"></p>
 <p>iii. 如果有配置，则访问目标资源（一般为静态资源，如：JS,CSS,HTML），找不到客户端也会展示404错误</p>
-<p><img src="/img/img008.png" srcset="/img/loading.gif" lazyload alt="image-20210709215255693"></p>
-<p><img src="/img/img009.png" srcset="/img/loading.gif" lazyload alt="image-20210709215336097"></p>
+<p><img src="/earsh9.github.io/img/img008.png" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="image-20210709215255693"></p>
+<p><img src="/earsh9.github.io/img/img009.png" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="image-20210709215336097"></p>
 <p>b) 存在则执行下面的流程</p>
 <ol start="3">
 <li><p>根据该URI，调用HandlerMapping获得该Handler配置的所有相关的对象（包括Handler对象以及Handler对象对应的拦截器），最后以HandlerExecutionChain执行链对象的形式返回。</p>
@@ -880,12 +880,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/Spring/" class="category-chain-item">Spring</a>
+  <a href="/earsh9.github.io/categories/Spring/" class="category-chain-item">Spring</a>
   
   
     <span>></span>
     
-  <a href="/categories/Spring/SpringMVC/" class="category-chain-item">SpringMVC</a>
+  <a href="/earsh9.github.io/categories/Spring/SpringMVC/" class="category-chain-item">SpringMVC</a>
   
   
 
@@ -908,7 +908,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>入门笔记</div>
-      <div>https://earsh9.github.io/2022/08/04/spring/SpringMVC笔记/</div>
+      <div>https://earsh9.github.io/earsh9.github.io/2022/08/04/spring/SpringMVC笔记/</div>
     </div>
     <div class="license-meta">
       
@@ -950,7 +950,7 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/04/spring/MyBatis%E7%AC%94%E8%AE%B0/" title="入门笔记">
+                      <a href="/earsh9.github.io/2022/08/04/spring/MyBatis%E7%AC%94%E8%AE%B0/" title="入门笔记">
                         <i class="iconfont icon-arrowleft"></i>
                         <span class="hidden-mobile">入门笔记</span>
                         <span class="visible-mobile">上一篇</span>
@@ -960,7 +960,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/04/%E5%85%B6%E4%BB%96/1.%E5%89%8D%E7%BC%80%E6%A0%91/" title="前缀树">
+                      <a href="/earsh9.github.io/2022/08/04/%E5%85%B6%E4%BB%96/1.%E5%89%8D%E7%BC%80%E6%A0%91/" title="前缀树">
                         <span class="hidden-mobile">前缀树</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -1087,8 +1087,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/earsh9.github.io/js/events.js" ></script>
+<script  src="/earsh9.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -1110,7 +1110,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/earsh9.github.io/js/img-lazyload.js" ></script>
   
 
 
@@ -1182,7 +1182,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/earsh9.github.io/js/local-search.js" ></script>
 
 
 
@@ -1190,7 +1190,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/earsh9.github.io/js/boot.js" ></script>
 
 
   

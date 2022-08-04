@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
-  <link rel="icon" href="/img/fluid.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/earsh9.github.io/img/fluid.png">
+  <link rel="icon" href="/earsh9.github.io/img/fluid.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -19,7 +19,7 @@
     <meta name="description" content="KMP核心思想当出现字符串不匹配时，可以记录一部分之前已经匹配的文本内容，利用这些信息避免从头再去做匹配。 重点：如何记录已经匹配的文本内容？用next()数组。next数组就是一个前缀表（prefix table）。 1）前缀表有什么作用呢？前缀表是用来回退的，它记录了模式串与主串(文本串)不匹配的时候，模式串应该从哪里开始重新匹配。 举例：要在文本串：aabaabaafa 中查找是否出现过一个">
 <meta property="og:type" content="article">
 <meta property="og:title" content="字符串匹配问题">
-<meta property="og:url" content="https://earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/3.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:url" content="https://earsh9.github.io/earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/3.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="earsh9&#39;s blog">
 <meta property="og:description" content="KMP核心思想当出现字符串不匹配时，可以记录一部分之前已经匹配的文本内容，利用这些信息避免从头再去做匹配。 重点：如何记录已经匹配的文本内容？用next()数组。next数组就是一个前缀表（prefix table）。 1）前缀表有什么作用呢？前缀表是用来回退的，它记录了模式串与主串(文本串)不匹配的时候，模式串应该从哪里开始重新匹配。 举例：要在文本串：aabaabaafa 中查找是否出现过一个">
 <meta property="og:locale" content="zh_CN">
@@ -28,7 +28,7 @@
 <meta property="og:image" content="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B22.gif">
 <meta property="og:image" content="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B24.gif">
 <meta property="og:image" content="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B23.gif">
-<meta property="og:image" content="https://earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/3.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/需要多少个a计算图示.jpg">
+<meta property="og:image" content="https://earsh9.github.io/earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/3.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/需要多少个a计算图示.jpg">
 <meta property="article:published_time" content="2022-08-04T09:22:37.200Z">
 <meta property="article:modified_time" content="2022-08-04T09:28:26.846Z">
 <meta property="article:author" content="earsh9">
@@ -61,12 +61,12 @@
 <link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
 
 
-<link  rel="stylesheet" href="/css/main.css" />
+<link  rel="stylesheet" href="/earsh9.github.io/css/main.css" />
 
 
-  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  <link id="highlight-css" rel="stylesheet" href="/earsh9.github.io/css/highlight.css" />
   
-    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+    <link id="highlight-css-dark" rel="stylesheet" href="/earsh9.github.io/css/highlight-dark.css" />
   
 
 
@@ -75,15 +75,15 @@
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
     Fluid.ctx = Object.assign({}, Fluid.ctx)
-    var CONFIG = {"hostname":"earsh9.github.io","root":"/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+    var CONFIG = {"hostname":"earsh9.github.io","root":"/earsh9.github.io/","version":"1.9.2","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/earsh9.github.io/local-search.xml"};
 
     if (CONFIG.web_analytics.follow_dnt) {
       var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
       Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
     }
   </script>
-  <script  src="/js/utils.js" ></script>
-  <script  src="/js/color-schema.js" ></script>
+  <script  src="/earsh9.github.io/js/utils.js" ></script>
+  <script  src="/earsh9.github.io/js/color-schema.js" ></script>
   
 
 
@@ -100,7 +100,7 @@
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="/">
+    <a class="navbar-brand" href="/earsh9.github.io/">
       <strong>earsh9&#39;s blog</strong>
     </a>
 
@@ -119,7 +119,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/">
+              <a class="nav-link" href="/earsh9.github.io/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
@@ -131,7 +131,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/archives/">
+              <a class="nav-link" href="/earsh9.github.io/archives/">
                 <i class="iconfont icon-archive-fill"></i>
                 归档
               </a>
@@ -143,7 +143,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/categories/">
+              <a class="nav-link" href="/earsh9.github.io/categories/">
                 <i class="iconfont icon-category-fill"></i>
                 分类
               </a>
@@ -155,7 +155,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/tags/">
+              <a class="nav-link" href="/earsh9.github.io/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
@@ -167,7 +167,7 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/about/">
+              <a class="nav-link" href="/earsh9.github.io/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
@@ -196,7 +196,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/bg/background.jpeg') no-repeat center center; background-size: cover;">
+     style="background: url('/earsh9.github.io/img/bg/background.jpeg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -283,7 +283,7 @@
 <h2 id="重点：如何记录已经匹配的文本内容？"><a href="#重点：如何记录已经匹配的文本内容？" class="headerlink" title="重点：如何记录已经匹配的文本内容？"></a>重点：如何记录已经匹配的文本内容？</h2><p>用next()数组。next数组就是一个<strong>前缀表（prefix table）。</strong></p>
 <h3 id="1）前缀表有什么作用呢？"><a href="#1）前缀表有什么作用呢？" class="headerlink" title="1）前缀表有什么作用呢？"></a>1）前缀表有什么作用呢？</h3><p>前缀表是用来回退的，它记录了模式串与主串(文本串)不匹配的时候，模式串应该从哪里开始重新匹配。</p>
 <p>举例：要在文本串：aabaabaafa 中查找是否出现过一个模式串：aabaaf。</p>
-<img src="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B21.gif" srcset="/img/loading.gif" lazyload alt="show" />
+<img src="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B21.gif" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="show" />
 
 <ul>
 <li><p>文本串中第六个字符b 和 模式串的第六个字符f，不匹配。如果暴力匹配发现不匹配时，直接从头匹配。</p>
@@ -299,10 +299,10 @@
 </ul>
 <h3 id="3）如何计算前缀表？"><a href="#3）如何计算前缀表？" class="headerlink" title="3）如何计算前缀表？"></a>3）如何计算前缀表？</h3><p>模式串与前缀表<strong>对应位置</strong>的数字表示的就是：下标i之前（包括i）的字符串中，有多大长度的相同前缀后缀。</p>
 <p>例如：</p>
-<img src="https://code-thinking.cdn.bcebos.com/pics/KMP%E7%B2%BE%E8%AE%B28.png" srcset="/img/loading.gif" lazyload alt="slow" />
+<img src="https://code-thinking.cdn.bcebos.com/pics/KMP%E7%B2%BE%E8%AE%B28.png" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="slow" />
 
 <p>如何利用 前缀表找到 当字符不匹配的时候应该指针应该移动的位置呢？</p>
-<img src="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B22.gif" srcset="/img/loading.gif" lazyload alt="slow" />
+<img src="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B22.gif" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="slow" />
 
 <ul>
 <li>当遇到不匹配时，（说明文本串和模式串在该字符之前都匹配！）</li>
@@ -314,7 +314,7 @@
 <li>更多的next数组是将前缀表统一减一（右移一位，初始位置为-1）</li>
 </ul>
 <p>动画演示使用next数组来实现字符串匹配：使用前缀表统一减一的形式</p>
-<img src="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B24.gif" srcset="/img/loading.gif" lazyload alt="slow" />
+<img src="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B24.gif" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="slow" />
 
 <p>构建next数组：计算模式串的前缀表。</p>
 <ul>
@@ -325,7 +325,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">void</span> <span class="hljs-title function_">getNext</span><span class="hljs-params">(<span class="hljs-type">int</span>* next, const string&amp; s)</span>&#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">j</span> <span class="hljs-operator">=</span> -<span class="hljs-number">1</span>;<br>    next[<span class="hljs-number">0</span>] = j;<br>    <span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>; i &lt; s.size(); i++) &#123; <span class="hljs-comment">// 注意i从1开始</span><br>        <span class="hljs-keyword">while</span> (j &gt;= <span class="hljs-number">0</span> &amp;&amp; s[i] != s[j + <span class="hljs-number">1</span>]) &#123; <span class="hljs-comment">// 前后缀不相同了</span><br>            j = next[j]; <span class="hljs-comment">// 向前回退</span><br>        &#125;<br>        <span class="hljs-keyword">if</span> (s[i] == s[j + <span class="hljs-number">1</span>]) &#123; <span class="hljs-comment">// 找到相同的前后缀</span><br>            j++;<br>        &#125;<br>        next[i] = j; <span class="hljs-comment">// 将j（前缀的长度）赋给next[i]</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>代码构造next数组的逻辑流程动画如下：</p>
-<img src="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B23.gif" srcset="/img/loading.gif" lazyload alt="slow" />
+<img src="https://code-thinking.cdn.bcebos.com/gifs/KMP%E7%B2%BE%E8%AE%B23.gif" srcset="/earsh9.github.io/img/loading.gif" lazyload alt="slow" />
 
 <h2 id="28题-实现strStr"><a href="#28题-实现strStr" class="headerlink" title="28题 实现strStr()"></a>28题 实现strStr()</h2><p>实现 strStr() 函数。</p>
 <p>给你两个字符串 haystack 和 needle ，请你在 haystack 字符串中找出 needle 字符串出现的第一个位置（下标从 0 开始）。如果不存在，则返回  -1 。</p>
@@ -405,7 +405,7 @@
 <p>因为不知道cd abcd ab后面是否存在ab这个尾巴, 所有统一减1计算需要a的个数</p>
 <p>cd需要a一个, 尾巴ab需要a一个, 故还要+2</p>
 <p>所以结果为 (bn + index - an - 1) &#x2F; an + 2</p>
-<img src="需要多少个a计算图示.jpg" srcset="/img/loading.gif" lazyload width = "50%" />
+<img src="需要多少个a计算图示.jpg" srcset="/earsh9.github.io/img/loading.gif" lazyload width = "50%" />
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">repeatedStringMatch</span><span class="hljs-params">(String a, String b)</span> &#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">an</span> <span class="hljs-operator">=</span> a.length(), bn = b.length();<br>    <span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> strStr(a,b);<br><br>    <span class="hljs-keyword">if</span> (index == -<span class="hljs-number">1</span>) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>    <span class="hljs-keyword">if</span> (an - index &gt;= bn) <span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;         <span class="hljs-comment">//说明a无需叠加，一个就够了</span><br>    <span class="hljs-keyword">return</span> (bn + index - an - <span class="hljs-number">1</span>) / an + <span class="hljs-number">2</span>;<br>&#125;<br><br><span class="hljs-comment">//因为a是不断循环叠加的字符串，kmp需查看的是a中b第一次出现的位置下标</span><br><span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">strStr</span><span class="hljs-params">(String a, String b)</span>&#123;<br>    <span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> a.length(), m = b.length();<br>    <span class="hljs-keyword">if</span> (m == <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br><br>    <span class="hljs-type">int</span>[] next = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[m];<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>, j = <span class="hljs-number">0</span>; i &lt; m; i++)&#123;                   <span class="hljs-comment">//next数组求解不变,本题更方便的是不减一的版本</span><br>        <span class="hljs-keyword">while</span> (j &gt; <span class="hljs-number">0</span> &amp;&amp; b.charAt(i) != b.charAt(j))&#123;<br>            j = next[j - <span class="hljs-number">1</span>];<br>        &#125;<br>        <span class="hljs-keyword">if</span> (b.charAt(i) == b.charAt(j))&#123;<br>            j++;<br>        &#125;<br>        next[i] = j;<br>    &#125;<br><br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>, j = <span class="hljs-number">0</span>; i - j &lt; n; i++)&#123;         <span class="hljs-comment">//b 开始匹配的位置是否超过第一个叠加的 a : i和j的间隔差不能超过a的长度n</span><br>        <span class="hljs-keyword">while</span> (j &gt; <span class="hljs-number">0</span> &amp;&amp; a.charAt(i % n) != b.charAt(j))&#123;     <span class="hljs-comment">//a 是循环叠加的字符串，所以取 i % n</span><br>            j = next[j - <span class="hljs-number">1</span>];<br>        &#125;<br>        <span class="hljs-keyword">if</span> (a.charAt(i % n) == b.charAt(j))&#123;<br>            j++;<br>        &#125;<br>        <span class="hljs-keyword">if</span> (j == b.length()) <span class="hljs-keyword">return</span> i - m + <span class="hljs-number">1</span>;<br>    &#125;<br>    <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
 
@@ -426,12 +426,12 @@
     
       <span class="category-chain">
         
-  <a href="/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
   
   
     <span>></span>
     
-  <a href="/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="category-chain-item">字符串</a>
+  <a href="/earsh9.github.io/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="category-chain-item">字符串</a>
   
   
 
@@ -454,7 +454,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>字符串匹配问题</div>
-      <div>https://earsh9.github.io/2022/08/04/4.字符串/3.字符串匹配问题/</div>
+      <div>https://earsh9.github.io/earsh9.github.io/2022/08/04/4.字符串/3.字符串匹配问题/</div>
     </div>
     <div class="license-meta">
       
@@ -496,9 +496,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/1.%E6%A8%A1%E6%8B%9F/" title="模拟">
+                      <a href="/earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/2.%E5%8F%8C%E6%8C%87%E9%92%88%E5%A1%AB%E5%85%85/" title="双指针填充">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">模拟</span>
+                        <span class="hidden-mobile">双指针填充</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -506,7 +506,7 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/4.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/" title="字符串哈希">
+                      <a href="/earsh9.github.io/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/4.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/" title="字符串哈希">
                         <span class="hidden-mobile">字符串哈希</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
@@ -633,8 +633,8 @@
 
 <script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
 <script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
-<script  src="/js/events.js" ></script>
-<script  src="/js/plugins.js" ></script>
+<script  src="/earsh9.github.io/js/events.js" ></script>
+<script  src="/earsh9.github.io/js/plugins.js" ></script>
 
 
   <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
@@ -656,7 +656,7 @@
 
 
   
-    <script  src="/js/img-lazyload.js" ></script>
+    <script  src="/earsh9.github.io/js/img-lazyload.js" ></script>
   
 
 
@@ -728,7 +728,7 @@
 
   <script>Fluid.plugins.imageCaption();</script>
 
-  <script  src="/js/local-search.js" ></script>
+  <script  src="/earsh9.github.io/js/local-search.js" ></script>
 
 
 
@@ -736,7 +736,7 @@
 
 <!-- 主题的启动项，将它保持在最底部 -->
 <!-- the boot of the theme, keep it at the bottom -->
-<script  src="/js/boot.js" ></script>
+<script  src="/earsh9.github.io/js/boot.js" ></script>
 
 
   
