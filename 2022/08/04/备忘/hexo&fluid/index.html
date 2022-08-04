@@ -24,7 +24,7 @@
 <meta property="og:description" content="官方文档 hexo 部署：  https:&#x2F;&#x2F;hexo.io&#x2F;zh-cn&#x2F;docs  hexo 主题官网：  https:&#x2F;&#x2F;hexo.io&#x2F;themes&#x2F;  fluid 主题用户手册：  https:&#x2F;&#x2F;hexo.fluid-dev.com&#x2F;docs *.github.io的个人博客网站无法连接的问题如果 hexo 要部署上 Github，对应的 Github 仓库需以 xxx.github.i">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-04T10:41:05.878Z">
-<meta property="article:modified_time" content="2022-08-04T10:53:36.852Z">
+<meta property="article:modified_time" content="2022-08-04T12:55:04.033Z">
 <meta property="article:author" content="earsh9">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          492 字
+          583 字
         
       </span>
     
@@ -288,7 +288,13 @@
 <p>如果是项目名字错误了可以直接在github上项目的setting那里修改就可以了，不需要删掉重新建。</p>
 <h2 id="更新部署步骤"><a href="#更新部署步骤" class="headerlink" title="更新部署步骤"></a>更新部署步骤</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs linux">$ hexo clean  # 清空一下缓存，有时候博客页面显示不正常也可以试试这个命令行<br>$ hexo g  # hexo generate的简写，把刚刚做的改动生成更新一下<br>$ hexo server  # 在本地服务器看看博客有没有更新成NexT主题：https://localhost:4000<br>$ hexo d  # 退出本地服务器之后 deploy 到 Github 上，这样直接拿 https://xxx.github.io 就能访问了<br></code></pre></td></tr></table></figure>
 
-<h2 id="更换主题后，本地服务器运行成功，部署到github上就不能显示主题样式"><a href="#更换主题后，本地服务器运行成功，部署到github上就不能显示主题样式" class="headerlink" title="更换主题后，本地服务器运行成功，部署到github上就不能显示主题样式"></a>更换主题后，本地服务器运行成功，部署到github上就不能显示主题样式</h2>
+<h2 id="更换主题后，本地服务器运行成功，部署到github上就不能显示主题样式"><a href="#更换主题后，本地服务器运行成功，部署到github上就不能显示主题样式" class="headerlink" title="更换主题后，本地服务器运行成功，部署到github上就不能显示主题样式"></a>更换主题后，本地服务器运行成功，部署到github上就不能显示主题样式</h2><ul>
+<li>禁用缓存</li>
+<li>hexo clean之后 hexo deploy -g</li>
+<li>删.deploy_git文件夹，然后hexo d</li>
+<li>GitHub 删掉仓库重新部署（注意默认分支是啥 _config.yml 里就写啥分支）</li>
+</ul>
+
                 
               </div>
             
