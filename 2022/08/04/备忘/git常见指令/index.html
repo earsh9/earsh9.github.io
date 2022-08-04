@@ -280,7 +280,7 @@
 <p>提示的地方一路 enter，注意<code>-keygen</code> 前没有空格。</p>
 <h3 id="查看密钥并去-Github-上配好"><a href="#查看密钥并去-Github-上配好" class="headerlink" title="查看密钥并去 Github 上配好"></a>查看密钥并去 Github 上配好</h3><p><code>cat  ~/.ssh/id_rsa.pub</code></p>
 <h2 id="RPC-failed-curl-56-GnuTLS-recv-error-54-Error-in-the-pull-function"><a href="#RPC-failed-curl-56-GnuTLS-recv-error-54-Error-in-the-pull-function" class="headerlink" title="RPC failed; curl 56 GnuTLS recv error (-54): Error in the pull function."></a>RPC failed; curl 56 GnuTLS recv error (-54): Error in the pull function.</h2><p>把 git clone 方式从 https 改为 ssh 解决</p>
-<h2 id="常见指令"><a href="#常见指令" class="headerlink" title="常见指令"></a>常见指令</h2><p>$ ssh-keygen -t rsa -C “<a href="mailto:&#121;&#x6f;&#117;&#114;&#x65;&#109;&#97;&#x69;&#108;&#x40;&#101;&#x78;&#97;&#109;&#x70;&#108;&#101;&#x2e;&#99;&#111;&#109;">&#121;&#x6f;&#117;&#114;&#x65;&#109;&#97;&#x69;&#108;&#x40;&#101;&#x78;&#97;&#109;&#x70;&#108;&#101;&#x2e;&#99;&#111;&#109;</a>“          &#x2F;&#x2F;获取 SSH key，将其填在 gitee&#x2F;github 以此来识别内容是谁push上去的</p>
+<h2 id="常见指令"><a href="#常见指令" class="headerlink" title="常见指令"></a>常见指令</h2><p>$ ssh-keygen -t rsa -C “<a href="mailto:&#x79;&#111;&#117;&#114;&#x65;&#x6d;&#x61;&#105;&#x6c;&#64;&#x65;&#x78;&#x61;&#x6d;&#x70;&#108;&#x65;&#46;&#99;&#111;&#x6d;">&#x79;&#111;&#117;&#114;&#x65;&#x6d;&#x61;&#105;&#x6c;&#64;&#x65;&#x78;&#x61;&#x6d;&#x70;&#108;&#x65;&#46;&#99;&#111;&#x6d;</a>“          &#x2F;&#x2F;获取 SSH key，将其填在 gitee&#x2F;github 以此来识别内容是谁push上去的</p>
 <h3 id="创建与修改"><a href="#创建与修改" class="headerlink" title="创建与修改"></a>创建与修改</h3><p>sudo apt install git            &#x2F;&#x2F;安装xxx软件</p>
 <p>git config –global user.name &#x2F; user.email      &#x2F;&#x2F;为当前git分布式管理系统设置一个名字</p>
 <p>vim readme.txt                  &#x2F;&#x2F;git 严格区分大小写，vim相当于linux中的一个记事本。即拿vim打开.txt文件</p>
@@ -292,7 +292,7 @@
 <p>git reset –hard commit_id      &#x2F;&#x2F;有 hard 就是删除，没有就是撤销删除</p>
 <h3 id="远程库"><a href="#远程库" class="headerlink" title="远程库"></a>远程库</h3><p> git remote -v                   &#x2F;&#x2F;查看远程库的信息</p>
 <p> git remote rm origin           &#x2F;&#x2F;删除与远程库的联系（远程库本身没有删除）</p>
-<p> git remote add origin <a href="mailto:&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#x74;&#x65;&#101;&#x2e;&#99;&#x6f;&#109;">&#x67;&#x69;&#x74;&#64;&#x67;&#x69;&#x74;&#x65;&#101;&#x2e;&#99;&#x6f;&#109;</a>:earsh&#x2F;learngit.git             &#x2F;&#x2F;与远程库建立联系</p>
+<p> git remote add origin <a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#x65;&#x65;&#46;&#x63;&#x6f;&#109;">&#103;&#x69;&#116;&#x40;&#x67;&#105;&#x74;&#x65;&#x65;&#46;&#x63;&#x6f;&#109;</a>:earsh&#x2F;learngit.git             &#x2F;&#x2F;与远程库建立联系</p>
 <h3 id="分支管理"><a href="#分支管理" class="headerlink" title="分支管理"></a>分支管理</h3><p> git switch master              &#x2F;&#x2F;切换到 master 分支</p>
 <p> git switch -c dev              &#x2F;&#x2F;创建并切换到 dev 分支</p>
 <p> git branch                     &#x2F;&#x2F;查看当前所在的分支（会罗列出所有分支，带*号的是当前所在分支）</p>
