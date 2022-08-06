@@ -16,21 +16,21 @@
   <meta name="author" content="earsh9">
   <meta name="keywords" content="">
   
-    <meta name="description" content="使用的模板https:&#x2F;&#x2F;github.com&#x2F;billryan&#x2F;resume&#x2F;tree&#x2F;zh_CN overleaf 的官方讲解：https:&#x2F;&#x2F;www.overleaf.com&#x2F;learn 1很有用，这里主要参见的是上色部分，hhh根据官方的颜色编号给简历来点色彩  上色和调整行间距https:&#x2F;&#x2F;www.imbajin.com&#x2F;recruit&#x2F;2018-01-20-%E4%BD%BF%E7%">
+    <meta name="description" content="使用 openResty 安装 nginx12ubuntu版本：22.04openresty版本：1.17.8.2  openresty 就是个修改过的 nginx，主要好处在于可以配合 lua 脚本完成相关的定制操作。市面上有很多基于 nginx 能二次开发的框架。 https:&#x2F;&#x2F;openresty.org&#x2F;cn&#x2F; 官网可查看下载链接及安装需要的环境 .&#x2F;configure、make、make">
 <meta property="og:type" content="article">
-<meta property="og:title" content="latex入门&amp;简历书写">
-<meta property="og:url" content="https://earsh9.github.io/2022/08/03/%E5%A4%87%E5%BF%98/latex/index.html">
+<meta property="og:title" content="openresty配置">
+<meta property="og:url" content="https://earsh9.github.io/2022/08/06/%E6%90%AD%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/nginx/index.html">
 <meta property="og:site_name" content="earsh9&#39;s blog">
-<meta property="og:description" content="使用的模板https:&#x2F;&#x2F;github.com&#x2F;billryan&#x2F;resume&#x2F;tree&#x2F;zh_CN overleaf 的官方讲解：https:&#x2F;&#x2F;www.overleaf.com&#x2F;learn 1很有用，这里主要参见的是上色部分，hhh根据官方的颜色编号给简历来点色彩  上色和调整行间距https:&#x2F;&#x2F;www.imbajin.com&#x2F;recruit&#x2F;2018-01-20-%E4%BD%BF%E7%">
+<meta property="og:description" content="使用 openResty 安装 nginx12ubuntu版本：22.04openresty版本：1.17.8.2  openresty 就是个修改过的 nginx，主要好处在于可以配合 lua 脚本完成相关的定制操作。市面上有很多基于 nginx 能二次开发的框架。 https:&#x2F;&#x2F;openresty.org&#x2F;cn&#x2F; 官网可查看下载链接及安装需要的环境 .&#x2F;configure、make、make">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-08-03T09:38:14.916Z">
-<meta property="article:modified_time" content="2022-08-05T12:17:38.655Z">
+<meta property="article:published_time" content="2022-08-06T13:39:31.668Z">
+<meta property="article:modified_time" content="2022-08-06T14:08:36.977Z">
 <meta property="article:author" content="earsh9">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>latex入门&amp;简历书写 - earsh9&#39;s blog</title>
+  <title>openresty配置 - earsh9&#39;s blog</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -195,7 +195,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="latex入门&amp;简历书写"></span>
+            <span id="subtitle" data-typed-text="openresty配置"></span>
           
         </div>
 
@@ -206,8 +206,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-08-03 17:38" pubdate>
-          2022年8月3日 下午
+        <time datetime="2022-08-06 21:39" pubdate>
+          2022年8月6日 晚上
         </time>
       </span>
     
@@ -218,7 +218,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.2k 字
+          1.9k 字
         
       </span>
     
@@ -229,7 +229,7 @@
         
         
         
-          10 分钟
+          16 分钟
         
       </span>
     
@@ -267,44 +267,68 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">latex入门&amp;简历书写</h1>
+            <h1 style="display: none">openresty配置</h1>
             
             
               <div class="markdown-body">
                 
-                <h2 id="使用的模板"><a href="#使用的模板" class="headerlink" title="使用的模板"></a>使用的模板</h2><p><code>https://github.com/billryan/resume/tree/zh_CN</code></p>
-<h2 id="overleaf-的官方讲解："><a href="#overleaf-的官方讲解：" class="headerlink" title="overleaf 的官方讲解："></a>overleaf 的官方讲解：</h2><p><code>https://www.overleaf.com/learn</code></p>
-<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">很有用，这里主要参见的是上色部分，hhh根据官方的颜色编号给简历来点色彩<br></code></pre></td></tr></table></figure>
+                <h1 id=""><a href="#" class="headerlink" title=""></a></h1><h2 id="使用-openResty-安装-nginx"><a href="#使用-openResty-安装-nginx" class="headerlink" title="使用 openResty 安装 nginx"></a>使用 openResty 安装 nginx</h2><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs txt">ubuntu版本：22.04<br>openresty版本：1.17.8.2<br></code></pre></td></tr></table></figure>
 
-<h2 id="上色和调整行间距"><a href="#上色和调整行间距" class="headerlink" title="上色和调整行间距"></a>上色和调整行间距</h2><p><code>https://www.imbajin.com/recruit/2018-01-20-%E4%BD%BF%E7%94%A8Tex%E4%B9%A6%E5%86%99%E4%BC%98%E9%9B%85%E7%9A%84%E7%AE%80%E5%8E%86/</code></p>
-<h3 id="出现包冲突问题"><a href="#出现包冲突问题" class="headerlink" title="出现包冲突问题"></a>出现包冲突问题</h3><p>起因：想用 <code>xcolor</code> 包中的其他颜色，但是输入对应颜色的名称无效。怀疑没有指定对应的类别名，如：dvipsnames,usenames</p>
-<p>但是在 <code>resume.cls</code> 中添加提示包冲突了</p>
-<p>因为没找见最先引入 <code>xcolor</code> 包的地方，所以在 <code>.tex</code> 中用 \documentclass 暂时解决。相当于引入 宏包，使用宏包内的东西。</p>
-<p>例如：<code>\documentclass[dvipsnames,usenames]&#123;resume&#125;</code></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/76684599">https://zhuanlan.zhihu.com/p/76684599</a></p>
-<h2 id="调整图片和表格的位置"><a href="#调整图片和表格的位置" class="headerlink" title="调整图片和表格的位置"></a>调整图片和表格的位置</h2><ul>
-<li><p>latex 中表格是一行一行的写入，行与行之间使用 <code>\\</code> 隔开。此外 <code>\\</code> 还可用于强行插入空行</p>
+<p>openresty 就是个修改过的 nginx，主要好处在于可以配合 lua 脚本完成相关的定制操作。市面上有很多基于 nginx 能二次开发的框架。</p>
+<p><a target="_blank" rel="noopener" href="https://openresty.org/cn/">https://openresty.org/cn/</a> 官网可查看下载链接及安装需要的环境</p>
+<h3 id="configure、make、make-install-三步骤"><a href="#configure、make、make-install-三步骤" class="headerlink" title="./configure、make、make install 三步骤"></a><code>./configure</code>、<code>make</code>、<code>make install</code> 三步骤</h3><p>进入解压后的 openresty 文件夹，<code>chmod -R 777</code> 赋予权限</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs txt">$./configure --prefix=/usr/local/openresty \<br>            --with-luajit \<br>            --without-http_redis2_module \<br>            --with-http_iconv_module \<br>            --with-http_postgres_module<br><br>$make<br>$make install<br></code></pre></td></tr></table></figure>
+
+<p><code> --prefix=</code> 设定程序安装路径</p>
+<p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45351428/article/details/104287574">https://blog.csdn.net/weixin_45351428/article/details/104287574</a></p>
+<h3 id="启动时报：error-ngx-postgres-addon-was-unable-to-detect-version-of-the-libpq-library"><a href="#启动时报：error-ngx-postgres-addon-was-unable-to-detect-version-of-the-libpq-library" class="headerlink" title="启动时报：error: ngx_postgres addon was unable to detect version of the libpq library."></a>启动时报：error: ngx_postgres addon was unable to detect version of the libpq library.</h3><p>意味着还得再手动安装 &#96;libpq-dev:</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">sudo apt-get install libpq-dev<br></code></pre></td></tr></table></figure>
+
+<p>再重新编译安装</p>
+<h2 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h2><ul>
+<li><p>查看某一端口的进程情况：</p>
+<p>   ps -ef | grep **</p>
 </li>
-<li><p>遇到一格要占用多行&#x2F;多列时，使用 <code>\multicolumn&#123;&#125;&#123;&#125;&#123;&#125;</code> 和 <code>\multirow&#123;&#125;&#123;&#125;&#123;&#125;</code>，二者还可以嵌套使用</p>
+<li><p>查看某一应用占用的端口情况，则可以结合grep命令：</p>
+<p>   netstat -ap | grep **</p>
+</li>
+<li><p>vim 跳到首行：gg 跳到尾行：shift + g</p>
+</li>
+<li><p>从普通用户切换置 root 用户：<code>sudo -i</code></p>
 <ul>
-<li><p>multicolumn 第二项只能指定表格中内容左对齐、居中还是右对齐。</p>
-</li>
-<li><p>multirow 第二项除了使用 <code>*</code> 来自适应表格宽度，还能自行指定如：3in。这在表格中有图片插入时很有用</p>
-</li>
+<li>输入当前用户密码后以root权限登录shell，无时间限制。使用exit或logout退出。</li>
 </ul>
 </li>
-<li><p>tabular 环境用于绘制表格的内容，刚开始对表格概念不熟的时候，利用 <code>\begin&#123;tabular&#125;&#123;|l|c|c|&#125;</code> 画列分割线、<code>hline</code> 画行线来快速上手。</p>
-</li>
-<li><p>想调整图片在表格中的位置，我只尝试了引入 <code>\usepackage[export]&#123;adjustbox&#125;</code> 包</p>
+<li><p>mysql: 赋予用户访问权限</p>
 <ul>
-<li>可以设置 <code>left</code>、<code>right</code>、<code>center</code>、<code>outer</code> 和 <code>inner</code> 等参数。</li>
+<li><p><code>grant all privileges on *.* to &#39;root&#39;@&#39;%&#39;；</code></p>
+<ul>
+<li>8.0 以后后续不用跟 identified by …</li>
+</ul>
+</li>
+<li><p>重启服务：<code>service mysql restart</code></p>
+</li>
 </ul>
 </li>
 </ul>
-<p>参考：</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_41519463/article/details/103737464">https://blog.csdn.net/weixin_41519463/article/details/103737464</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/xovee/article/details/109378160">https://blog.csdn.net/xovee/article/details/109378160</a></p>
-<h2 id="简历上的话术参考"><a href="#简历上的话术参考" class="headerlink" title="简历上的话术参考"></a>简历上的话术参考</h2><p><code>https://github.com/resumejob/awesome-resume</code></p>
+<h2 id="普通-nginx-安装"><a href="#普通-nginx-安装" class="headerlink" title="普通 nginx 安装"></a>普通 nginx 安装</h2><p>在软件安装包 (&#x2F;opt&#x2F;nginx) 目录下使用 <code>./configure</code> 可以查看该软件是否具有编译环境，<code>make &amp; make install</code> 后自动在 &#x2F;usr&#x2F;local&#x2F; 下<br>创建该软件的存储文件 (nginx)，bin&#x2F;sbin 和 conf 文件都有，可分别用于启动 和 修改配置文件</p>
+<p>在 sbin 目录下使用 <code>./nginx -v</code> 可查看版本，<code>./nginx -t</code> 可查看其是否安装成功，<code>./nginx</code> 可以直接启动 nginx</p>
+<p><code>nginx -s reload</code> 重启</p>
+<p><code>nginx -s quit</code> 结束进程后停止服务器</p>
+<p><code>nginx -s stop</code> 立刻停止进程</p>
+<p>上述启动方式是通过 &#x2F;sbin 文件下的 Nginx 可执行文件使用 <code>./nginx</code> 启动的，不想每次前往具体文件夹才能启动可以创建一个脚本，使用 <code>systemctl</code>… 命令执行。</p>
+<p>具体步骤如下：</p>
+<p>1。创建服务脚本</p>
+<p><code>vi /usr/lib/systemd/system/nginx.service</code></p>
+<p>2。服务脚本内容</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs txt">[Unit]<br>Description=nginx - web server<br>After=network.target remote-fs.target nss-lookup.target<br>[Service]<br>Type=forking<br>PIDFile=/usr/local/nginx/logs/nginx.pid<br>ExecStartPre=/usr/local/nginx/sbin/nginx -t -c /usr/local/nginx/conf/nginx.conf<br>ExecStart=/usr/local/nginx/sbin/nginx -c /usr/local/nginx/conf/nginx.conf<br>ExecReload=/usr/local/nginx/sbin/nginx -s reload<br>ExecStop=/usr/local/nginx/sbin/nginx -s stop<br>ExecQuit=/usr/local/nginx/sbin/nginx -s quit<br>PrivateTmp=true<br>[Install]<br>WantedBy=multi-user.target<br></code></pre></td></tr></table></figure>
+
+<p>3。重新加载系统服务</p>
+<p><code>systemctl daemon-reload</code></p>
+<p>4。启动服务</p>
+<p><code>systemctl start nginx.service</code></p>
+<p>5。还可以设置成开机启动</p>
+<p><code>systemctl enable nginx.service</code></p>
 
                 
               </div>
@@ -323,8 +347,15 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%A4%87%E5%BF%98/" class="category-chain-item">备忘</a>
+  <a href="/categories/%E6%90%AD%E7%8E%AF%E5%A2%83%E8%AE%B0%E5%BD%95/" class="category-chain-item">搭环境记录</a>
   
+  
+    <span>></span>
+    
+  <a href="/categories/%E6%90%AD%E7%8E%AF%E5%A2%83%E8%AE%B0%E5%BD%95/nginx/" class="category-chain-item">nginx</a>
+  
+  
+
   
 
       </span>
@@ -343,8 +374,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>latex入门&amp;简历书写</div>
-      <div>https://earsh9.github.io/2022/08/03/备忘/latex/</div>
+      <div>openresty配置</div>
+      <div>https://earsh9.github.io/2022/08/06/搭环境配置/nginx/</div>
     </div>
     <div class="license-meta">
       
@@ -356,7 +387,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年8月3日</div>
+          <div>2022年8月6日</div>
         </div>
       
       
@@ -386,15 +417,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/08/04/1.%E6%95%B0%E7%BB%84/5.%E4%BF%AE%E6%94%B9%E4%B8%8E%E6%9F%A5%E8%AF%A2/" title="修改与查询">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">修改与查询</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2022/08/04/%E5%A4%87%E5%BF%98/idea%E9%A1%B9%E7%9B%AE%E4%B8%8A%E4%BC%A0/" title="将IDEA中的项目上传到GitHub">
+                        <span class="hidden-mobile">将IDEA中的项目上传到GitHub</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

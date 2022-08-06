@@ -223,6 +223,67 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
+        <a href="/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/3.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/" target="_self">
+          字符串匹配问题
+        </a>
+      </h1>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/3.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%8C%B9%E9%85%8D%E9%97%AE%E9%A2%98/" target="_self">
+        <div>
+          KMP核心思想当出现字符串不匹配时，可以记录一部分之前已经匹配的文本内容，利用这些信息避免从头再去做匹配。 重点：如何记录已经匹配的文本内容？用next()数组。next数组就是一个前缀表（prefix table）。 1）前缀表有什么作用呢？前缀表是用来回退的，它记录了模式串与主串(文本串)不匹配的时候，模式串应该从哪里开始重新匹配。 举例：要在文本串：aabaabaafa 中查找是否出现过一个
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2022-08-04 17:22" pubdate>
+              2022-08-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
+  
+  
+    <span>></span>
+    
+  <a href="/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="category-chain-item">字符串</a>
+  
+  
+
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
         <a href="/2022/08/04/4.%E5%AD%97%E7%AC%A6%E4%B8%B2/4.%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%93%88%E5%B8%8C/" target="_self">
           字符串哈希
         </a>
@@ -467,15 +528,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/08/04/2.%E9%93%BE%E8%A1%A8/4.%E7%9B%B8%E4%BA%A4%E5%92%8C%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" target="_self">
-          相交和环形链表
+        <a href="/2022/08/04/2.%E9%93%BE%E8%A1%A8/3.%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" target="_self">
+          反转链表
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/04/2.%E9%93%BE%E8%A1%A8/4.%E7%9B%B8%E4%BA%A4%E5%92%8C%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/04/2.%E9%93%BE%E8%A1%A8/3.%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" target="_self">
         <div>
-          面试题 02.07. 链表相交给定两个（单向）链表，判定它们是否相交并返回交点。请注意相交的定义基于节点的引用，而不是基于节点的值。换句话说，如果一个链表的第k个节点与另一个链表的第j个节点是同一节点（引用完全相同），则这两个链表相交。  对两个链表各循环一次，得到各自的长度 多的先走长度之差步，再一起走，直到指向同一个节点  142题 环形链表II题意： 给定一个链表，返回链表开始入环的第一个节
+          206题 反转链表题意：反转一个单链表。 示例: 输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL 输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL  预设一个空的虚拟节点：ListNode a &#x3D; null; ListNode b &#x3D; head; 预先记录要被断开联系的部分：ListNode tmp &#x3D; b.n
         </div>
       </a>
 
@@ -528,15 +589,15 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2022/08/04/2.%E9%93%BE%E8%A1%A8/3.%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" target="_self">
-          反转链表
+        <a href="/2022/08/04/2.%E9%93%BE%E8%A1%A8/4.%E7%9B%B8%E4%BA%A4%E5%92%8C%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" target="_self">
+          相交和环形链表
         </a>
       </h1>
 
       
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/04/2.%E9%93%BE%E8%A1%A8/3.%E5%8F%8D%E8%BD%AC%E9%93%BE%E8%A1%A8/" target="_self">
+      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/04/2.%E9%93%BE%E8%A1%A8/4.%E7%9B%B8%E4%BA%A4%E5%92%8C%E7%8E%AF%E5%BD%A2%E9%93%BE%E8%A1%A8/" target="_self">
         <div>
-          206题 反转链表题意：反转一个单链表。 示例: 输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL 输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL  预设一个空的虚拟节点：ListNode a &#x3D; null; ListNode b &#x3D; head; 预先记录要被断开联系的部分：ListNode tmp &#x3D; b.n
+          面试题 02.07. 链表相交给定两个（单向）链表，判定它们是否相交并返回交点。请注意相交的定义基于节点的引用，而不是基于节点的值。换句话说，如果一个链表的第k个节点与另一个链表的第j个节点是同一节点（引用完全相同），则这两个链表相交。  对两个链表各循环一次，得到各自的长度 多的先走长度之差步，再一起走，直到指向同一个节点  142题 环形链表II题意： 给定一个链表，返回链表开始入环的第一个节
         </div>
       </a>
 
@@ -720,67 +781,6 @@
       <a class="index-excerpt index-excerpt__noimg" href="/2022/08/04/1.%E6%95%B0%E7%BB%84/1.%E6%BB%91%E5%8A%A8%E7%AA%97%E5%8F%A3/" target="_self">
         <div>
           209题 长度最小的子数组对于全正整数数组和正整数target，求解加和 &gt;&#x3D; target 的最小连续子数组： 解法一：滑动窗口 滑动窗口：不断调节子序列的起止位置，直至找到想要的结果 要想要最小：定义全局变量length，不断更新其值 当加和 &gt;&#x3D; target时才有可能考虑缩小窗口大小（将起点右移） 不是说for里面一个while循环就是o(n^2)的时间复杂
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2022-08-04 17:14" pubdate>
-              2022-08-04
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/" class="category-chain-item">LC刷题笔记</a>
-  
-  
-    <span>></span>
-    
-  <a href="/categories/LC%E5%88%B7%E9%A2%98%E7%AC%94%E8%AE%B0/%E6%95%B0%E7%BB%84/" class="category-chain-item">数组</a>
-  
-  
-
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2022/08/04/1.%E6%95%B0%E7%BB%84/2.%E6%A8%A1%E6%8B%9F%E8%A1%8C%E4%B8%BA/" target="_self">
-          纯模拟
-        </a>
-      </h1>
-
-      
-      <a class="index-excerpt index-excerpt__noimg" href="/2022/08/04/1.%E6%95%B0%E7%BB%84/2.%E6%A8%A1%E6%8B%9F%E8%A1%8C%E4%B8%BA/" target="_self">
-        <div>
-          59题 螺旋矩阵II给你一个正整数 n ，生成一个包含 1 到 n^2 所有元素，且元素按顺时针顺序螺旋排列的 n x n 正方形矩阵 matrix  这种题不考察算法，只看模拟。要遵循循环不变量原则：即每个边界得是一致的左闭右开。  严格模拟旋转的过程： 1234567891011121314151617181920212223242526272829303132333435363738publ
         </div>
       </a>
 
