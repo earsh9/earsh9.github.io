@@ -7,8 +7,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/kongna2.png">
-  <link rel="icon" href="/img/kongna2.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/bg/kongna2.png">
+  <link rel="icon" href="/img/bg/kongna2.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
@@ -24,8 +24,9 @@
 <meta property="og:description" content="使用 openResty 安装 nginx12ubuntu版本：22.04openresty版本：1.17.8.2  openresty 由 nginx 核心加很多第三方模块组成，默认集成 lua 开发环境，使得 nginx 可以作为一个 Web Server 使用。 借助于 Nginx 的时间驱动模型和非阻塞IO（epoll多路复用），可以实现高性能的 Web 应用程序。 OpenResty 提">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-06T13:39:31.668Z">
-<meta property="article:modified_time" content="2022-08-07T07:27:17.947Z">
+<meta property="article:modified_time" content="2022-08-09T06:00:27.617Z">
 <meta property="article:author" content="earsh9">
+<meta property="article:tag" content="nginx">
 <meta name="twitter:card" content="summary_large_image">
   
   
@@ -278,12 +279,12 @@
 <p>借助于 Nginx 的时间驱动模型和非阻塞IO（epoll多路复用），可以实现高性能的 Web 应用程序。</p>
 <p>OpenResty 提供大量组件（驱动）如 Mysql、Redis、Memcached 等，使在 Nginx 上开发 Web 应用更方便更简单。</p>
 <p><a target="_blank" rel="noopener" href="https://openresty.org/cn/">https://openresty.org/cn/</a> 官网可查看下载链接及安装需要的环境</p>
-<h3 id="configure、make、make-install-三步骤"><a href="#configure、make、make-install-三步骤" class="headerlink" title="./configure、make、make install 三步骤"></a><code>./configure</code>、<code>make</code>、<code>make install</code> 三步骤</h3><p>进入解压后的 openresty 文件夹，<code>chmod -R 777</code> 赋予权限</p>
+<h3 id="configure、make、make-install-三步骤"><a href="#configure、make、make-install-三步骤" class="headerlink" title="./configure、make、make install 三步骤"></a><code>./configure</code>、<code>make</code>、<code>make install</code> 三步骤</h3><p>进入解压后的 openresty 文件夹，<code>chmod -R 777 *</code> 赋予权限</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs txt">$./configure --prefix=/usr/local/openresty \<br>            --with-luajit \<br>            --without-http_redis2_module \<br>            --with-http_iconv_module \<br>            --with-http_postgres_module<br><br>$make<br>$make install<br></code></pre></td></tr></table></figure>
 
 <p><code> --prefix=</code> 设定程序安装路径</p>
 <p>参考：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_45351428/article/details/104287574">https://blog.csdn.net/weixin_45351428/article/details/104287574</a></p>
-<h3 id="启动时报：error-ngx-postgres-addon-was-unable-to-detect-version-of-the-libpq-library"><a href="#启动时报：error-ngx-postgres-addon-was-unable-to-detect-version-of-the-libpq-library" class="headerlink" title="启动时报：error: ngx_postgres addon was unable to detect version of the libpq library."></a>启动时报：error: ngx_postgres addon was unable to detect version of the libpq library.</h3><p>意味着还得再手动安装 &#96;libpq-dev:</p>
+<h3 id="启动时报：error-ngx-postgres-addon-was-unable-to-detect-version-of-the-libpq-library"><a href="#启动时报：error-ngx-postgres-addon-was-unable-to-detect-version-of-the-libpq-library" class="headerlink" title="启动时报：error: ngx_postgres addon was unable to detect version of the libpq library."></a>启动时报：error: ngx_postgres addon was unable to detect version of the libpq library.</h3><p>意味着还得再手动安装 <code>libpq-dev</code>:</p>
 <figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs txt">sudo apt-get install libpq-dev<br></code></pre></td></tr></table></figure>
 
 <p>再重新编译安装</p>
@@ -371,6 +372,13 @@
 
     </div>
   
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/nginx/">#nginx</a>
+      
+    </div>
   
 </div>
 
